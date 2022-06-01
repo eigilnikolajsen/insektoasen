@@ -1,0 +1,567 @@
+/* 
+HISTORIEDYSTEN 2022 
+ALL CONTENT DESIGNED BY INTERACTIVE DESIGN 2020-2023 @ DMJX 
+WEBSITE CODED BY EIGIL NIKOLAJSEN 
+*/
+
+
+/* GLOBAL STYLES ----------------------------------------------------------- */
+
+@font-face {
+    font-family: 'Kefa-Regular';
+    src: url('font/Kefa-Regular.woff2') format('woff2'), url('font/Kefa-Regular.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+:root {
+    --light-blue: #005893;
+    --blue: #18466B;
+    --dark-blue: #0F3756;
+    --green: #4cb373;
+}
+
+*,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection {
+    background-color: var(--dark-blue);
+    color: rgba(255, 255, 255, 0.8)
+}
+
+
+/* NO MOBILE ----------------------------------------------------------- */
+
+#mobile_warning {
+    display: none;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 45vh;
+}
+
+@media screen and (max-width: 1000px) {
+    #mobile_warning {
+        display: block;
+    }
+    #container {
+        display: none;
+    }
+}
+
+
+/* MAIN CONTAINERS ----------------------------------------------------------- */
+
+body {
+    overflow-x: hidden;
+}
+
+#container {
+    height: 100vh;
+}
+
+#bg_wrapper {
+    position: fixed;
+}
+
+#bg {
+    height: 100vh;
+    width: auto;
+    transform-origin: 35vh 40vh;
+}
+
+
+/* ARROWS ----------------------------------------------------------- */
+
+#arrow_wrapper {
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.arrow {
+    visibility: visible;
+    width: 10vh;
+    margin: 3vh;
+}
+
+.arrow_wrapper {
+    transition: 0.3s cubic-bezier(.1, .6, 0.5, 1);
+    cursor: pointer;
+}
+
+.arrow_wrapper_left:hover {
+    transform: translateX(-0.6vh);
+}
+
+.arrow_wrapper_right:hover {
+    transform: translateX(0.6vh);
+}
+
+.arrow_wrapper_left.greyed_arrow:hover {
+    transform: translateX(0);
+}
+
+.arrow_wrapper_right.greyed_arrow:hover {
+    transform: translateX(0);
+}
+
+.greyed_arrow {
+    opacity: 0.2;
+    cursor: auto;
+}
+
+
+/* NUMBERS ----------------------------------------------------------- */
+
+#number_wrapper {
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-origin: 35vh 40vh;
+}
+
+.number {
+    visibility: visible;
+    position: fixed;
+    width: 3ch;
+    height: 3ch;
+    border: 0.4vh solid white;
+    border-radius: 9999px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(10px);
+    font-size: 3vh;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 2.3ch;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.6s cubic-bezier(.5, .6, 0, 1);
+    font-weight: 500;
+}
+
+.number:hover {
+    transform: scale(1.15);
+}
+
+.visited_number {
+    color: var(--green);
+    border: 0.4vh solid var(--green);
+}
+
+
+/* LOGO ----------------------------------------------------------- */
+
+#logomark_wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 3vh;
+}
+
+#logomark {
+    width: 6vh;
+    height: auto;
+}
+
+
+/* LIGHTBOX ----------------------------------------------------------- */
+
+#lightbox_wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    display: none;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+}
+
+#lightbox_bg {
+    background-color: var(--blue);
+    background-image: url(img/bg_tile.svg);
+    background-size: 10vh;
+    border-radius: 2vh;
+    margin: 3vh 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+#lightbox_ui {
+    visibility: hidden;
+    background-color: green;
+    display: flex;
+    justify-content: space-between;
+    margin: -1vh;
+    height: 0;
+}
+
+#lightbox_exit {
+    visibility: visible;
+    width: 7vh;
+    height: 7vh;
+    background-image: url(img/close_icon.svg);
+    cursor: pointer;
+}
+
+#lightbox_logo {
+    width: 7vh;
+}
+
+#lightbox_content_wrapper {
+    height: 100%;
+    margin: 3vh 4vh 4vh 4vh;
+}
+
+#lightbox_content_wrapper div {
+    height: 100%;
+    width: 136vh;
+    max-width: 88vw;
+}
+
+#lightbox_title {
+    font-size: 5vh;
+    font-family: 'Kefa-Regular', sans-serif;
+    color: white;
+    text-align: center;
+    margin: 4vh auto 0 auto;
+    line-height: 1.2;
+    font-weight: normal;
+    max-width: 32ch;
+    transform: translateX(-1vh);
+}
+
+#lightbox_title span {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    width: 2.5ch;
+    height: 2.5ch;
+    border: 0.5vh solid white;
+    border-radius: 9999px;
+    line-height: 1.2;
+    margin: 0 1vh 0 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+#lightbox_text {
+    max-width: 70ch;
+    margin: 0 auto;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2.5vh;
+    line-height: 1.5;
+    color: white;
+    font-weight: 300;
+}
+
+li {
+    margin: 0 0 0 3vh;
+}
+
+ul {
+    margin: 1vh 0;
+}
+
+br {
+    display: block;
+    content: "";
+    margin-top: 1vh;
+}
+
+
+/* LOADING SPINNER ----------------------------------------------------------- */
+
+#loading_spinner {
+    visibility: visible;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transform: translateY(45vh);
+}
+
+#loading_spinner div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+#loading_spinner div:nth-child(1) {
+    left: 8px;
+    animation: loading_spinner1 0.6s infinite;
+}
+
+#loading_spinner div:nth-child(2) {
+    left: 8px;
+    animation: loading_spinner2 0.6s infinite;
+}
+
+#loading_spinner div:nth-child(3) {
+    left: 32px;
+    animation: loading_spinner2 0.6s infinite;
+}
+
+#loading_spinner div:nth-child(4) {
+    left: 56px;
+    animation: loading_spinner3 0.6s infinite;
+}
+
+@keyframes loading_spinner1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes loading_spinner3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes loading_spinner2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+
+/* CUSTOM SCROLLBAR ----------------------------------------------------------- */
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar:hover {
+    width: 16px;
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-blue) var(--blue);
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--blue);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--dark-blue);
+    border-radius: 9999px;
+    border: 2px solid var(--blue);
+}
+
+
+/* STARNIGHT ZOOM ----------------------------------------------------------- */
+
+#starnight_zoom {
+    position: fixed;
+    width: auto;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    transform-origin: 35vh 40vh;
+}
+
+#arrow_zoom,
+#arrow_back {
+    position: fixed;
+    width: 10vh;
+    margin: 5vh;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#arrow_zoom {
+    transform: rotate(45deg);
+    top: 40vh;
+    left: 35vh;
+}
+
+#arrow_back {
+    top: 50vh;
+    left: 90vw;
+}
+
+
+/* INDEX ----------------------------------------------------------- */
+
+#index_wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--blue);
+    background-image: url(img/bg_tile.svg);
+    background-size: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#persons_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.person_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3vh 2vw;
+    padding: 8vh 2vw;
+    background: radial-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+    transition: 0.6s cubic-bezier(.5, .6, 0, 1);
+    text-decoration: none;
+}
+
+#index_wrapper img {
+    height: 20vw;
+    transition: 0.6s cubic-bezier(.5, .6, 0, 1);
+    cursor: pointer;
+}
+
+#index_wrapper h1 {
+    color: white;
+    font-family: "Kefa-Regular", sans-serif;
+    font-weight: normal;
+    font-size: 4vh;
+    transition: 0.6s cubic-bezier(.5, .6, 0, 1);
+    text-decoration: none;
+}
+
+#index_wrapper h2 {
+    color: white;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    font-size: 2vh;
+    margin: 4vh 0 0.5vh 0;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.person_wrapper:hover {
+    transform: scale(1.05);
+}
+
+.person_wrapper:hover h1 {
+    transform: scale(1.1);
+}
+
+.person_wrapper:hover img {
+    transform: scale(1.03);
+}
+
+#index_wrapper #index_logo {
+    width: 20vw;
+    height: auto;
+    cursor: auto;
+}
+
+#psst {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-family: "Noto Sans", sans-serif;
+    margin: 0.5vh;
+    font-size: 1vh;
+    color: white;
+}
+
+strong {
+    font-weight: 400;
+}
+
+#psst:hover strong {
+    display: none;
+}
+
+#psst:hover .psst_info {
+    display: block;
+    text-align: end;
+    content: "3 påskeæg er gemt";
+    position: absolute;
+    width: 30ch;
+    left: -5.5ch;
+    top: -3vh;
+    color: white;
+}
+
+#psst:hover .psst_info:nth-of-type(2) {
+    top: -1.5vh;
+}
+
+#psst input,
+.psst_info {
+    display: none;
+}
+
+#psst:hover input {
+    display: inline-block;
+}
+
+#psst input[type="text"] {
+    width: 15ch;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1vh;
+    color: black;
+}
+
+#psst input[type="button"] {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1vh;
+    width: 10ch;
+    color: black;
+}
+
+#psst_hco {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1vh;
+    line-height: 0.7;
+    margin-top: 10vh;
+    color: white;
+}
+
+#psst .psst_solution {
+    line-height: 0.5;
+    text-align: end;
+    margin-bottom: 0.5vh;
+}
+
+#psst .psst_solution a {
+    color: white;
+}
