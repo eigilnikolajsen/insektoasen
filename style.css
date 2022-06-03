@@ -1,10 +1,7 @@
 /* GLOBAL STYLES ----------------------------------------------------------- */
 
 :root {
-    --light-blue: #005893;
-    --blue: #18466B;
-    --dark-blue: #0F3756;
-    --green: #4cb373;
+    --color: #000000;
 }
 
 *,
@@ -12,9 +9,4 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-*::selection {
-    background-color: var(--dark-blue);
-    color: rgba(255, 255, 255, 0.8)
 }

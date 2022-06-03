@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="da">
+
+<head>
+
+    <!-- STUFF IDK WHAT MEANS + TITLE -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <!-- FONTS -->
+
+    <!-- JS -->
+    <script src="js/color.js" defer></script>
+
+    <style>
+        #container {
+            display: grid;
+        }
+        
+        .gradient {
+            grid-row: 1;
+            grid-column: 1;
+            width: 500px;
+            height: 500px;
+            mix-blend-mode: difference;
+            margin: 100px auto;
+            filter: brightness(2) saturate(1);
+        }
+        
+        .gradient:last-child {
+            mix-blend-mode: soft-light;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button onclick="createIteration()">New iteration</button>
+
+    <!-- MAIN CONTAINER -->
+    <div id="container">
+
+    </div>
+
+</body>
+
+</html>
