@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag</title>
+    <title>Draggable</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
@@ -22,14 +22,16 @@
     <!-- FONTS -->
 
     <!-- JS -->
-    <script src="js/drag.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+    <script src="js/draggable.js" defer></script>
 
     <style>
-        #container {
-            display: grid;
+        #ul_test {
+            list-style-type: none;
         }
         
         .letter {
+            display: inline-block;
             grid-row: 1;
             width: 3ch;
             height: 3ch;

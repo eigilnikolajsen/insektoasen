@@ -27,16 +27,18 @@ window.addEventListener('mousemove', (e) => {
 window.addEventListener("mousedown", (e) => {
     console.log(e.path[0].classList[0])
     if (e.path[0].classList[0] != "letter") { return } else {
-        dragElement = e.path[0],
-            mouseStartX = mouseX,
-            mouseStartY = mouseY
+        dragElement = e.path[0]
+        mouseStartX = mouseX
+        mouseStartY = mouseY
 
         window.requestAnimationFrame(dragging) //start loop
     }
 })
 
-window.addEventListener("mouseup", () => {
+window.addEventListener("mouseup", (e) => {
     window.cancelAnimationFrame(dragAnimation) //stop loop
+
+    console.log(e.path)
 })
 
 function dragging() {
