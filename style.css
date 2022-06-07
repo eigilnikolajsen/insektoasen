@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('font/ImagoT6.woff2') format('woff2'), /* Modern Browsers */
-    url('font/ImagoT6.otf') format('opentype');
+    src: url('font/ImagoT7.woff2') format('woff2'), /* Modern Browsers */
+    url('font/ImagoT7.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -14,6 +14,7 @@
     --green-green: linear-gradient(150deg, #A1CC80, #3C7B55);
     --char: #DBF56E;
     --dark: #140E1A;
+    --beige: #fcf7f6;
 }
 
 *,
@@ -141,6 +142,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    display: none;
 }
 
 #content_top_container {
@@ -155,13 +157,14 @@ body {
 }
 
 #content_logo_game {
-    height: min(30vh, 70vw);
+    width: min(40vh, 80vw);
     margin: 3vh 0;
     stroke: var(--dark);
-    stroke-width: 3px;
+    stroke-width: 6px;
     stroke-linejoin: round;
     fill: var(--char);
     overflow: visible;
+    filter: drop-shadow(var(--dark) 6px 6px);
 }
 
 #content_bottom_container {
@@ -183,7 +186,7 @@ body {
 button {
     background-color: var(--char);
     border: 3px solid var(--dark);
-    border-radius: 6px;
+    border-radius: 10px;
     width: unset;
     display: block;
     margin: 1vh auto;
@@ -214,4 +217,134 @@ button:active {
 
 #info_button {
     margin: 1vh auto 3vh auto;
+}
+
+
+/* LEVELS ----------------------------------------------------------- */
+
+#levels_container {
+    padding: 2vh;
+    width: 100vw;
+    max-width: 600px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#levels_navigation_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#levels_text {
+    font-family: 'Imago Display', sans-serif;
+    font-size: 3vh;
+    margin-top: 1vh;
+}
+
+.ui_mute,
+.ui_home {
+    background-color: var(--beige);
+    display: inline-block;
+    font-size: 5vh;
+    line-height: 0;
+    padding: 2.7vh 0.8vh 2.2vh 0.8vh;
+    margin: 0 0 0 1vh;
+}
+
+.levels_content_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.levels_content_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.levels_content_title {
+    font-family: 'Imago Display', sans-serif;
+    font-size: min(6vh, 14vw);
+    text-align: center;
+    margin: 3vh 0 2vh 0;
+}
+
+.levels_content_illustration {
+    width: min(20vh, 50vw);
+}
+
+.levels_content_middle {
+    width: 100%;
+    max-width: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2vh 1vh;
+}
+
+.levels_content_level_container {
+    background-color: var(--char);
+    border: 3px solid var(--dark);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(.3, .9, .4, 1);
+    box-shadow: var(--dark) 4px 4px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.levels_content_level_container::before {
+    content: ' ';
+    display: block;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.levels_content_level_container::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.levels_content_level_number {
+    font-family: 'Imago Display', sans-serif;
+    font-size: 5vh;
+    text-align: center;
+}
+
+.levels_content_levels_star_container {
+    position: absolute;
+    width: 8vh;
+    height: 8vh;
+}
+
+.levels_container_stats {
+    font-family: 'Imago Display', sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    margin: 1vh 0;
+}
+
+#levels_content_navigation_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.levels_content_arrow {
+    border-radius: 9999px;
+    margin: 1vh;
+    padding: 0.7vh 1vh;
+    font-size: 4vh;
 }
