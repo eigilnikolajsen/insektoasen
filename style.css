@@ -1,5 +1,15 @@
 /* GLOBAL STYLES ----------------------------------------------------------- */
 
+@font-face {
+    font-family: 'Imago Display';
+    src: url('font/ImagoT6.woff2') format('woff2'), /* Modern Browsers */
+    url('font/ImagoT6.otf') format('opentype');
+    /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
 :root {
     --color: #000000;
 }
@@ -9,4 +19,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Indivisible', sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
