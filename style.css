@@ -598,13 +598,11 @@ button:active {
     font-family: "Imago Display";
     text-transform: uppercase;
     font-size: min(4vh, 8vw);
-    padding: calc(55% - 3px) 0 calc(45% - 3px) 0;
     text-align: center;
     line-height: 0;
     background-color: var(--char);
     border: 3px solid var(--dark);
     border-radius: 8px;
-    transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) 4px 4px;
 }
 
@@ -612,31 +610,20 @@ button:active {
     background-color: var(--grey);
 }
 
-@media (hover: hover) {
-    #game_letter_grid span:hover {
-        box-shadow: var(--dark) 3px 3px;
-        transform: translate(1px, 1px);
-    }
-    #game_letter_grid span.locked:hover {
-        box-shadow: var(--dark) 4px 4px;
-        transform: translate(0);
-    }
-}
-
-#game_letter_grid span:active {
-    box-shadow: var(--dark) 1px 1px;
-    transform: translate(3px, 3px);
-    transition: 0.1s cubic-bezier(.3, .9, .4, 1);
-}
-
-#game_letter_grid span.locked:active {
-    box-shadow: var(--dark) 4px 4px;
-    transform: translate(0);
-}
-
-#game_letter_grid span.space {
+#game_letter_grid span.spaced {
     padding: 10% 0;
     visibility: hidden;
-    gap: 1vh;
     border: none;
+}
+
+#game_letter_grid span.empty {
+    visibility: hidden;
+}
+
+#game_letter_grid span.draggable-source--is-dragging {
+    visibility: hidden;
+}
+
+#game_letter_grid span.draggable-mirror {
+    background-color: var(--orange);
 }
