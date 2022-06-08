@@ -68,7 +68,7 @@ sortable.on('drag:start', (el) => {
 
 const buildAnagram = () => {
     let grid = document.querySelector("#game_letter_grid")
-    let level = kdk.game.categories.biller.levels[2]
+    let level = kdk.game.categories.biller.levels[1]
 
     //split anagram string into array
     let str = level.anagram.split("")
@@ -76,15 +76,14 @@ const buildAnagram = () => {
         []
     ]
 
-    let hyphenCount = 1,
-        spaceCount = 1,
-        letterCount = 0,
+    let hyphenCount = 1, //hyphen count starts from 1
+        spaceCount = 1, //space count starts from 1
         rowCount = 0,
         count = 0
 
     console.log(str)
 
-    //run through array, create DOM elements
+    //run through string array, create DOM elements
     for (let i = 0; i < str.length; i++) {
 
         //it's a letter
@@ -94,76 +93,71 @@ const buildAnagram = () => {
 
             //it's uppercase
             if (str[i] == str[i].toUpperCase()) {
-                span.classList.add(`letter`, `dragge`, `locked`)
-                span.textContent = str[i]
-                gridTemplateAreasArray[rowCount][count % 8] = "."
-                console.log(".")
+                span.classList.add(`letter`, `dragge`, `locked`) //add classes (locked if capital letter)
+                span.textContent = str[i] //add text
+                gridTemplateAreasArray[rowCount][count % 8] = "." //add empty to grid layout
             }
 
             //it's lowercase
             else {
-                span.classList.add(`letter`, `dragge`)
-                span.textContent = str[i]
-                gridTemplateAreasArray[rowCount][count % 8] = "."
-                console.log(".")
+                span.classList.add(`letter`, `dragge`) //add classes
+                span.textContent = str[i] //add text
+                gridTemplateAreasArray[rowCount][count % 8] = "." //add empty to grid layout
             }
 
-            count++
-            letterCount++
+            count++ //add 1 to running counter
 
         }
 
         //it's not a letter
         else {
 
+
             let isNewRow = false
 
+            //if hyphen, then add hyphen and fill last of row with spaces
             if (str[i] == "-") {
-
                 let spanHyphen = document.createElement("span")
+                spanHyphen.classList.add(`letter`, `locked`, `h${hyphenCount}`) //add classes
+                spanHyphen.style.gridArea = `h${hyphenCount}` //add grid area style
+                spanHyphen.textContent = "–" //add endash
+                gridTemplateAreasArray[rowCount][count % 8] = `h${hyphenCount}` //add e.g. h1 to grid layout
 
-                spanHyphen.classList.add(`letter`, `locked`, `h${hyphenCount}`)
-                spanHyphen.textContent = "–"
-                gridTemplateAreasArray[rowCount][count % 8] = `h${hyphenCount}`
-                console.log("hx")
-
-                hyphenCount++
-                count++
+                hyphenCount++ //increment hyphen count
+                count++ //increment count
             } else {
                 isNewRow = true
             }
 
-
+            //loop through and fill rest of row with spaces
             let tempCount = count
-            for (let j = 0; j < 8 - (tempCount % 8); j++) {
-
+            for (let j = 0; j < (8 - (tempCount % 8)) % 8; j++) {
                 let spanSpace = document.createElement("span")
+                spanSpace.classList.add(`s${spaceCount}`) //add class
+                spanSpace.style.gridArea = `h${spaceCount}` //add grid area style
+                gridTemplateAreasArray[rowCount][count % 8] = `s${spaceCount}` //add e.g. s1 to grid layout
 
-                spanSpace.classList.add(`s${spaceCount}`)
-                gridTemplateAreasArray[rowCount][count % 8] = `s${spaceCount}`
-                console.log("sx")
-
-                count++
+                count++ //increment count
             }
 
-            spaceCount++
-            rowCount++
-            gridTemplateAreasArray[rowCount] = []
+            spaceCount++ //increment space count
+            rowCount++ //increment row count
+            gridTemplateAreasArray[rowCount] = [] //add new empty array @ index rowCount
 
+            //if not hyphen but space, make row of empty to seperate rows
             if (isNewRow) {
                 isNewRow = false
+
                 for (let j = 0; j < 8; j++) {
-
                     let spanSpace = document.createElement("span")
-
-                    spanSpace.classList.add(`s${spaceCount}`)
-                    gridTemplateAreasArray[rowCount][j] = `s${spaceCount}`
-                    console.log("sx")
+                    spanSpace.classList.add(`s${spaceCount}`) //add class
+                    spanSpace.style.gridArea = `h${spaceCount}` //add grid area style
+                    gridTemplateAreasArray[rowCount][j] = `s${spaceCount}` //add e.g. s1 to grid layout
                 }
 
-                spaceCount++
-                rowCount++
-                gridTemplateAreasArray[rowCount] = []
+                spaceCount++ //increment 
+                rowCount++ //increment row count
+                gridTemplateAreasArray[rowCount] = [] //add new empty array @ index rowCount
 
             }
         }
@@ -173,6 +167,7 @@ const buildAnagram = () => {
 
     let gridTemplateAreasString = ``
 
+    //loop through gridTemplateAreasArray and create gridTemplateAreasString to add to css
     for (let i = 0; i < gridTemplateAreasArray.length - 1; i++) {
 
         gridTemplateAreasString += `"`
@@ -182,6 +177,8 @@ const buildAnagram = () => {
         }
         gridTemplateAreasString += `" `
     }
+
+    grid.style.gridTemplateAreas = gridTemplateAreasString
 
     console.log(gridTemplateAreasString)
 }
