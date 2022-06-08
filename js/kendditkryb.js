@@ -10,9 +10,9 @@ let kdk = {
                         playable: true,
                         completed: 3,
                         insect: "Syvplettet mariehøne",
-                        anagram: "syv-plettet_marie-høne",
-                        hint1: "#syv#-plettet_marie-høne",
-                        hint2: "#syv-plettet#_marie-høne",
+                        anagram: "SYV-PLETTET marie-høne ",
+                        hint1: "SYV-PLETTET Marie-Høne",
+                        hint2: "SYV-PLETTET Marie-HØNE",
                         wincontent: {
                             beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.",
                             img1: "Mariehøne på blad",
@@ -23,6 +23,9 @@ let kdk = {
                             udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.",
                         },
                     },
+                    2: {
+                        anagram: "ALMINDE-LIG bredtæge ",
+                    }
                 },
             },
         },

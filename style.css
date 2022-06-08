@@ -523,7 +523,6 @@ button:active {
 
 #game_bottom_container {
     width: 100%;
-    margin-bottom: 2vh;
 }
 
 #game_letter_grid {
@@ -533,7 +532,7 @@ button:active {
     max-width: 400px;
     margin: 0 auto;
     gap: 2px;
-    grid-template-areas: ".  .  .  h1 s1 s1 s1 s1"".  .  .  .  .  .  .  s2""s3 s3 s3 s3 s3 s3 s3 s3"".  .  .  .  .  h2 s4 s4"".  .  .  .  s5 s5 s5 s5";
+    grid-template-areas: ".  .  .  h1 s1 s1 s1 s1"".  .  .  .  .  .  .  s2""s3 s3 s3 s3 s3 s3 s3 s3"".  .  .  .  .  h2 s4 s4"".  .  .  .  s5 s5 s5 s5""s6 s6 s6 s6 s6 s6 s6 s6";
 }
 
 #game_letter_grid span.h1 {
@@ -564,12 +563,19 @@ button:active {
     grid-area: s5;
 }
 
+#game_letter_grid span.s6 {
+    grid-area: s6;
+}
+
 .s1,
 .s2,
 .s3,
 .s4,
-.s5 {
+.s5,
+.s6 {
     visibility: hidden;
+    padding: 0 0 1vh 0;
+    border: none;
 }
 
 #game_letter_grid span {
@@ -589,13 +595,9 @@ button:active {
 }
 
 #game_letter_grid span.spaced {
-    padding: 10% 0;
+    padding: 2vh 0;
     visibility: hidden;
     border: none;
-}
-
-#game_letter_grid span.empty {
-    visibility: hidden;
 }
 
 #game_letter_grid span.draggable-source--is-dragging {
