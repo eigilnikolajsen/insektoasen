@@ -19,5 +19,18 @@ fetch('img/star.svg')
         document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
             el.innerHTML = text;
         })
+        document.querySelectorAll(".game_nav_star").forEach((el) => {
+            el.innerHTML = text;
+        })
+        document.querySelectorAll(".game_img_star").forEach((el) => {
+            el.innerHTML = text;
+        })
+    })
+    .catch(console.error.bind(console));
+
+fetch('img/mask/mask1.svg')
+    .then(r => r.text())
+    .then(text => {
+        document.querySelector("#game_img_container").innerHTML = text
     })
     .catch(console.error.bind(console));
