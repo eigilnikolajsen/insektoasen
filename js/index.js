@@ -4,7 +4,14 @@
 
 let contentTopContainer = document.querySelector("#content_top_container")
 
-//contentTopContainer.innerHTML += kdk.game.logo
+const element = document.querySelector("#container");
+
+document.querySelector("#test_button").addEventListener("click", () => {
+    console.log("screenfull test")
+    if (screenfull.isEnabled) {
+        screenfull.request(element, { navigationUI: 'hide' });
+    }
+})
 
 fetch('img/game_logo.svg')
     .then(r => r.text())
@@ -53,23 +60,15 @@ window.addEventListener("resize", () => {
 })
 
 const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
-    draggable: '#game_letter_grid span',
-    droppable: '#game_letter_grid span.dragge',
+    draggable: '#game_letter_grid span.dragge',
     handle: '#game_letter_grid span.dragge',
     plugins: [Draggable.Plugins.SortAnimation],
     sortAnimation: {
         duration: 200,
         easingFunction: 'ease-out',
     },
-    mirror: {
-
-    }
 })
 
 sortable.on('drag:start', (el) => {
-    console.log(el.data.source)
-});
-
-sortable.on('drag:sorted', (el) => {
-    console.log(el)
-});
+    //console.log(el.data.source)
+})

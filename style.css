@@ -32,10 +32,6 @@ body {
     color: var(--dark);
 }
 
-body {
-    overflow: hidden;
-}
-
 svg {
     overflow: visible;
 }
@@ -442,6 +438,7 @@ button:active {
 
 .ui_hint {
     padding: 0;
+    margin: 0;
     display: grid;
 }
 
@@ -536,62 +533,43 @@ button:active {
     max-width: 400px;
     margin: 0 auto;
     gap: 2px;
+    grid-template-areas: ".  .  .  h1 s1 s1 s1 s1"".  .  .  .  .  .  .  s2""s3 s3 s3 s3 s3 s3 s3 s3"".  .  .  .  .  h2 s4 s4"".  .  .  .  s5 s5 s5 s5";
 }
 
-.col1 {
-    grid-column: 1;
+#game_letter_grid span.h1 {
+    grid-area: h1;
 }
 
-.col2 {
-    grid-column: 2;
+#game_letter_grid span.h2 {
+    grid-area: h2;
 }
 
-.col3 {
-    grid-column: 3;
+#game_letter_grid span.s1 {
+    grid-area: s1;
 }
 
-.col4 {
-    grid-column: 4;
+#game_letter_grid span.s2 {
+    grid-area: s2;
 }
 
-.col5 {
-    grid-column: 5;
+#game_letter_grid span.s3 {
+    grid-area: s3;
 }
 
-.col6 {
-    grid-column: 6;
+#game_letter_grid span.s4 {
+    grid-area: s4;
 }
 
-.col7 {
-    grid-column: 7;
+#game_letter_grid span.s5 {
+    grid-area: s5;
 }
 
-.col8 {
-    grid-column: 8;
-}
-
-.row1 {
-    grid-row: 1;
-}
-
-.row2 {
-    grid-row: 2;
-}
-
-.row3 {
-    grid-row: 3;
-}
-
-.row4 {
-    grid-row: 4;
-}
-
-.row5 {
-    grid-row: 5;
-}
-
-.row6 {
-    grid-row: 6;
+.s1,
+.s2,
+.s3,
+.s4,
+.s5 {
+    visibility: hidden;
 }
 
 #game_letter_grid span {

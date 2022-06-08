@@ -8,6 +8,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Insektoasen</title>
 
     <!-- CSS -->
@@ -16,7 +19,6 @@
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
 
     <!-- FONTS -->
     <link rel="stylesheet" href="https://use.typekit.net/upz2zcg.css">
@@ -24,6 +26,7 @@
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js" defer></script>
     <script src="js/anime.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.2.0/screenfull.min.js" integrity="sha512-GoG2/bE6QSPKSrjuoII6iPL2ODnwUJvFgysFYLTW2ltpx6G5nj+mYvhPq5rLPZby0rdMFU2fo4BMlWND7+QZ5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/kendditkryb.js" defer></script>
     <script src="js/index.js" defer></script>
 
@@ -218,7 +221,7 @@
                 </div>
                 <div id="game_nav_right">
                     <button class="ui_mute">‹</button>
-                    <button class="ui_home">‡</button>
+                    <button class="ui_home" id="test_button">‡</button>
                 </div>
             </nav>
 
@@ -234,14 +237,16 @@
 
             <div id="game_bottom_container">
                 <div id="game_letter_grid">
+                    <span class="letter locked h1">–</span>
+                    <span class="letter locked h2">–</span>
+                    <span class="s1"></span>
+                    <span class="s2"></span>
+                    <span class="s3"></span>
+                    <span class="s4"></span>
+                    <span class="s5"></span>
                     <span class="letter dragge">S</span>
                     <span class="letter dragge">Y</span>
                     <span class="letter dragge">V</span>
-                    <span class="letter locked">–</span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
                     <span class="letter dragge">P</span>
                     <span class="letter dragge">L</span>
                     <span class="letter dragge">E</span>
@@ -249,31 +254,15 @@
                     <span class="letter dragge">T</span>
                     <span class="letter dragge">E</span>
                     <span class="letter dragge">T</span>
-                    <span class="letter locked empty"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
-                    <span class="spaced locked"></span>
                     <span class="letter dragge">M</span>
                     <span class="letter dragge">A</span>
                     <span class="letter dragge">R</span>
                     <span class="letter dragge">I</span>
                     <span class="letter dragge">E</span>
-                    <span class="letter locked">–</span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
                     <span class="letter dragge">H</span>
                     <span class="letter dragge">Ø</span>
                     <span class="letter dragge">N</span>
                     <span class="letter dragge">E</span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
-                    <span class="letter locked empty"></span>
                 </div>
             </div>
 
