@@ -12,9 +12,13 @@
 
 :root {
     --green-green: linear-gradient(150deg, #A1CC80, #3C7B55);
+    --grey: #808080;
     --char: #DBF56E;
     --dark: #140E1A;
     --beige: #fcf7f6;
+    --yellow: #F7D159;
+    --orange: #F2A055;
+    --red: #DB4D6C;
 }
 
 *,
@@ -30,6 +34,10 @@ body {
 
 body {
     overflow: hidden;
+}
+
+svg {
+    overflow: visible;
 }
 
 #container {
@@ -234,7 +242,7 @@ button:active {
     margin: 0 auto;
 }
 
-#levels_navigation_container {
+#levels_top_navigation_container {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -255,6 +263,26 @@ button:active {
     line-height: 0;
     padding: 2.7vh 0.8vh 2.2vh 0.8vh;
     margin: 0 0 0 1vh;
+}
+
+#levels_bottom_navigation_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.levels_content_arrow {
+    border-radius: 9999px;
+    margin: 1vh;
+    padding: 0.7vh 1vh;
+    font-size: 4vh;
+}
+
+#levels_content_wrapper {
+    width: 100vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .levels_content_container {
@@ -285,29 +313,33 @@ button:active {
 
 .levels_content_middle {
     width: 100%;
-    max-width: 50vh;
+    max-width: 40vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2vh 1vh;
 }
 
 .levels_content_level_container {
-    background-color: var(--char);
     border: 3px solid var(--dark);
     border-radius: 10px;
     cursor: pointer;
+    text-decoration: none;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) 4px 4px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+    display: grid;
 }
 
-.levels_content_level_container::before {
-    content: ' ';
-    display: block;
-    width: 100%;
-    padding-top: 100%;
+@media (hover: hover) {
+    .levels_content_level_container:hover {
+        box-shadow: var(--dark) 3px 3px;
+        transform: translate(1px, 1px);
+    }
+}
+
+.levels_content_level_container:active {
+    box-shadow: var(--dark) 1px 1px;
+    transform: translate(3px, 3px);
+    transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
 .levels_content_level_container::after {
@@ -315,36 +347,64 @@ button:active {
     display: block;
     width: 100%;
     padding-top: 100%;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.levels_content_level_container.diff_easy {
+    background-color: var(--char);
+}
+
+.levels_content_level_container.diff_med {
+    background-color: var(--orange);
+}
+
+.levels_content_level_container.diff_hard {
+    background-color: var(--red);
+}
+
+.levels_content_level_container.locked_level {
+    opacity: 0.5;
 }
 
 .levels_content_level_number {
     font-family: 'Imago Display', sans-serif;
-    font-size: 5vh;
+    font-size: min(5vh, 10vw);
     text-align: center;
+    grid-row: 1;
+    grid-column: 1;
+    margin: auto;
+    padding-top: 0.5vh;
 }
 
 .levels_content_levels_star_container {
-    position: absolute;
-    width: 8vh;
-    height: 8vh;
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    justify-content: space-between;
+    margin: -1.5vh 3px 0 3px;
+}
+
+.levels_content_levels_star {
+    width: 100%;
+    fill: var(--grey);
+    stroke: var(--dark);
+    stroke-width: 12px;
+    stroke-linejoin: round;
+    overflow: visible;
+    paint-order: fill stroke;
+}
+
+.levels_content_levels_star.yellow_star {
+    fill: var(--yellow);
 }
 
 .levels_container_stats {
     font-family: 'Imago Display', sans-serif;
     font-size: 3vh;
     text-align: center;
-    margin: 1vh 0;
+    margin: 1vh 0 0 0;
 }
 
-#levels_content_navigation_container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
 
-.levels_content_arrow {
-    border-radius: 9999px;
-    margin: 1vh;
-    padding: 0.7vh 1vh;
-    font-size: 4vh;
-}
+/* GAME ----------------------------------------------------------- */

@@ -12,3 +12,12 @@ fetch('img/game_logo.svg')
         contentTopContainer.innerHTML += text;
     })
     .catch(console.error.bind(console));
+
+fetch('img/star.svg')
+    .then(r => r.text())
+    .then(text => {
+        document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
+            el.innerHTML = text;
+        })
+    })
+    .catch(console.error.bind(console));
