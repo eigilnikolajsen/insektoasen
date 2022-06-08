@@ -334,12 +334,21 @@ button:active {
         box-shadow: var(--dark) 3px 3px;
         transform: translate(1px, 1px);
     }
+    .levels_content_level_container.locked_level:hover {
+        box-shadow: var(--dark) 4px 4px;
+        transform: translate(0);
+    }
 }
 
 .levels_content_level_container:active {
     box-shadow: var(--dark) 1px 1px;
     transform: translate(3px, 3px);
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
+}
+
+.levels_content_level_container.locked_level:active {
+    box-shadow: var(--dark) 3.5px 3.5px;
+    transform: translate(0.5px, 0.5px);
 }
 
 .levels_content_level_container::after {
@@ -365,6 +374,8 @@ button:active {
 
 .levels_content_level_container.locked_level {
     opacity: 0.5;
+    cursor: auto;
+    transition: 0s cubic-bezier(.3, .9, .4, 1);
 }
 
 .levels_content_level_number {
