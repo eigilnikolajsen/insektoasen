@@ -46,33 +46,18 @@ const letterSizeRecalc = () => {
     })
 }
 
-letterSizeRecalc()
-
 window.addEventListener("resize", () => {
     letterSizeRecalc()
 })
 
-const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
-    draggable: '#game_letter_grid span.dragge',
-    handle: '#game_letter_grid span.dragge',
-    plugins: [Draggable.Plugins.SortAnimation],
-    sortAnimation: {
-        duration: 200,
-        easingFunction: 'ease-out',
-    },
-})
-
-sortable.on('drag:start', (el) => {
-    //console.log(el.data.source)
-})
-
 const buildAnagram = () => {
     let grid = document.querySelector("#game_letter_grid")
+        //grid = document.querySelector("#test_container")
     let level = kdk.game.categories.biller.levels[1]
 
     //split anagram string into array
     let str = level.anagram.split("")
-    let gridTemplateAreasArray = [
+    let gridTempArr = [
         []
     ]
 
@@ -93,18 +78,17 @@ const buildAnagram = () => {
 
             //it's uppercase
             if (str[i] == str[i].toUpperCase()) {
-                span.classList.add(`letter`, `dragge`, `locked`) //add classes (locked if capital letter)
-                span.textContent = str[i] //add text
-                gridTemplateAreasArray[rowCount][count % 8] = "." //add empty to grid layout
+                span.classList.add(`letter`, `locked`) //add classes (locked if capital letter)
             }
 
             //it's lowercase
             else {
                 span.classList.add(`letter`, `dragge`) //add classes
-                span.textContent = str[i] //add text
-                gridTemplateAreasArray[rowCount][count % 8] = "." //add empty to grid layout
             }
 
+            span.textContent = str[i] //add text
+            gridTempArr[rowCount][count % 8] = "." //add empty to grid layout
+            grid.append(span)
             count++ //add 1 to running counter
 
         }
@@ -121,7 +105,9 @@ const buildAnagram = () => {
                 spanHyphen.classList.add(`letter`, `locked`, `h${hyphenCount}`) //add classes
                 spanHyphen.style.gridArea = `h${hyphenCount}` //add grid area style
                 spanHyphen.textContent = "–" //add endash
-                gridTemplateAreasArray[rowCount][count % 8] = `h${hyphenCount}` //add e.g. h1 to grid layout
+                gridTempArr[rowCount][count % 8] = `h${hyphenCount}` //add e.g. h1 to grid layout
+                console.log(`h${hyphenCount}`)
+                grid.append(spanHyphen)
 
                 hyphenCount++ //increment hyphen count
                 count++ //increment count
@@ -129,58 +115,81 @@ const buildAnagram = () => {
                 isNewRow = true
             }
 
+            //make a space
+            let spanSpace = document.createElement("span")
+            spanSpace.classList.add(`s${spaceCount}`) //add class
+            spanSpace.style.gridArea = `s${spaceCount}` //add grid area style
+            console.log(`s${spaceCount}`)
+            grid.append(spanSpace)
+
             //loop through and fill rest of row with spaces
             let tempCount = count
             for (let j = 0; j < (8 - (tempCount % 8)) % 8; j++) {
-                let spanSpace = document.createElement("span")
-                spanSpace.classList.add(`s${spaceCount}`) //add class
-                spanSpace.style.gridArea = `h${spaceCount}` //add grid area style
-                gridTemplateAreasArray[rowCount][count % 8] = `s${spaceCount}` //add e.g. s1 to grid layout
+                gridTempArr[rowCount][count % 8] = `s${spaceCount}` //add e.g. s1 to grid layout
 
                 count++ //increment count
             }
 
             spaceCount++ //increment space count
             rowCount++ //increment row count
-            gridTemplateAreasArray[rowCount] = [] //add new empty array @ index rowCount
+            gridTempArr[rowCount] = [] //add new empty array @ index rowCount
 
             //if not hyphen but space, make row of empty to seperate rows
             if (isNewRow) {
                 isNewRow = false
 
+                let spanSpaceRow = document.createElement("span")
+                spanSpaceRow.classList.add(`s${spaceCount}`) //add class
+                spanSpaceRow.style.gridArea = `s${spaceCount}` //add grid area style
+                console.log(`s${spaceCount}`)
+                grid.append(spanSpaceRow)
+
                 for (let j = 0; j < 8; j++) {
-                    let spanSpace = document.createElement("span")
-                    spanSpace.classList.add(`s${spaceCount}`) //add class
-                    spanSpace.style.gridArea = `h${spaceCount}` //add grid area style
-                    gridTemplateAreasArray[rowCount][j] = `s${spaceCount}` //add e.g. s1 to grid layout
+                    gridTempArr[rowCount][j] = `s${spaceCount}` //add e.g. s1 to grid layout
                 }
 
                 spaceCount++ //increment 
                 rowCount++ //increment row count
-                gridTemplateAreasArray[rowCount] = [] //add new empty array @ index rowCount
+                gridTempArr[rowCount] = [] //add new empty array @ index rowCount
 
             }
         }
     }
 
-    console.log(gridTemplateAreasArray)
+    console.log(gridTempArr)
 
-    let gridTemplateAreasString = ``
+    let gridTempStr = ``
 
-    //loop through gridTemplateAreasArray and create gridTemplateAreasString to add to css
-    for (let i = 0; i < gridTemplateAreasArray.length - 1; i++) {
+    //loop through gridTempArr and create gridTempStr to add to css
+    for (let i = 0; i < gridTempArr.length - 1; i++) {
 
-        gridTemplateAreasString += `"`
-        for (let j = 0; j < gridTemplateAreasArray[i].length; j++) {
-            gridTemplateAreasString += gridTemplateAreasArray[i][j]
-            gridTemplateAreasString += " "
+        gridTempStr += `"`
+        for (let j = 0; j < gridTempArr[i].length; j++) {
+            gridTempStr += gridTempArr[i][j]
+            gridTempStr += " "
         }
-        gridTemplateAreasString += `" `
+        gridTempStr += `" `
     }
 
-    grid.style.gridTemplateAreas = gridTemplateAreasString
+    grid.style.gridTemplateAreas = gridTempStr
 
-    console.log(gridTemplateAreasString)
+    console.log(gridTempStr)
 }
 
 buildAnagram()
+letterSizeRecalc()
+
+
+const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
+    draggable: '#game_letter_grid span.dragge',
+    handle: '#game_letter_grid span.dragge',
+    plugins: [Draggable.Plugins.SortAnimation],
+    sortAnimation: {
+        duration: 200,
+        easingFunction: 'ease-out',
+    },
+})
+
+sortable.on('drag:start', (el) => {
+    //console.log(el.data.source)
+})

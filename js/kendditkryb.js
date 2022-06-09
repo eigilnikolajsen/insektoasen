@@ -23,6 +23,9 @@ let kdk = {
                             udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.",
                         },
                     },
+                    2: {
+                        anagram: "skøjte-løber "
+                    }
                 },
             },
         },
