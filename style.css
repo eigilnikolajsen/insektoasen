@@ -530,44 +530,10 @@ button:active {
 
 #game_letter_grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    gap: 2px;
-    grid-template-areas: ".  .  .  h1 s1 s1 s1 s1"".  .  .  .  .  .  .  s2""s3 s3 s3 s3 s3 s3 s3 s3"".  .  .  .  .  h2 s4 s4"".  .  .  .  s5 s5 s5 s5""s6 s6 s6 s6 s6 s6 s6 s6";
-}
-
-#game_letter_grid span.h1 {
-    grid-area: h1;
-}
-
-#game_letter_grid span.h2 {
-    grid-area: h2;
-}
-
-#game_letter_grid span.s1 {
-    grid-area: s1;
-}
-
-#game_letter_grid span.s2 {
-    grid-area: s2;
-}
-
-#game_letter_grid span.s3 {
-    grid-area: s3;
-}
-
-#game_letter_grid span.s4 {
-    grid-area: s4;
-}
-
-#game_letter_grid span.s5 {
-    grid-area: s5;
-}
-
-#game_letter_grid span.s6 {
-    grid-area: s6;
+    gap: 1px;
 }
 
 .s1,
@@ -588,7 +554,6 @@ button:active {
 #game_letter_grid span {
     font-family: "Imago Display";
     text-transform: uppercase;
-    font-size: min(4vh, 8vw);
     text-align: center;
     line-height: 0;
     background-color: var(--char);

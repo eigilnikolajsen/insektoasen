@@ -24,7 +24,7 @@ let kdk = {
                         },
                     },
                     2: {
-                        anagram: "skøjte-løber "
+                        anagram: "tømmer-mandere "
                     }
                 },
             },
