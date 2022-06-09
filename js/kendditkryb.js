@@ -24,7 +24,7 @@ let kdk = {
                         },
                     },
                     2: {
-                        anagram: "tømmer-mandere "
+                        anagram: "blåhat-jordbi "
                     }
                 },
             },

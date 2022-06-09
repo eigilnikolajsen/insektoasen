@@ -70,8 +70,6 @@ const buildAnagram = () => {
 
     grid.style.gridTemplateColumns = `repeat(${col}, 1fr)`
 
-
-
     //run through string array, create DOM elements
     for (let i = 0; i < str.length; i++) {
 
@@ -200,17 +198,23 @@ sortable.on('drag:start', (el) => {
     //console.log(el.data.source)
 })
 
+
+//calculate column count
 const calcColCount = (str) => {
-    let splitd = str.split(" ").join("-").split("-")
+    //ALMINDE-LIG bred-tæge => ['ALMINDE_', 'LIG', 'bred_', 'tæge_']
+    let splitd = str.split("-").map(n => n += "_").join("-").split(" ").join("-").split("-")
+
+    console.log(splitd)
     var longest = splitd.reduce(
         function(a, b) {
             return a.length > b.length ? a : b;
         }
     )
-    if (longest.length < 6) { longest = "xxxxxx" }
-    return longest.length + 1
+    if (longest.length < 5) { longest = "xxxxx" }
+    return longest.length
 }
 
+//shuffle array
 const shuffle = (array) => {
 
     let currentIndex = array.length,
@@ -232,6 +236,7 @@ const shuffle = (array) => {
     return array;
 }
 
+//shuffle insect anagram
 const shuffleWord = (str) => {
 
     //create array from string
@@ -255,3 +260,50 @@ const shuffleWord = (str) => {
 
 buildAnagram()
 letterSizeRecalc()
+
+sortable.on('sortable:sorted', (el) => {
+    //console.log(el.data.source)
+})
+
+sortable.on('drag:stop', () => {
+    setTimeout(() => {
+        if (wordsMatch(kdk.game.categories.biller.levels[2].anagram)) {
+            youWon()
+        }
+    }, 100)
+})
+
+const wordsMatch = (str) => {
+    let won = false
+
+    let currentWord = ""
+    document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
+        if (el.textContent != "–")
+            currentWord += el.textContent.toLowerCase()
+    })
+    console.log(currentWord)
+    currentWord = currentWord.split("").map(n => n == "–" ? n = "-" : n = n).join("")
+
+    let goalWord = str.toLowerCase().split(" ").join("-").split("-").join("")
+
+    console.log(currentWord)
+    console.log(goalWord)
+
+    if (currentWord == goalWord) won = true
+
+    return won
+}
+
+const youWon = () => {
+    let delayAni = 0
+    document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
+        el.classList.add("letter_complete")
+        el.style.animationDelay = `${delayAni / 20}s`
+        delayAni++
+    })
+    document.querySelectorAll("#game_star_container .game_img_star").forEach((el) => {
+        setTimeout(() => {
+            el.classList.add("star_complete", "yellow_star")
+        }, 700)
+    })
+}
