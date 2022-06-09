@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('font/ImagoT8.woff2') format('woff2'), /* Modern Browsers */
-    url('font/ImagoT8.otf') format('opentype');
+    src: url('font/ImagoT9.woff2') format('woff2'), /* Modern Browsers */
+    url('font/ImagoT9.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -248,12 +248,12 @@ button:active {
 
 .ui_mute,
 .ui_home,
-.ui_hint {
+#ui_hint {
     background-color: var(--beige);
     display: inline-block;
     font-size: 5vh;
     line-height: 0;
-    padding: 2.7vh 0.8vh 2.2vh 0.8vh;
+    padding: 2.8vh 0.8vh 2.1vh 0.8vh;
     margin: 0 0 0 1vh;
 }
 
@@ -436,10 +436,28 @@ button:active {
     justify-content: space-between;
 }
 
-.ui_hint {
+#ui_hint {
     padding: 0;
     margin: 0;
     display: grid;
+}
+
+#ui_hint.all_hints_used {
+    opacity: 0.5;
+    box-shadow: var(--dark) 4px 4px;
+}
+
+@media (hover: hover) {
+    #ui_hint.all_hints_used:hover {
+        box-shadow: var(--dark) 4px 4px;
+        transform: translate(0);
+    }
+}
+
+#ui_hint.all_hints_used:active {
+    box-shadow: var(--dark) 4px 4px;
+    transform: translate(0);
+    transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
 #game_content_level_number {
@@ -496,7 +514,24 @@ button:active {
     stroke: var(--dark);
     stroke-width: 4px;
     stroke-linejoin: round;
+    display: grid;
+}
+
+#game_img_container div {
+    font-size: min(60vh, 120vw);
+    font-family: 'Imago Display';
+    color: var(--char);
+    line-height: 0;
+    overflow: visible;
+    padding: 65% 0 45% 0;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
     filter: drop-shadow(var(--dark) 6px 6px);
+    -webkit-text-stroke: 4px var(--dark);
 }
 
 #game_star_container {
@@ -529,7 +564,7 @@ button:active {
 #game_letter_grid {
     display: grid;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
     gap: 1px;
 }

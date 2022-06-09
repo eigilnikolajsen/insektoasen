@@ -4,14 +4,14 @@
 
 let contentTopContainer = document.querySelector("#content_top_container")
 
-const element = document.querySelector("#container");
+// const element = document.querySelector("#container");
 
-document.querySelector("#test_button").addEventListener("click", () => {
-    console.log("screenfull test")
-    if (screenfull.isEnabled) {
-        screenfull.request(element, { navigationUI: 'hide' });
-    }
-})
+// document.querySelector("#test_button").addEventListener("click", () => {
+//     console.log("screenfull test")
+//     if (screenfull.isEnabled) {
+//         screenfull.request(element, { navigationUI: 'hide' });
+//     }
+// })
 
 fetch('img/game_logo.svg').then(r => r.text()).then(text => {
     contentTopContainer.innerHTML += text;
@@ -29,35 +29,29 @@ fetch('img/star.svg').then(r => r.text()).then(text => {
     })
 }).catch(console.error.bind(console));
 
-fetch('img/mask/mask1.svg').then(r => r.text()).then(text => {
-    document.querySelector("#game_img_container").innerHTML = text
-}).catch(console.error.bind(console));
 
 
+let hints = 0
+let anagram
+let curLevel = 1
+let curCat = kdk.game.categories.biller
+let levelObj = curCat.levels[curLevel]
+let grid = document.querySelector("#game_letter_grid")
 
-const letterSizeRecalc = () => {
-    document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
-        el.style.width = `100%`
-        setTimeout(() => {
-            let w = el.offsetWidth
-            el.style.padding = `${w * 0.55 - 3}px 0 ${w * 0.45 - 3}px 0`
-            el.style.width = `${w}px`
-            el.style.fontSize = `${w / 1.5}px`
-        }, 50)
-    })
+const buildImg = () => {
+    let imgContainer = document.querySelector("#game_img_container")
+    let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
+    let randomMask = masks[Math.floor(Math.random() * masks.length)]
+    imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.category}/${curLevel}_1.jpg);">${randomMask}</div>`
 }
-
-window.addEventListener("resize", () => {
-    letterSizeRecalc()
-})
 
 const buildAnagram = () => {
 
-    let grid = document.querySelector("#game_letter_grid")
-    let level = kdk.game.categories.biller.levels[2]
+    grid.innerHTML = ""
+    anagram = levelObj[`hint${hints}`]
 
     //split anagram string into array
-    let str = shuffleWord(level.anagram).split("")
+    let str = shuffleWord(anagram).split("")
     let gridTempArr = [
         []
     ]
@@ -66,7 +60,7 @@ const buildAnagram = () => {
         spaceCount = 1, //space count starts from 1
         rowCount = 0,
         count = 0,
-        col = calcColCount(level.anagram)
+        col = calcColCount(anagram)
 
     grid.style.gridTemplateColumns = `repeat(${col}, 1fr)`
 
@@ -98,7 +92,6 @@ const buildAnagram = () => {
         //it's not a letter
         else {
 
-
             let isNewRow = false
 
             //if hyphen, then add hyphen and fill last of row with spaces
@@ -116,8 +109,6 @@ const buildAnagram = () => {
             } else {
                 isNewRow = true
             }
-
-
 
             //loop through and fill rest of row with spaces
             let tempCount = count
@@ -183,7 +174,7 @@ const buildAnagram = () => {
     console.log(gridTempStr)
 }
 
-
+//sortable init
 const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
     draggable: '#game_letter_grid span.dragge',
     handle: '#game_letter_grid span.dragge',
@@ -194,9 +185,36 @@ const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_
     },
 })
 
-sortable.on('drag:start', (el) => {
-    //console.log(el.data.source)
-})
+//when hint is clicked
+const clickHint = () => {
+    if (hints < 2) hints++
+        let stars = document.querySelectorAll("#game_content_levels_star_container .game_nav_star")
+    if (hints == 1) stars[2].classList.remove("yellow_star")
+    if (hints == 2) {
+        stars[1].classList.remove("yellow_star")
+        setTimeout(() => {
+            document.querySelector("#ui_hint").classList.add("all_hints_used")
+        }, 200)
+    }
+    buildAnagram()
+    letterSizeRecalc()
+    console.log(hints)
+}
+document.querySelector("#ui_hint").addEventListener("click", clickHint)
+
+//when mute is clicked
+const clickMute = () => {
+    console.log(uiMute[0].textContent)
+    if (uiMute[0].textContent == "‹") {
+        uiMute.forEach((el) => { el.textContent = "›" })
+    } else {
+        uiMute.forEach((el) => { el.textContent = "‹" })
+    }
+}
+let uiMute = document.querySelectorAll(".ui_mute")
+uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
+
+
 
 
 //calculate column count
@@ -256,23 +274,15 @@ const shuffleWord = (str) => {
     return strArr.join("")
 }
 
-
-
-buildAnagram()
-letterSizeRecalc()
-
-sortable.on('sortable:sorted', (el) => {
-    //console.log(el.data.source)
-})
-
 sortable.on('drag:stop', () => {
     setTimeout(() => {
-        if (wordsMatch(kdk.game.categories.biller.levels[2].anagram)) {
+        if (wordsMatch(anagram)) {
             youWon()
         }
     }, 100)
 })
 
+//check if your word matches the solution
 const wordsMatch = (str) => {
     let won = false
 
@@ -294,6 +304,7 @@ const wordsMatch = (str) => {
     return won
 }
 
+//exec function when you win
 const youWon = () => {
     let delayAni = 0
     document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
@@ -307,3 +318,23 @@ const youWon = () => {
         }, 700)
     })
 }
+
+const letterSizeRecalc = () => {
+    document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
+        el.style.width = `100%`
+        setTimeout(() => {
+            let w = el.offsetWidth
+            el.style.padding = `${w * 0.55 - 3}px 0 ${w * 0.45 - 3}px 0`
+            el.style.width = `${w}px`
+            el.style.fontSize = `${w / 1.5}px`
+        }, 50)
+    })
+}
+
+window.addEventListener("resize", () => {
+    letterSizeRecalc()
+})
+
+buildImg()
+buildAnagram()
+letterSizeRecalc()

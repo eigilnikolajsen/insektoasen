@@ -2,6 +2,9 @@ let kdk = {
     game: {
         categories: {
             biller: {
+                category: "biller",
+                color1: "#4E4076",
+                color2: "#4E4076",
                 levels: {
                     1: {
                         level: 1,
@@ -10,9 +13,9 @@ let kdk = {
                         playable: true,
                         completed: 3,
                         insect: "Syvplettet mariehøne",
-                        anagram: "SYV-PLETTET marie-høne ",
-                        hint1: "SYV-PLETTET Marie-Høne",
-                        hint2: "SYV-PLETTET Marie-HØNE",
+                        hint0: "SYV-PLETTET marie-høne ",
+                        hint1: "SYV-PLETTET Marie-Høne ",
+                        hint2: "SYV-PLETTET Marie-HØNE ",
                         wincontent: {
                             beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.",
                             img1: "Mariehøne på blad",
@@ -24,7 +27,7 @@ let kdk = {
                         },
                     },
                     2: {
-                        anagram: "blåhat-jordbi "
+                        hint0: "blåhat-jordbi "
                     }
                 },
             },
