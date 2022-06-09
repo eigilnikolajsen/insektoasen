@@ -55,17 +55,43 @@ svg {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url(img/bg_pattern2_1.svg);
+    background-image: url(img/bg_pattern.svg);
     background-size: cover;
     background-position: center;
     opacity: 0.2;
     z-index: -1;
 }
 
+#foreground {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--dark);
+    z-index: 100;
+    animation-name: hide_start;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide_start {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
 
 /* LOADING ----------------------------------------------------------- */
 
-#loading_content {
+#loading_container {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -114,14 +140,15 @@ svg {
 #loading_bar::after {
     content: "";
     position: absolute;
-    width: 40vh;
+    width: 0;
     height: 1vh;
     border-radius: 9999px;
     background-color: var(--char);
     animation-name: fake_loading_animation;
-    animation-duration: 3s;
-    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-delay: 0.5s;
     animation-timing-function: cubic-bezier(.7, .4, .4, .9);
+    animation-fill-mode: forwards;
 }
 
 @keyframes fake_loading_animation {
@@ -134,9 +161,9 @@ svg {
 }
 
 
-/* HOME PAGE ----------------------------------------------------------- */
+/* SPLASH ----------------------------------------------------------- */
 
-#content_container {
+#splash_container {
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -144,35 +171,36 @@ svg {
     justify-content: space-between;
 }
 
-#content_top_container {
+#splash_top_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#content_logo_main {
+#splash_logo_main {
     height: 10vh;
     margin: 5vh 0;
 }
 
-#content_logo_game {
+#splash_logo_game {
     width: min(40vh, 80vw);
     margin: 3vh 0;
     stroke: var(--dark);
-    stroke-width: 6px;
+    stroke-width: 12px;
     stroke-linejoin: round;
     fill: var(--char);
+    paint-order: stroke fill;
     overflow: visible;
-    filter: drop-shadow(var(--dark) 6px 6px);
+    filter: drop-shadow(var(--dark) 1px 1px) drop-shadow(var(--dark) 2px 2px) drop-shadow(var(--dark) 4px 4px);
 }
 
-#content_bottom_container {
+#splash_bottom_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#content_illustration {
+#splash_illustration {
     height: 20vh;
 }
 
@@ -412,12 +440,6 @@ button:active {
 
 /* GAME ----------------------------------------------------------- */
 
-#loading_content,
-#content_container,
-#levels_container {
-    display: none;
-}
-
 #game_container {
     padding: 2vh;
     width: 100%;
@@ -530,8 +552,8 @@ button:active {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-stroke: 5px var(--dark);
     filter: drop-shadow(var(--dark) 6px 6px);
-    -webkit-text-stroke: 4px var(--dark);
 }
 
 #game_star_container {
@@ -615,6 +637,7 @@ button:active {
 
 .star_complete {
     animation-name: star_complete_ani;
+    animation-fill-mode: forwards;
     opacity: 1;
 }
 
@@ -661,4 +684,18 @@ button:active {
     100% {
         transform: translateY(0);
     }
+}
+
+
+/* START VALUES */
+
+#loading_container,
+#splash_container,
+#levels_container,
+#game_container {
+    display: none;
+}
+
+#loading_container {
+    display: flex;
 }

@@ -2,7 +2,7 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let contentTopContainer = document.querySelector("#content_top_container")
+let contentTopContainer = document.querySelector("#splash_top_container")
 
 // const element = document.querySelector("#container");
 

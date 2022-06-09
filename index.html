@@ -29,6 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.2.0/screenfull.min.js" integrity="sha512-GoG2/bE6QSPKSrjuoII6iPL2ODnwUJvFgysFYLTW2ltpx6G5nj+mYvhPq5rLPZby0rdMFU2fo4BMlWND7+QZ5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/kendditkryb.js" defer></script>
     <script src="js/index.js" defer></script>
+    <script src="js/navigate.js" defer></script>
 
 </head>
 
@@ -37,29 +38,26 @@
     <!-- MAIN CONTAINER -->
     <main id="container">
 
-
         <!-- LOADING -->
         <section id="loading_container">
-            <div id="loading_content">
-                <div id="loading_logo_container">
-                    <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="loading_logo">
-                    <p id="loading_logo_text">Præsenterer</p>
-                </div>
-                <div id="loading_bar_container">
-                    <div id="loading_bar"></div>
-                    <p id="loading_bar_text">Næsten klar...</p>
-                </div>
+            <div id="loading_logo_container">
+                <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="loading_logo">
+                <p id="loading_logo_text">Præsenterer</p>
+            </div>
+            <div id="loading_bar_container">
+                <div id="loading_bar"></div>
+                <p id="loading_bar_text">Næsten klar...</p>
             </div>
         </section>
 
 
         <!-- SPLASH -->
-        <section id="content_container">
-            <div id="content_top_container">
-                <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="content_logo_main">
+        <section id="splash_container">
+            <div id="splash_top_container">
+                <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="splash_logo_main">
             </div>
-            <div id="content_bottom_container">
-                <img src="img/beetle_test.svg" alt="bille illustration" id="content_illustration">
+            <div id="splash_bottom_container">
+                <img src="img/beetle_test.svg" alt="bille illustration" id="splash_illustration">
                 <div>
                     <button id="start_button">Start spillet →</button>
                 </div>
@@ -247,6 +245,7 @@
 
 
         <div id="background_pattern"></div>
+        <div id="foreground"></div>
 
     </main>
 
