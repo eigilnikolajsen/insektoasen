@@ -192,7 +192,6 @@ sortable.on('drag:out:container', () => {
 })
 
 //when hint is clicked
-document.querySelector("#ui_hint").addEventListener("click", clickHint)
 const clickHint = () => {
     if (hints < 2) {
         hints++
@@ -210,10 +209,9 @@ const clickHint = () => {
     letterSizeRecalc()
     console.log(hints)
 }
+document.querySelector("#ui_hint").addEventListener("click", clickHint)
 
 //when mute is clicked
-let uiMute = document.querySelectorAll(".ui_mute")
-uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
 const clickMute = () => {
     console.log(uiMute[0].textContent)
     if (uiMute[0].textContent == "‹") {
@@ -222,6 +220,8 @@ const clickMute = () => {
         uiMute.forEach((el) => { el.textContent = "‹" })
     }
 }
+let uiMute = document.querySelectorAll(".ui_mute")
+uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
 
 //calculate column count
 const calcColCount = (str) => {
@@ -356,6 +356,7 @@ const letterSizeRecalc = () => {
             el.style.fontSize = `${w / 1.5}px`
         }, 50)
     })
+    animationBG(bgPatternSvg)
 }
 window.addEventListener("resize", () => {
     letterSizeRecalc()

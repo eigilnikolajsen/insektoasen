@@ -28,6 +28,7 @@
     <script src="js/anime.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.2.0/screenfull.min.js" integrity="sha512-GoG2/bE6QSPKSrjuoII6iPL2ODnwUJvFgysFYLTW2ltpx6G5nj+mYvhPq5rLPZby0rdMFU2fo4BMlWND7+QZ5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/kendditkryb.js" defer></script>
+    <script src="js/splash.js" defer></script>
     <script src="js/index.js" defer></script>
     <script src="js/navigate.js" defer></script>
     <script src="js/levels.js" defer></script>
@@ -58,11 +59,8 @@
                 <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="splash_logo_main">
             </div>
             <div id="splash_bottom_container">
-                <img src="img/beetle_test.svg" alt="bille illustration" id="splash_illustration">
                 <div>
                     <button id="start_button" onclick="navigate('levels')">Start spillet →</button>
-                </div>
-                <div>
                     <button id="info_button">Hjælp insekter!</button>
                 </div>
             </div>
@@ -88,7 +86,7 @@
                 <div class="levels_content_container">
                     <div class="levels_content_top">
                         <h1 class="levels_content_title">Biller</h1>
-                        <img src="img/beetle_test.svg" alt="bille illustration" class="levels_content_illustration">
+                        <div class="levels_content_illustration"></div>
                     </div>
                     <div class="levels_content_middle">
                         <a href="#" class="levels_content_level_container diff_easy" onclick="navigate('game')">
