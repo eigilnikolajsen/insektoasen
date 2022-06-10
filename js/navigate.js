@@ -6,19 +6,43 @@ const navigate = (site) => {
         levels = document.querySelector("#levels_container"),
         game = document.querySelector("#game_container")
 
-    if (site == "game") {
-        buildImg()
-        buildAnagram()
-        letterSizeRecalc()
+    let pagesArr = ["loading", "splash", "levels", "game"]
+
+
+
+    for (let i = 0; i < pagesArr.length; i++) {
+        let allCont = document.querySelector(`#${pagesArr[i]}_container`)
+        let nextCont = document.querySelector(`#${site}_container`)
+
+        allCont.classList.add("container_fade")
+        setTimeout(() => {
+            allCont.style.display = "none"
+        }, 100)
+
+        if (pagesArr[i] == site) {
+            setTimeout(() => {
+                nextCont.style.display = "flex"
+                if (site.includes("game")) {
+                    buildAnagram()
+                }
+            }, 150)
+            setTimeout(() => {
+                nextCont.classList.remove("container_fade")
+            }, 200)
+        }
     }
 
-    loading.style.display = "none"
-    splash.style.display = "none"
-    levels.style.display = "none"
-    game.style.display = "none"
+    // loading.style.display = "none"
+    // splash.style.display = "none"
+    // levels.style.display = "none"
+    // game.style.display = "none"
 
-    document.querySelector(`#${site}_container`).style.display = "flex"
+    // document.querySelector(`#${site}_container`).style.display = "flex"
+
+
 }
+
+navigate("loading")
 
 setTimeout(() => {
     navigate("splash")

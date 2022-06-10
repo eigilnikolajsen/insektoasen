@@ -47,6 +47,8 @@ const buildImg = () => {
 
 const buildAnagram = () => {
 
+    buildImg()
+
     grid.innerHTML = ""
     anagram = levelObj[`hint${hints}`]
 
@@ -188,6 +190,8 @@ const buildAnagram = () => {
             setTimeout(() => { locked.classList.remove("undraggable") }, 300)
         })
     })
+
+    letterSizeRecalc()
 }
 
 //sortable init
@@ -201,19 +205,15 @@ const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_
     },
     forceFallback: true,
 })
-
 sortable.on('drag:start', () => {
     grid.style.cursor = "grabbing"
 })
-
 sortable.on('drag:move', () => {
     grid.style.cursor = "grabbing"
 })
-
 sortable.on('drag:stop', () => {
     grid.style.cursor = "auto"
 })
-
 sortable.on('drag:out:container', () => {
     console.log("drag:out:container")
 })
@@ -310,6 +310,7 @@ const shuffleWord = (str) => {
     return strArr.join("")
 }
 
+//check if you won
 sortable.on('drag:stop', () => {
     setTimeout(() => {
         if (wordsMatch(anagram)) {
@@ -369,6 +370,7 @@ const youWon = () => {
         }, 700)
     })
     sortable.destroy()
+    levelObj.completed = 3 - hints
     document.querySelector("#ui_hint").removeEventListener("click", clickHint)
     document.querySelector("#ui_hint").classList.add("all_hints_used")
 }

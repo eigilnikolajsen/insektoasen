@@ -11,7 +11,7 @@ let kdk = {
                         difficulty: "easy",
                         unlocked: true,
                         playable: true,
-                        completed: 3,
+                        completed: 0,
                         hintsgiven: 0,
                         insect: "Syvplettet mariehøne",
                         hint0: "SYV-PLETTET marie-høne ",
@@ -32,6 +32,13 @@ let kdk = {
                     }
                 },
             },
+            sommerfugle: {},
+            taeger: {},
+            bierogvepse: {},
+            natsvaermere: {},
+            moel: {},
+            guldsmede: {},
+            myrer: {},
         },
     },
 }

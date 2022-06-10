@@ -213,8 +213,8 @@ svg {
 
 button {
     background-color: var(--char);
-    border: 3px solid var(--dark);
-    border-radius: 10px;
+    border: .35vh solid var(--dark);
+    border-radius: 1vh;
     width: unset;
     display: block;
     margin: 1vh auto;
@@ -223,20 +223,20 @@ button {
     font-size: 3vh;
     font-family: 'Imago Display', sans-serif;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
-    box-shadow: var(--dark) 4px 4px;
+    box-shadow: var(--dark) .4vh .4vh;
     user-select: none;
 }
 
 @media (hover: hover) {
     button:hover {
-        box-shadow: var(--dark) 3px 3px;
-        transform: translate(1px, 1px);
+        box-shadow: var(--dark) .3vh .3vh;
+        transform: translate(.1vh, .1vh);
     }
 }
 
 button:active {
-    box-shadow: var(--dark) 1px 1px;
-    transform: translate(3px, 3px);
+    box-shadow: var(--dark) .1vh .1vh;
+    transform: translate(.3vh, .3vh);
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
@@ -342,35 +342,35 @@ button:active {
 }
 
 .levels_content_level_container {
-    border: 3px solid var(--dark);
-    border-radius: 10px;
+    border: .35vh solid var(--dark);
+    border-radius: 1.3vh;
     cursor: pointer;
     text-decoration: none;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
-    box-shadow: var(--dark) 4px 4px;
+    box-shadow: var(--dark) .4vh .4vh;
     display: grid;
 }
 
 @media (hover: hover) {
     .levels_content_level_container:hover {
-        box-shadow: var(--dark) 3px 3px;
-        transform: translate(1px, 1px);
+        box-shadow: var(--dark) .3vh .3vh;
+        transform: translate(.1vh, .1vh);
     }
     .levels_content_level_container.locked_level:hover {
-        box-shadow: var(--dark) 4px 4px;
+        box-shadow: var(--dark) .4vh .4vh;
         transform: translate(0);
     }
 }
 
 .levels_content_level_container:active {
-    box-shadow: var(--dark) 1px 1px;
-    transform: translate(3px, 3px);
+    box-shadow: var(--dark) .1vh .1vh;
+    transform: translate(.3vh, .3vh);
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
 .levels_content_level_container.locked_level:active {
-    box-shadow: var(--dark) 3.5px 3.5px;
-    transform: translate(0.5px, 0.5px);
+    box-shadow: var(--dark) .35vh .35vh;
+    transform: translate(.05vh, .05vh);
 }
 
 .levels_content_level_container::after {
@@ -422,7 +422,7 @@ button:active {
     width: 100%;
     fill: var(--grey);
     stroke: var(--dark);
-    stroke-width: 12px;
+    stroke-width: calc(.3vh + 8px);
     stroke-linejoin: round;
     overflow: visible;
     paint-order: fill stroke;
@@ -470,18 +470,18 @@ button:active {
 #ui_hint.all_hints_used {
     opacity: 0.5;
     cursor: default;
-    box-shadow: var(--dark) 4px 4px;
+    box-shadow: var(--dark) .4vh .4vh;
 }
 
 @media (hover: hover) {
     #ui_hint.all_hints_used:hover {
-        box-shadow: var(--dark) 4px 4px;
+        box-shadow: var(--dark) .4vh .4vh;
         transform: translate(0);
     }
 }
 
 #ui_hint.all_hints_used:active {
-    box-shadow: var(--dark) 4px 4px;
+    box-shadow: var(--dark) .4vh .4vh;
     transform: translate(0);
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
@@ -556,8 +556,8 @@ button:active {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-stroke: 5px var(--dark);
-    filter: drop-shadow(var(--dark) 6px 6px);
+    -webkit-text-stroke: calc(.2vh + 3px) var(--dark);
+    filter: drop-shadow(var(--dark) .5vh .5vh);
     user-select: none;
     cursor: default;
 }
@@ -594,7 +594,7 @@ button:active {
     width: 100%;
     max-width: 350px;
     margin: 0 auto;
-    gap: 2px;
+    gap: .2vh;
 }
 
 .s1,
@@ -618,9 +618,9 @@ button:active {
     text-align: center;
     line-height: 0;
     background-color: var(--char);
-    border: 3px solid var(--dark);
-    border-radius: 8px;
-    box-shadow: var(--dark) 4px 4px;
+    border: calc(.1vh + 2.5px) solid var(--dark);
+    border-radius: .8vh;
+    box-shadow: var(--dark) .4vh .4vh;
     cursor: grab;
     user-select: none;
 }
@@ -745,7 +745,8 @@ button:active {
 
 /* START VALUES */
 
-#loading_container,
+
+/* #loading_container,
 #splash_container,
 #levels_container,
 #game_container {
@@ -754,4 +755,15 @@ button:active {
 
 #loading_container {
     display: flex;
+} */
+
+#loading_container,
+#splash_container,
+#levels_container,
+#game_container {
+    transition: opacity .1s cubic-bezier(.4, 0, .3, 1);
+}
+
+.container_fade {
+    opacity: 0;
 }
