@@ -4,13 +4,6 @@
 
 let anagram, curLevel, curCat, levelObj, hints, grid
 
-const buildImg = () => {
-    let imgContainer = document.querySelector("#game_img_container")
-    let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
-    let randomMask = masks[Math.floor(Math.random() * masks.length)]
-    imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.category}/${curLevel}_1.jpg);">${randomMask}</div>`
-}
-
 const buildAnagram = () => {
 
     anagram
@@ -167,6 +160,13 @@ const buildAnagram = () => {
     letterSizeRecalc()
 }
 
+const buildImg = () => {
+    let imgContainer = document.querySelector("#game_img_container")
+    let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
+    let randomMask = masks[Math.floor(Math.random() * masks.length)]
+    imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.category}/${curLevel}_1.jpg);">${randomMask}</div>`
+}
+
 //sortable init
 const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
     draggable: '#game_letter_grid span.dragge',
@@ -192,6 +192,7 @@ sortable.on('drag:out:container', () => {
 })
 
 //when hint is clicked
+document.querySelector("#ui_hint").addEventListener("click", clickHint)
 const clickHint = () => {
     if (hints < 2) {
         hints++
@@ -209,9 +210,10 @@ const clickHint = () => {
     letterSizeRecalc()
     console.log(hints)
 }
-document.querySelector("#ui_hint").addEventListener("click", clickHint)
 
 //when mute is clicked
+let uiMute = document.querySelectorAll(".ui_mute")
+uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
 const clickMute = () => {
     console.log(uiMute[0].textContent)
     if (uiMute[0].textContent == "‹") {
@@ -220,11 +222,6 @@ const clickMute = () => {
         uiMute.forEach((el) => { el.textContent = "‹" })
     }
 }
-let uiMute = document.querySelectorAll(".ui_mute")
-uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
-
-
-
 
 //calculate column count
 const calcColCount = (str) => {
@@ -348,6 +345,7 @@ const youWon = () => {
     document.querySelector("#ui_hint").classList.add("all_hints_used")
 }
 
+//recalc width values when resizing
 const letterSizeRecalc = () => {
     document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
         el.style.width = `100%`
@@ -359,19 +357,15 @@ const letterSizeRecalc = () => {
         }, 50)
     })
 }
-
 window.addEventListener("resize", () => {
     letterSizeRecalc()
 })
 
-
-
+//load svg
 let contentTopContainer = document.querySelector("#splash_top_container")
-
 fetch('img/game_logo.svg').then(r => r.text()).then(text => {
     contentTopContainer.innerHTML += text;
 }).catch(console.error.bind(console));
-
 fetch('img/star.svg').then(r => r.text()).then(text => {
     document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
         el.innerHTML = text;
