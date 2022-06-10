@@ -2,14 +2,41 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
+const buildLevels = () => {
+
+    let catTemplate = document.querySelector("template#levels_categori_template")
+    let catClone = catTemplate.content.cloneNode(true)
+    let catContainer = document.querySelector("#levels_content_wrapper")
+    catContainer.append(catClone)
+    catContainer.append(catTemplate.content.cloneNode(true))
+    catContainer.append(catTemplate.content.cloneNode(true))
+    catContainer.append(catTemplate.content.cloneNode(true))
+    catContainer.append(catTemplate.content.cloneNode(true))
+    catContainer.append(catTemplate.content.cloneNode(true))
+    catContainer.append(catTemplate.content.cloneNode(true))
+
+    let levelTemplate = document.querySelector("template.levels_level_template")
+    let levelClone = levelTemplate.content.cloneNode(true)
+    let containerTest = document.querySelector(".levels_content_middle")
+    containerTest.append(levelClone)
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 let contentTop = document.querySelector(".levels_content_illustration")
 fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
     contentTop.innerHTML = svg
 }).catch(console.error.bind(console))
-
-const buildLevels = () => {
-
-}
 
 const initMouseMove = () => {
     window.addEventListener("mousemove", (event) => {

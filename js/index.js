@@ -4,11 +4,12 @@
 
 let anagram, curLevel, curCat, levelObj, hints, grid
 
-const buildAnagram = () => {
+const buildAnagram = (level) => {
 
     anagram
-    curLevel = 1
-    curCat = kdk.game.categories.biller
+    curCat = kdk.game.categories[level.split("-")[0]]
+    curLevel = +level.split("-")[1]
+    console.log(curCat + " " + curLevel)
     levelObj = curCat.levels[curLevel]
     hints = levelObj.hintsgiven
     grid = document.querySelector("#game_letter_grid")

@@ -2,7 +2,7 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-const navigate = (site) => {
+const navigate = (site, level) => {
     console.log("navigate")
 
     let loading = document.querySelector("#loading_container"),
@@ -26,8 +26,11 @@ const navigate = (site) => {
         if (pagesArr[i] == site) {
             setTimeout(() => {
                 nextCont.style.display = "flex"
-                if (site.includes("game")) {
-                    buildAnagram()
+                if (site == "game") {
+                    buildAnagram(level)
+                }
+                if (site == "levels") {
+                    buildLevels()
                 }
             }, 150)
             setTimeout(() => {
