@@ -4,9 +4,9 @@
 
 const buildLevels = () => {
 
-    let catTemplate = document.querySelector("template#levels_categori_template")
+    let catTemplate = document.querySelector("#levels_categori_template")
     let catClone = catTemplate.content.cloneNode(true)
-    let catContainer = document.querySelector("#levels_content_wrapper")
+    let catContainer = document.querySelector(".splide__list")
     catContainer.append(catClone)
     catContainer.append(catTemplate.content.cloneNode(true))
     catContainer.append(catTemplate.content.cloneNode(true))
@@ -28,15 +28,30 @@ const buildLevels = () => {
 
 
 
-
+    new Splide('.splide', {
+        type: "slide",
+        rewind: true,
+        width: "100vw",
+        start: 0,
+        perpage: 1,
+        permove: 1,
+        gap: "1em",
+        pagination: true,
+        drag: true,
+        autoWidth: true,
+    }).mount();
 
 
 }
 
-let contentTop = document.querySelector(".levels_content_illustration")
-fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
-    contentTop.innerHTML = svg
-}).catch(console.error.bind(console))
+
+
+
+
+// let contentTop = document.querySelector(".levels_content_illustration")
+// fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
+//     contentTop.innerHTML = svg
+// }).catch(console.error.bind(console))
 
 const initMouseMove = () => {
     window.addEventListener("mousemove", (event) => {
