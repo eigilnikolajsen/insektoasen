@@ -12,6 +12,7 @@ let kdk = {
                         unlocked: true,
                         playable: true,
                         completed: 3,
+                        hintsgiven: 0,
                         insect: "Syvplettet mariehøne",
                         hint0: "SYV-PLETTET marie-høne ",
                         hint1: "SYV-PLETTET Marie-Høne ",

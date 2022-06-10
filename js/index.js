@@ -31,11 +31,11 @@ fetch('img/star.svg').then(r => r.text()).then(text => {
 
 
 
-let hints = 0
 let anagram
 let curLevel = 1
 let curCat = kdk.game.categories.biller
 let levelObj = curCat.levels[curLevel]
+let hints = levelObj.hintsgiven
 let grid = document.querySelector("#game_letter_grid")
 
 const buildImg = () => {
@@ -58,6 +58,7 @@ const buildAnagram = () => {
 
     let hyphenCount = 1, //hyphen count starts from 1
         spaceCount = 1, //space count starts from 1
+        letterCount = 1, //letter count starts from 1
         rowCount = 0,
         count = 0,
         col = calcColCount(anagram)
@@ -75,15 +76,19 @@ const buildAnagram = () => {
             //it's uppercase
             if (str[i] == str[i].toUpperCase()) {
                 span.classList.add(`letter`, `locked`) //add classes (locked if capital letter)
+                span.style.gridArea = `l${letterCount}` //add grid area style
+                span.textContent = str[i] //add text
+                gridTempArr[rowCount][count % col] = `l${letterCount}` //add e.g. l1 to grid layout
+                letterCount++
             }
 
             //it's lowercase
             else {
                 span.classList.add(`letter`, `dragge`) //add classes
+                span.textContent = str[i] //add text
+                gridTempArr[rowCount][count % col] = "." //add empty to grid layout
             }
 
-            span.textContent = str[i] //add text
-            gridTempArr[rowCount][count % col] = "." //add empty to grid layout
             grid.append(span)
             count++ //add 1 to running counter
 
@@ -172,6 +177,17 @@ const buildAnagram = () => {
     grid.style.gridTemplateAreas = gridTempStr
 
     console.log(gridTempStr)
+
+    grid.querySelectorAll("span.locked").forEach((locked) => {
+        locked.addEventListener("touchstart", () => {
+            locked.classList.add("undraggable")
+            setTimeout(() => { locked.classList.remove("undraggable") }, 300)
+        })
+        locked.addEventListener("mousedown", () => {
+            locked.classList.add("undraggable")
+            setTimeout(() => { locked.classList.remove("undraggable") }, 300)
+        })
+    })
 }
 
 //sortable init
@@ -180,15 +196,35 @@ const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_
     handle: '#game_letter_grid span.dragge',
     plugins: [Draggable.Plugins.SortAnimation],
     sortAnimation: {
-        duration: 200,
-        easingFunction: 'ease-out',
+        duration: 300,
+        easingFunction: 'cubic-bezier(.5,1.4,.8,1)',
     },
+    forceFallback: true,
+})
+
+sortable.on('drag:start', () => {
+    grid.style.cursor = "grabbing"
+})
+
+sortable.on('drag:move', () => {
+    grid.style.cursor = "grabbing"
+})
+
+sortable.on('drag:stop', () => {
+    grid.style.cursor = "auto"
+})
+
+sortable.on('drag:out:container', () => {
+    console.log("drag:out:container")
 })
 
 //when hint is clicked
 const clickHint = () => {
-    if (hints < 2) hints++
-        let stars = document.querySelectorAll("#game_content_levels_star_container .game_nav_star")
+    if (hints < 2) {
+        hints++
+        levelObj.hintsgiven = hints
+    }
+    let stars = document.querySelectorAll("#game_content_levels_star_container .game_nav_star")
     if (hints == 1) stars[2].classList.remove("yellow_star")
     if (hints == 2) {
         stars[1].classList.remove("yellow_star")
@@ -288,15 +324,17 @@ const wordsMatch = (str) => {
 
     let currentWord = ""
     document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
-        if (el.textContent != "–")
-            currentWord += el.textContent.toLowerCase()
-    })
+            if (el.textContent != "–" && el.textContent != el.textContent.toUpperCase())
+                currentWord += el.textContent
+        })
+        //console.log(currentWord)
+        //currentWord = currentWord.split("").map(n => n == "–" ? n = "-" : n = n).join("")
     console.log(currentWord)
-    currentWord = currentWord.split("").map(n => n == "–" ? n = "-" : n = n).join("")
 
-    let goalWord = str.toLowerCase().split(" ").join("-").split("-").join("")
+    let goalWord = str.split(" ").join("-").split("-").join("").split("")
+    console.log(goalWord)
+    goalWord = goalWord.filter(l => l == l.toLowerCase()).join("")
 
-    console.log(currentWord)
     console.log(goalWord)
 
     if (currentWord == goalWord) won = true
@@ -307,16 +345,32 @@ const wordsMatch = (str) => {
 //exec function when you win
 const youWon = () => {
     let delayAni = 0
-    document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
+    let letters = document.querySelectorAll("#game_letter_grid span.letter")
+    let randomArr = []
+    letters.forEach((el, i) => {
+        randomArr[i] = i
+    })
+    console.log(randomArr)
+    randomArr = shuffle(randomArr)
+    console.log(randomArr)
+    letters.forEach((el, i) => {
+        console.log(letters[randomArr[i]])
         el.classList.add("letter_complete")
-        el.style.animationDelay = `${delayAni / 20}s`
+        letters[randomArr[i]].style.animationDelay = `${delayAni / 30}s`
         delayAni++
     })
-    document.querySelectorAll("#game_star_container .game_img_star").forEach((el) => {
+    let domStars = document.querySelectorAll("#game_star_container .game_img_star")
+    for (let i = 0; i < domStars.length - hints; i++) {
+        domStars[i].classList.add("yellow_star")
+    }
+    domStars.forEach((el) => {
         setTimeout(() => {
-            el.classList.add("star_complete", "yellow_star")
+            el.classList.add("star_complete")
         }, 700)
     })
+    sortable.destroy()
+    document.querySelector("#ui_hint").removeEventListener("click", clickHint)
+    document.querySelector("#ui_hint").classList.add("all_hints_used")
 }
 
 const letterSizeRecalc = () => {
@@ -334,7 +388,3 @@ const letterSizeRecalc = () => {
 window.addEventListener("resize", () => {
     letterSizeRecalc()
 })
-
-buildImg()
-buildAnagram()
-letterSizeRecalc()

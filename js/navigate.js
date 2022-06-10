@@ -1,4 +1,4 @@
-const navigate = () => {
+const navigate = (site) => {
     console.log("navigate")
 
     let loading = document.querySelector("#loading_container"),
@@ -6,12 +6,20 @@ const navigate = () => {
         levels = document.querySelector("#levels_container"),
         game = document.querySelector("#game_container")
 
+    if (site == "game") {
+        buildImg()
+        buildAnagram()
+        letterSizeRecalc()
+    }
+
     loading.style.display = "none"
-    splash.style.display = "flex"
+    splash.style.display = "none"
     levels.style.display = "none"
     game.style.display = "none"
+
+    document.querySelector(`#${site}_container`).style.display = "flex"
 }
 
 setTimeout(() => {
-    navigate()
+    navigate("splash")
 }, 2000)

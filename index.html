@@ -59,7 +59,7 @@
             <div id="splash_bottom_container">
                 <img src="img/beetle_test.svg" alt="bille illustration" id="splash_illustration">
                 <div>
-                    <button id="start_button">Start spillet →</button>
+                    <button id="start_button" onclick="navigate('levels')">Start spillet →</button>
                 </div>
                 <div>
                     <button id="info_button">Hjælp insekter!</button>
@@ -78,7 +78,7 @@
                 </div>
                 <div id="levels_nav_right">
                     <button class="ui_mute">‹</button>
-                    <button class="ui_home">‡</button>
+                    <button class="ui_home" onclick="navigate('splash')">‡</button>
                 </div>
             </nav>
 
@@ -90,7 +90,7 @@
                         <img src="img/beetle_test.svg" alt="bille illustration" class="levels_content_illustration">
                     </div>
                     <div class="levels_content_middle">
-                        <a href="#" class="levels_content_level_container diff_easy">
+                        <a href="#" class="levels_content_level_container diff_easy" onclick="navigate('game')">
                             <span class="levels_content_level_number">1</span>
                             <div class="levels_content_levels_star_container">
                                 <div class="levels_content_levels_star levels_content_levels_star1 yellow_star"></div>
@@ -219,7 +219,7 @@
                 </div>
                 <div id="game_nav_right">
                     <button class="ui_mute">‹</button>
-                    <button class="ui_home" id="test_button">‡</button>
+                    <button class="ui_home" id="test_button" onclick="navigate('splash')">‡</button>
                 </div>
             </nav>
 

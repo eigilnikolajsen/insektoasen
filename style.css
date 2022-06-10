@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('font/ImagoT9.woff2') format('woff2'), /* Modern Browsers */
-    url('font/ImagoT9.otf') format('opentype');
+    src: url('font/ImagoT10.woff2') format('woff2'), /* Modern Browsers */
+    url('font/ImagoT10.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -16,6 +16,7 @@
     --char: #DBF56E;
     --dark: #140E1A;
     --beige: #fcf7f6;
+    --green: #A1CC80;
     --yellow: #F7D159;
     --orange: #F2A055;
     --red: #DB4D6C;
@@ -111,7 +112,7 @@ svg {
 }
 
 #loading_logo {
-    height: 20vh;
+    width: min(40vh, 80vw);
     margin: 3vh;
 }
 
@@ -223,6 +224,7 @@ button {
     font-family: 'Imago Display', sans-serif;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) 4px 4px;
+    user-select: none;
 }
 
 @media (hover: hover) {
@@ -462,10 +464,12 @@ button:active {
     padding: 0;
     margin: 0;
     display: grid;
+    cursor: help;
 }
 
 #ui_hint.all_hints_used {
     opacity: 0.5;
+    cursor: default;
     box-shadow: var(--dark) 4px 4px;
 }
 
@@ -554,6 +558,8 @@ button:active {
     background-clip: text;
     -webkit-text-stroke: 5px var(--dark);
     filter: drop-shadow(var(--dark) 6px 6px);
+    user-select: none;
+    cursor: default;
 }
 
 #game_star_container {
@@ -588,7 +594,7 @@ button:active {
     width: 100%;
     max-width: 350px;
     margin: 0 auto;
-    gap: 1px;
+    gap: 2px;
 }
 
 .s1,
@@ -615,10 +621,13 @@ button:active {
     border: 3px solid var(--dark);
     border-radius: 8px;
     box-shadow: var(--dark) 4px 4px;
+    cursor: grab;
+    user-select: none;
 }
 
 #game_letter_grid span.locked {
     background-color: var(--grey);
+    cursor: default;
 }
 
 #game_letter_grid span.spaced {
@@ -629,6 +638,50 @@ button:active {
 
 #game_letter_grid span.draggable-source--is-dragging {
     visibility: hidden;
+    cursor: grab;
+}
+
+#game_letter_grid span.draggable-source--placed {
+    animation-name: drag_placed;
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@keyframes drag_placed {
+    0% {
+        transform: scale(1, 1);
+    }
+    33% {
+        transform: scale(1.1, 0.92);
+    }
+    66% {
+        transform: scale(0.96, 1.06);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+#game_letter_grid span.undraggable {
+    animation-name: drag_placed2;
+    animation-duration: 0.2s;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    animation-timing-function: linear;
+}
+
+@keyframes drag_placed2 {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(2px);
+    }
+    66% {
+        transform: translateX(-1px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 #game_letter_grid span.draggable-mirror {
@@ -667,9 +720,11 @@ button:active {
     }
 }
 
-.letter_complete {
+#game_letter_grid span.letter.letter_complete {
     animation-name: letter_complete_ani;
     animation-duration: 0.3s;
+    cursor: default;
+    animation-fill-mode: forwards;
 }
 
 @keyframes letter_complete_ani {
@@ -683,6 +738,7 @@ button:active {
     }
     100% {
         transform: translateY(0);
+        background-color: var(--green);
     }
 }
 
