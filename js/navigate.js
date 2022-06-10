@@ -1,3 +1,7 @@
+// 2. YEAR EXAM
+// DMJX, INTERACTIVE DESIGN, JUNE 2022
+// CODED BY EIGIL NIKOLAJSEN
+
 const navigate = (site) => {
     console.log("navigate")
 
