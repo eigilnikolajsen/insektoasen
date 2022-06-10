@@ -2,41 +2,7 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let contentTopContainer = document.querySelector("#splash_top_container")
-
-// const element = document.querySelector("#container");
-
-// document.querySelector("#test_button").addEventListener("click", () => {
-//     console.log("screenfull test")
-//     if (screenfull.isEnabled) {
-//         screenfull.request(element, { navigationUI: 'hide' });
-//     }
-// })
-
-fetch('img/game_logo.svg').then(r => r.text()).then(text => {
-    contentTopContainer.innerHTML += text;
-}).catch(console.error.bind(console));
-
-fetch('img/star.svg').then(r => r.text()).then(text => {
-    document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
-        el.innerHTML = text;
-    })
-    document.querySelectorAll(".game_nav_star").forEach((el) => {
-        el.innerHTML = text;
-    })
-    document.querySelectorAll(".game_img_star").forEach((el) => {
-        el.innerHTML = text;
-    })
-}).catch(console.error.bind(console));
-
-
-
-let anagram
-let curLevel = 1
-let curCat = kdk.game.categories.biller
-let levelObj = curCat.levels[curLevel]
-let hints = levelObj.hintsgiven
-let grid = document.querySelector("#game_letter_grid")
+let anagram, curLevel, curCat, levelObj, hints, grid
 
 const buildImg = () => {
     let imgContainer = document.querySelector("#game_img_container")
@@ -46,6 +12,13 @@ const buildImg = () => {
 }
 
 const buildAnagram = () => {
+
+    anagram
+    curLevel = 1
+    curCat = kdk.game.categories.biller
+    levelObj = curCat.levels[curLevel]
+    hints = levelObj.hintsgiven
+    grid = document.querySelector("#game_letter_grid")
 
     buildImg()
 
@@ -390,3 +363,23 @@ const letterSizeRecalc = () => {
 window.addEventListener("resize", () => {
     letterSizeRecalc()
 })
+
+
+
+let contentTopContainer = document.querySelector("#splash_top_container")
+
+fetch('img/game_logo.svg').then(r => r.text()).then(text => {
+    contentTopContainer.innerHTML += text;
+}).catch(console.error.bind(console));
+
+fetch('img/star.svg').then(r => r.text()).then(text => {
+    document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
+        el.innerHTML = text;
+    })
+    document.querySelectorAll(".game_nav_star").forEach((el) => {
+        el.innerHTML = text;
+    })
+    document.querySelectorAll(".game_img_star").forEach((el) => {
+        el.innerHTML = text;
+    })
+}).catch(console.error.bind(console));

@@ -39,7 +39,6 @@ const navigate = (site) => {
 
     // document.querySelector(`#${site}_container`).style.display = "flex"
 
-
 }
 
 navigate("loading")
