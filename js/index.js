@@ -21,9 +21,10 @@ const buildAnagram = (level) => {
     let gameClone = gameTemplate.content.cloneNode(true)
     let gameTitle = gameClone.querySelector("#game_title")
     gameContentContainer.innerHTML = ""
+    document.querySelector("#game_win_container").innerHTML = ""
     grid = gameClone.querySelector("#game_letter_grid")
     let uiMute = gameClone.querySelectorAll(".ui_mute")
-    uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
+    uiMute.forEach((el) => { el.addEventListener("click", () => { clickMute(uiMute) }) })
     let UIstars = gameClone.querySelectorAll(".game_nav_star")
     gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
 
@@ -219,7 +220,7 @@ const buildImg = () => {
     let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
     let randomMask = masks[Math.floor(Math.random() * masks.length)]
     if (curCat.categoryName) {
-        imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.categoryName}/${curLevel}_1.jpg);">${randomMask}</div>`
+        imgContainer.innerHTML = `<div style="background-image:url(${getURL()}/img/insects/${curCatName}/${curLevel}_1.jpg);">${randomMask}</div>`
     }
 }
 
@@ -246,7 +247,7 @@ const hintUIStars = (stars) => {
 }
 
 //when mute is clicked
-const clickMute = () => {
+const clickMute = (uiMute) => {
     console.log("clickMute")
     if (uiMute[0].textContent == "‹") {
         uiMute.forEach((el) => { el.textContent = "›" })
@@ -352,6 +353,7 @@ const youWon = () => {
         levelObj.completed = 3 - levelObj.hintsgiven
     }
     unlockNextLevel(curLevel)
+    buildWinContent()
     document.querySelector("#ui_hint").removeEventListener("click", clickHint)
     document.querySelector("#ui_hint").classList.add("all_hints_used")
 }
@@ -377,20 +379,33 @@ const buildWinContent = () => {
 
     winClone.querySelector("#win_title").textContent = levelObj.insect
     winClone.querySelector(".win_desc").textContent = winContent.beskrivelse
-    winClone.querySelector(".win_img2").src = `../img/insects/${curCatName}/${curLevel}_2.jpg`
+    winClone.querySelector(".win_img2").src = `${getURL()}/img/insects/${curCatName}/${curLevel}_2.jpg`
     winClone.querySelector(".win_img2").alt = winContent.img2
     winClone.querySelector(".win_fagc2").textContent = winContent.img2
     winClone.querySelector(".win_forv").textContent = "Forvekslingsmuligheder"
     winClone.querySelector(".win_forv_t").textContent = winContent.forvekslingsmuligheder
     winClone.querySelector(".win_biol").textContent = "Biologi"
     winClone.querySelector(".win_biol_t").textContent = winContent.biologi
-    winClone.querySelector(".win_img3").src = `../img/insects/${curCatName}/${curLevel}_3.jpg`
+    winClone.querySelector(".win_img3").src = `${getURL()}/img/insects/${curCatName}/${curLevel}_3.jpg`
     winClone.querySelector(".win_img3").alt = winContent.img3
     winClone.querySelector(".win_fagc3").textContent = winContent.img3
     winClone.querySelector(".win_leve").textContent = "Levested"
     winClone.querySelector(".win_leve_t").textContent = winContent.levested
     winClone.querySelector(".win_udbr").textContent = "Udbredelse"
     winClone.querySelector(".win_udbr_t").textContent = winContent.udbredelse
+
+    let nextButton = winClone.querySelector("#win_button_next")
+    let nextLevelNumber = curLevel <= 12 ? curLevel + 1 : curLevel = 12
+    console.log(nextLevelNumber)
+
+    if (curCat.levels[nextLevelNumber].unlocked && curCat.levels[nextLevelNumber].playable) {
+        nextButton.addEventListener("click", () => {
+            console.log(kdk)
+            navigate(`game`, `${curCatName}-${nextLevelNumber}`)
+        })
+    } else {
+        nextButton.classList.add("unplayable_level")
+    }
 
     winContainer.append(winClone)
 }
@@ -416,6 +431,14 @@ const letterSizeRecalc = () => {
 window.addEventListener("resize", () => {
     letterSizeRecalc()
 })
+
+
+const getURL = () => {
+    var arr = window.location.href.split("/");
+    delete arr[arr.length - 1];
+    return arr.join("/");
+}
+console.log(getURL())
 
 //load svg
 let contentTopContainer = document.querySelector("#splash_top_container")

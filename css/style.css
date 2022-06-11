@@ -518,6 +518,8 @@ button:active {
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) .4vh .4vh;
     display: grid;
+    margin: 0;
+    padding: 0;
 }
 
 @media (hover: hover) {
@@ -525,8 +527,8 @@ button:active {
         box-shadow: var(--dark) .3vh .3vh;
         transform: translate(.1vh, .1vh);
     }
-    .levels_content_level_container.unplayable_level:hover,
-    .levels_content_level_container.locked_level:hover {
+    .unplayable_level:hover,
+    .locked_level:hover {
         box-shadow: var(--dark) .4vh .4vh;
         transform: translate(0);
     }
@@ -538,8 +540,8 @@ button:active {
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
-.levels_content_level_container.unplayable_level:active,
-.levels_content_level_container.locked_level:active {
+.unplayable_level:active,
+.locked_level:active {
     box-shadow: var(--dark) .35vh .35vh;
     transform: translate(.05vh, .05vh);
 }
@@ -565,13 +567,13 @@ button:active {
     background-color: var(--red);
 }
 
-.levels_content_level_container.unplayable_level {
+.unplayable_level {
     opacity: 0.5;
     cursor: auto;
     transition: 0s cubic-bezier(.3, .9, .4, 1);
 }
 
-.levels_content_level_container.locked_level {
+.locked_level {
     cursor: auto;
     transition: 0s cubic-bezier(.3, .9, .4, 1);
 }
@@ -757,7 +759,7 @@ button:active {
     margin: -8vh .5vh 0 .5vh;
     fill: var(--grey);
     stroke: var(--dark);
-    stroke-width: 10px;
+    stroke-width: .7vh;
     stroke-linejoin: round;
     overflow: visible;
     paint-order: fill stroke;
@@ -928,10 +930,8 @@ button:active {
 }
 
 #game_win_container_wrapper {
-    background-color: rgba(255, 255, 255, 0.1);
     width: 100%;
-    backdrop-filter: blur(2px);
-    border-top: .4vh solid var(--dark);
+    margin-top: 1vh;
 }
 
 #game_win_container {
@@ -944,7 +944,7 @@ button:active {
 #win_title {
     font-family: 'Imago Display', sans-serif;
     font-size: 2.4em;
-    margin: .2em 0;
+    margin: 3vh 0 .2em 0;
 }
 
 .win_subtitle {
@@ -970,6 +970,35 @@ figcaption {
     font-size: 0.8em;
     font-style: italic;
     margin: .2em 0 2em 1em;
+}
+
+#win_button_container {
+    margin: 5vh 0;
+}
+
+#scroll_arrow {
+    position: absolute;
+    bottom: -5vh;
+    left: calc(50vw - 3vh);
+    font-size: 4vh;
+    padding: 0.7vh 1vh 0.3vh 1vh;
+    border-radius: 9999px;
+    background-color: var(--beige);
+    border-width: .4vh;
+    animation-name: scroll_arrow_ani;
+    animation-duration: .6s;
+    animation-timing-function: cubic-bezier(.3, .7, .6, 1);
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes scroll_arrow_ani {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-4vh);
+    }
 }
 
 

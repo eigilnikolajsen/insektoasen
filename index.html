@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="manifest.json" />
     <title>Insektoasen</title>
 
     <!-- CSS -->
@@ -180,6 +180,8 @@
 
             <!-- TEMPLATE FOR WIN -->
             <template id="game_win_template">
+                <button id="scroll_arrow"
+                    onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })">↓</button>
                 <h1 id="win_title"></h1>
                 <p class="win_text win_desc"></p>
                 <figure class="win_fig2">
@@ -199,8 +201,8 @@
                 <h2 class="win_subtitle win_udbr"></h2>
                 <p class="win_text win_udbr_t"></p>
                 <div id="win_button_container">
-                    <button class="win_button">Næste insekt →</button>
-                    <button class="win_button">← Til baner</button>
+                    <button class="win_button" id="win_button_next">Næste insekt →</button>
+                    <button class="win_button" onclick="navigate('levels')">← Til baner</button>
                 </div>
             </template>
 
@@ -224,7 +226,7 @@
 
             <!-- TEMPLATE FOR LEVEL -->
             <template class="levels_level_template">
-                <a href="#" class="levels_content_level_container">
+                <button href="#" class="levels_content_level_container">
                     <span class="levels_content_level_number">†</span>
                     <div class="levels_content_levels_star_container">
                         <div class="levels_content_levels_star levels_content_levels_star1 ">
@@ -246,7 +248,7 @@
                             </svg>
                         </div>
                     </div>
-                </a>
+                </button>
             </template>
 
         </div>
