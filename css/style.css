@@ -317,28 +317,84 @@ button:active {
     margin: 0 0 0 1vh;
 }
 
-#levels_bottom_navigation_container {
-    width: 100%;
+#levels_content_wrapper {
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
-.levels_content_arrow {
-    border-radius: 9999px;
-    margin: 1vh;
-    padding: 0.7vh 1vh;
-    font-size: 4vh;
-}
-
-#levels_content_wrapper {
-    width: 100vw;
+.splide__track {
     height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
 }
 
 .splide__list {
     transition: .4s cubic-bezier(.4, 1.2, .3, 1);
+}
+
+#levels_bottom_navigation_container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    padding: 0 2vh;
+    margin: 0 auto;
+}
+
+#levels_bottom_navigation_container .splide__arrow {
+    width: calc(4vh + 20px);
+    height: calc(4vh + 20px);
+    border-radius: 9999px;
+    margin: 0;
+    padding: 1vh 1vh 1.2vh 1vh;
+    position: static;
+    background-color: var(--char);
+    border: .35vh solid var(--dark);
+    border-radius: 9999px;
+    transition: 0.5s cubic-bezier(.3, .9, .4, 1);
+    box-shadow: var(--dark) .4vh .4vh;
+    user-select: none;
+    transform: none;
+    cursor: pointer;
+    opacity: 1;
+}
+
+@media (hover: hover) {
+    #levels_bottom_navigation_container .splide__arrow:hover {
+        box-shadow: var(--dark) .3vh .3vh;
+        transform: translate(.1vh, .1vh);
+    }
+}
+
+#levels_bottom_navigation_container .splide__arrow:active {
+    box-shadow: var(--dark) .1vh .1vh;
+    transform: translate(.3vh, .3vh);
+    transition: 0.1s cubic-bezier(.3, .9, .4, 1);
+}
+
+#levels_bottom_navigation_container .splide__arrow svg {
+    width: 100%;
+    fill: var(--dark);
+}
+
+#levels_content_wrapper .splide__pagination {
+    bottom: 2vh;
+}
+
+#levels_content_wrapper .splide__pagination__page {
+    width: 10px;
+    height: 10px;
+    border: .35vh solid var(--dark);
+    background-color: var(--dark);
+    opacity: 1;
+    box-shadow: none;
+    margin: 4px;
+}
+
+#levels_content_wrapper .splide__pagination__page.is-active {
+    transform: scale(1.1);
+    background-color: var(--char);
 }
 
 .levels_content_container {
@@ -517,6 +573,10 @@ button:active {
 
 .levels_content_levels_star.yellow_star {
     fill: var(--yellow);
+}
+
+.levels_content_bottom {
+    margin: 0 0 2vh 0;
 }
 
 .levels_container_stats {
