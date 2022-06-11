@@ -9,7 +9,8 @@ const buildAnagram = (level) => {
     anagram
     curCat = kdk.game.categories[level.split("-")[0]]
     curLevel = +level.split("-")[1]
-    console.log(curCat + " " + curLevel)
+        //console.log(curCat)
+        //console.log(curCat + " " + curLevel)
     levelObj = curCat.levels[curLevel]
     hints = levelObj.hintsgiven
     grid = document.querySelector("#game_letter_grid")
@@ -75,7 +76,7 @@ const buildAnagram = (level) => {
                 spanHyphen.style.gridArea = `h${hyphenCount}` //add grid area style
                 spanHyphen.textContent = "–" //add endash
                 gridTempArr[rowCount][count % col] = `h${hyphenCount}` //add e.g. h1 to grid layout
-                console.log(`h${hyphenCount}`)
+                    //console.log(`h${hyphenCount}`)
                 grid.append(spanHyphen)
 
                 hyphenCount++ //increment hyphen count
@@ -93,7 +94,7 @@ const buildAnagram = (level) => {
                     let spanSpace = document.createElement("span")
                     spanSpace.classList.add(`s${spaceCount}`) //add class
                     spanSpace.style.gridArea = `s${spaceCount}` //add grid area style
-                    console.log(`s${spaceCount}`)
+                        //console.log(`s${spaceCount}`)
                     grid.append(spanSpace)
                 }
 
@@ -113,7 +114,7 @@ const buildAnagram = (level) => {
                 let spanSpaceRow = document.createElement("span")
                 spanSpaceRow.classList.add(`s${spaceCount}`) //add class
                 spanSpaceRow.style.gridArea = `s${spaceCount}` //add grid area style
-                console.log(`s${spaceCount}`)
+                    //console.log(`s${spaceCount}`)
                 grid.append(spanSpaceRow)
 
                 for (let j = 0; j < col; j++) {
@@ -128,7 +129,7 @@ const buildAnagram = (level) => {
         }
     }
 
-    console.log(gridTempArr)
+    //console.log(gridTempArr)
 
     let gridTempStr = ``
 
@@ -145,7 +146,7 @@ const buildAnagram = (level) => {
 
     grid.style.gridTemplateAreas = gridTempStr
 
-    console.log(gridTempStr)
+    //console.log(gridTempStr)
 
     grid.querySelectorAll("span.locked").forEach((locked) => {
         locked.addEventListener("touchstart", () => {

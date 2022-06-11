@@ -13,30 +13,52 @@ const buildLevels = () => {
     catContainer.innerHTML = ""
 
     for (const insect in gameCat) {
+        let categoryInsect = gameCat[insect]
         let catClone = catTemplate.content.cloneNode(true)
 
-        catClone.querySelector(".levels_content_title").textContent = gameCat[insect].categoryName
+        //title = Biller
+        let title = catClone.querySelector(".levels_content_title")
+        title.textContent = categoryInsect.categoryName
 
+        let illu = catClone.querySelector(".levels_content_illustration")
+        fetch(`img/insects/${insect}.svg`).then(r => r.text()).then(svg => {
+            illu.innerHTML = svg
+        }).catch(console.error.bind(console))
 
+        for (const level in categoryInsect.levels) {
+            let lvl = categoryInsect.levels[level]
+
+            //copy template
+            let levelTemplate = document.querySelector("template.levels_level_template")
+            let levelClone = levelTemplate.content.cloneNode(true)
+
+            //set difficulty & navigation
+            let wrapper = levelClone.querySelector(".levels_content_level_container")
+            wrapper.classList.add(`diff_${lvl.difficulty}`)
+            console.log(`${insect}-${lvl.level}`)
+            wrapper.addEventListener("click", buildAnagram(`${insect}-${lvl.level}`))
+
+            let number = levelClone.querySelector(".levels_content_level_number")
+            if (lvl.unlocked) number.textContent = lvl.level
+
+            let stars = levelClone.querySelectorAll(".levels_content_levels_star")
+            for (let i = 0; i < lvl.completed; i++) {
+                stars[i].classList.add("yellow_star")
+            }
+
+            let contentMiddle = catClone.querySelector(".levels_content_middle")
+            contentMiddle.append(levelClone)
+        }
 
         catContainer.append(catClone)
 
-
-        console.log(gameCat[insect])
-
-
-
-
     }
 
-    let levelTemplate = document.querySelector("template.levels_level_template")
-    let levelClone = levelTemplate.content.cloneNode(true)
-    let containerTest = document.querySelector(".levels_content_middle")
-    containerTest.append(levelClone)
 
 
 
-    console.log("before splide")
+
+    //console.log("before splide")
 
     new Splide('.splide', {
         type: "slide",
