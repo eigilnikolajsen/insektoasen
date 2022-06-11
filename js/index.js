@@ -2,13 +2,12 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let anagram, curLevel, curCat, levelObj, hints, grid
+let anagram, curLevel, curCat, levelObj, hints, grid, levelInfo, sortable
 
 const buildAnagram = (level) => {
+    console.log("buildAnagram")
 
-    console.log(level)
-
-    anagram
+    levelInfo = level
     curCat = kdk.game.categories[level.split("-")[0]]
     curLevel = +level.split("-")[1]
         //console.log(curCat)
@@ -17,12 +16,17 @@ const buildAnagram = (level) => {
     hints = levelObj.hintsgiven
     grid = document.querySelector("#game_letter_grid")
 
-    buildImg()
-
     grid.innerHTML = ""
-    anagram = levelObj[`hint${hints}`]
-    let gameTitle = document.querySelector("#game_title")
+    anagram = levelObj[`hint${levelObj.hintsgiven}`]
+
+
+    let gameTemplate = document.querySelector("#game_middle_template")
+    let gameMiddleContainer = document.querySelector("#game_middle_container")
+    let gameClone = gameTemplate.content.cloneNode(true)
+    let gameTitle = gameClone.querySelector("#game_title")
+    gameMiddleContainer.innerHTML = ""
     gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
+    gameMiddleContainer.append(gameClone)
 
     //split anagram string into array
     let str = shuffleWord(anagram).split("")
@@ -164,9 +168,40 @@ const buildAnagram = (level) => {
     })
 
     letterSizeRecalc()
+    buildImg()
+
+    if (sortable) sortable.destroy()
+
+    sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
+        draggable: '#game_letter_grid span.dragge',
+        handle: '#game_letter_grid span.dragge',
+        plugins: [Draggable.Plugins.SortAnimation],
+        sortAnimation: {
+            duration: 300,
+            easingFunction: 'cubic-bezier(.5,1.4,.8,1)',
+        },
+        forceFallback: true,
+    })
+
+    //sortable init
+    sortable.on('drag:start', () => {
+        grid.style.cursor = "grabbing"
+    })
+    sortable.on('drag:move', () => {
+        grid.style.cursor = "grabbing"
+    })
+    sortable.on('drag:stop', () => {
+        grid.style.cursor = "auto"
+        setTimeout(() => {
+            if (wordsMatch(anagram)) {
+                youWon()
+            }
+        }, 100)
+    })
 }
 
 const buildImg = () => {
+    console.log("buildImg")
     let imgContainer = document.querySelector("#game_img_container")
     let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
     let randomMask = masks[Math.floor(Math.random() * masks.length)]
@@ -175,32 +210,9 @@ const buildImg = () => {
     }
 }
 
-//sortable init
-const sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
-    draggable: '#game_letter_grid span.dragge',
-    handle: '#game_letter_grid span.dragge',
-    plugins: [Draggable.Plugins.SortAnimation],
-    sortAnimation: {
-        duration: 300,
-        easingFunction: 'cubic-bezier(.5,1.4,.8,1)',
-    },
-    forceFallback: true,
-})
-sortable.on('drag:start', () => {
-    grid.style.cursor = "grabbing"
-})
-sortable.on('drag:move', () => {
-    grid.style.cursor = "grabbing"
-})
-sortable.on('drag:stop', () => {
-    grid.style.cursor = "auto"
-})
-sortable.on('drag:out:container', () => {
-    console.log("drag:out:container")
-})
-
 //when hint is clicked
 const clickHint = () => {
+    console.log("clickHint")
     if (hints < 2) {
         hints++
         levelObj.hintsgiven = hints
@@ -213,15 +225,15 @@ const clickHint = () => {
             document.querySelector("#ui_hint").classList.add("all_hints_used")
         }, 200)
     }
-    buildAnagram()
+    buildAnagram(levelInfo)
     letterSizeRecalc()
-    console.log(hints)
+        //console.log(hints)
 }
 document.querySelector("#ui_hint").addEventListener("click", clickHint)
 
 //when mute is clicked
 const clickMute = () => {
-    console.log(uiMute[0].textContent)
+    console.log("clickMute")
     if (uiMute[0].textContent == "‹") {
         uiMute.forEach((el) => { el.textContent = "›" })
     } else {
@@ -236,7 +248,7 @@ const calcColCount = (str) => {
     //ALMINDE-LIG bred-tæge => ['ALMINDE_', 'LIG', 'bred_', 'tæge_']
     let splitd = str.split("-").map(n => n += "_").join("-").split(" ").join("-").split("-")
 
-    console.log(splitd)
+    //console.log(splitd)
     var longest = splitd.reduce(
         function(a, b) {
             return a.length > b.length ? a : b;
@@ -288,33 +300,19 @@ const shuffleWord = (str) => {
     return strArr.join("")
 }
 
-//check if you won
-sortable.on('drag:stop', () => {
-    setTimeout(() => {
-        if (wordsMatch(anagram)) {
-            youWon()
-        }
-    }, 100)
-})
-
 //check if your word matches the solution
 const wordsMatch = (str) => {
+    console.log("wordsMatch")
     let won = false
 
     let currentWord = ""
     document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
-            if (el.textContent != "–" && el.textContent != el.textContent.toUpperCase())
-                currentWord += el.textContent
-        })
-        //console.log(currentWord)
-        //currentWord = currentWord.split("").map(n => n == "–" ? n = "-" : n = n).join("")
-    console.log(currentWord)
+        if (el.textContent != "–" && el.textContent != el.textContent.toUpperCase())
+            currentWord += el.textContent
+    })
 
     let goalWord = str.split(" ").join("-").split("-").join("").split("")
-    console.log(goalWord)
     goalWord = goalWord.filter(l => l == l.toLowerCase()).join("")
-
-    console.log(goalWord)
 
     if (currentWord == goalWord) won = true
 
@@ -323,17 +321,15 @@ const wordsMatch = (str) => {
 
 //exec function when you win
 const youWon = () => {
+    console.log("youWon")
     let delayAni = 0
     let letters = document.querySelectorAll("#game_letter_grid span.letter")
     let randomArr = []
     letters.forEach((el, i) => {
         randomArr[i] = i
     })
-    console.log(randomArr)
     randomArr = shuffle(randomArr)
-    console.log(randomArr)
     letters.forEach((el, i) => {
-        console.log(letters[randomArr[i]])
         el.classList.add("letter_complete")
         letters[randomArr[i]].style.animationDelay = `${delayAni / 30}s`
         delayAni++
@@ -349,8 +345,14 @@ const youWon = () => {
     })
     sortable.destroy()
     levelObj.completed = 3 - hints
+    unlockNextLevel(curLevel)
     document.querySelector("#ui_hint").removeEventListener("click", clickHint)
     document.querySelector("#ui_hint").classList.add("all_hints_used")
+}
+
+const unlockNextLevel = (cur) => {
+    let next = cur <= 12 ? cur + 1 : cur = 12
+    curCat.levels[next].unlocked = true
 }
 
 //recalc width values when resizing

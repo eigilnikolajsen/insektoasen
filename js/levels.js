@@ -30,6 +30,10 @@ const buildLevels = () => {
             illu.innerHTML = svg
         }).catch(console.error.bind(console))
 
+        let levelCount = 0,
+            levelTotal = 0,
+            starCount = 0
+
         for (const level in categoryInsect.levels) {
             let lvl = categoryInsect.levels[level]
 
@@ -43,7 +47,7 @@ const buildLevels = () => {
             if (!lvl.playable) wrapper.classList.add(`unplayable_level`)
             if (lvl.unlocked) {
                 wrapper.addEventListener("click", () => {
-                    console.log(`${insect}-${lvl.level}`)
+                    //console.log(`${insect}-${lvl.level}`)
                     navigate(`game`, `${insect}-${lvl.level}`)
                 })
             } else {
@@ -58,9 +62,18 @@ const buildLevels = () => {
                 stars[i].classList.add("yellow_star")
             }
 
+            levelTotal++
+            levelCount += lvl.completed > 0 ? 1 : 0
+            starCount += lvl.completed
+
             let contentMiddle = catClone.querySelector(".levels_content_middle")
             contentMiddle.append(levelClone)
         }
+
+        let statLevels = catClone.querySelector(".stat_levels")
+        let statStars = catClone.querySelector(".stat_stars")
+        statLevels.textContent = `${levelCount} / ${levelTotal} ${categoryInsect.categoryName}`
+        statStars.textContent = `${starCount} / ${levelTotal * 3} stjerner`
 
         catContainer.append(catClone)
 
@@ -84,7 +97,6 @@ const buildLevels = () => {
     })
 
     splide.on('active', (event) => {
-        console.log(event)
         let bg = document.querySelector("#container")
         bg.style.backgroundImage = `var(--${colorArr[event.index]})`
     })

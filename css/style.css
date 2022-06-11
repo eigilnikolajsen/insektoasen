@@ -857,6 +857,7 @@ button:active {
     animation-name: star_complete_ani;
     animation-fill-mode: forwards;
     opacity: 1;
+    z-index: 3;
 }
 
 .star_complete:nth-child(1) {
