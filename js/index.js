@@ -2,7 +2,7 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let anagram, curLevel, curCat, levelObj, hints, grid, levelInfo, sortable
+let anagram, curLevel, curCat, levelObj, grid, levelInfo, sortable
 
 const buildAnagram = (level) => {
     console.log("buildAnagram")
@@ -13,22 +13,33 @@ const buildAnagram = (level) => {
         //console.log(curCat)
         //console.log(curCat + " " + curLevel)
     levelObj = curCat.levels[curLevel]
-    hints = levelObj.hintsgiven
-    grid = document.querySelector("#game_letter_grid")
 
-    grid.innerHTML = ""
+
+    let gameTemplate = document.querySelector("#game_template")
+    let gameContainer = document.querySelector("#game_container")
+    let gameClone = gameTemplate.content.cloneNode(true)
+    let gameTitle = gameClone.querySelector("#game_title")
+    gameContainer.innerHTML = ""
+    grid = gameClone.querySelector("#game_letter_grid")
+    let uiMute = gameClone.querySelectorAll(".ui_mute")
+    uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
+    let UIstars = gameClone.querySelectorAll(".game_nav_star")
+    gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
+
+    if (levelObj.completed > 0) {
+        levelObj.hintsgiven = 3 - levelObj.completed
+        gameClone.querySelector("#ui_hint").classList.add("all_hints_used")
+    } else {
+        gameClone.querySelector("#ui_hint").addEventListener("click", () => { clickHint(UIstars) })
+    }
+    hintUIStars(UIstars)
+
+    gameContainer.append(gameClone)
+
+    //split anagram string into array
     anagram = levelObj[`hint${levelObj.hintsgiven}`]
 
 
-    let gameTemplate = document.querySelector("#game_middle_template")
-    let gameMiddleContainer = document.querySelector("#game_middle_container")
-    let gameClone = gameTemplate.content.cloneNode(true)
-    let gameTitle = gameClone.querySelector("#game_title")
-    gameMiddleContainer.innerHTML = ""
-    gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
-    gameMiddleContainer.append(gameClone)
-
-    //split anagram string into array
     let str = shuffleWord(anagram).split("")
     let gridTempArr = [
         []
@@ -213,23 +224,24 @@ const buildImg = () => {
 //when hint is clicked
 const clickHint = () => {
     console.log("clickHint")
-    if (hints < 2) {
-        hints++
-        levelObj.hintsgiven = hints
+    if (levelObj.hintsgiven < 2) {
+        levelObj.hintsgiven++
     }
-    let stars = document.querySelectorAll("#game_content_levels_star_container .game_nav_star")
-    if (hints == 1) stars[2].classList.remove("yellow_star")
-    if (hints == 2) {
+    buildAnagram(levelInfo)
+    letterSizeRecalc()
+}
+
+const hintUIStars = (stars) => {
+    console.log(stars)
+    if (levelObj.hintsgiven == 1) stars[2].classList.remove("yellow_star")
+    if (levelObj.hintsgiven == 2) {
         stars[1].classList.remove("yellow_star")
+        stars[2].classList.remove("yellow_star")
         setTimeout(() => {
             document.querySelector("#ui_hint").classList.add("all_hints_used")
         }, 200)
     }
-    buildAnagram(levelInfo)
-    letterSizeRecalc()
-        //console.log(hints)
 }
-document.querySelector("#ui_hint").addEventListener("click", clickHint)
 
 //when mute is clicked
 const clickMute = () => {
@@ -240,8 +252,6 @@ const clickMute = () => {
         uiMute.forEach((el) => { el.textContent = "‹" })
     }
 }
-let uiMute = document.querySelectorAll(".ui_mute")
-uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
 
 //calculate column count
 const calcColCount = (str) => {
@@ -334,8 +344,19 @@ const youWon = () => {
         letters[randomArr[i]].style.animationDelay = `${delayAni / 30}s`
         delayAni++
     })
+    starsComplete()
+    sortable.destroy()
+    if (levelObj.completed == 0) {
+        levelObj.completed = 3 - levelObj.hintsgiven
+    }
+    unlockNextLevel(curLevel)
+    document.querySelector("#ui_hint").removeEventListener("click", clickHint)
+    document.querySelector("#ui_hint").classList.add("all_hints_used")
+}
+
+const starsComplete = () => {
     let domStars = document.querySelectorAll("#game_star_container .game_img_star")
-    for (let i = 0; i < domStars.length - hints; i++) {
+    for (let i = 0; i < domStars.length - levelObj.hintsgiven; i++) {
         domStars[i].classList.add("yellow_star")
     }
     domStars.forEach((el) => {
@@ -343,11 +364,6 @@ const youWon = () => {
             el.classList.add("star_complete")
         }, 700)
     })
-    sortable.destroy()
-    levelObj.completed = 3 - hints
-    unlockNextLevel(curLevel)
-    document.querySelector("#ui_hint").removeEventListener("click", clickHint)
-    document.querySelector("#ui_hint").classList.add("all_hints_used")
 }
 
 const unlockNextLevel = (cur) => {
@@ -376,15 +392,4 @@ window.addEventListener("resize", () => {
 let contentTopContainer = document.querySelector("#splash_top_container")
 fetch('img/game_logo.svg').then(r => r.text()).then(text => {
     contentTopContainer.innerHTML += text;
-}).catch(console.error.bind(console));
-fetch('img/star.svg').then(r => r.text()).then(text => {
-    document.querySelectorAll(".levels_content_levels_star").forEach((el) => {
-        el.innerHTML = text;
-    })
-    document.querySelectorAll(".game_nav_star").forEach((el) => {
-        el.innerHTML = text;
-    })
-    document.querySelectorAll(".game_img_star").forEach((el) => {
-        el.innerHTML = text;
-    })
 }).catch(console.error.bind(console));

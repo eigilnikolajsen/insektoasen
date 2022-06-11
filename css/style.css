@@ -316,15 +316,34 @@ button:active {
     margin-top: 1vh;
 }
 
+#game_nav_left,
+#game_nav_right {
+    display: flex;
+}
+
 .ui_mute,
 .ui_home,
+.ui_back,
 #ui_hint {
-    background-color: var(--beige);
+    background-color: var(--char);
     display: inline-block;
     font-size: 5vh;
     line-height: 0;
     padding: 2.8vh 0.8vh 2.1vh 0.8vh;
     margin: 0 0 0 1vh;
+}
+
+.ui_home,
+.ui_mute {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.ui_home {
+    margin-left: 0;
+}
+
+.ui_back {
+    font-size: 4vh;
 }
 
 #levels_content_wrapper {
@@ -627,7 +646,6 @@ button:active {
 
 #ui_hint {
     padding: 0;
-    margin: 0;
     display: grid;
     cursor: help;
 }
@@ -722,7 +740,7 @@ button:active {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-stroke: calc(.2vh + 3px) var(--dark);
-    filter: drop-shadow(var(--dark) .5vh .5vh);
+    filter: drop-shadow(var(--dark) .8vh .8vh);
     user-select: none;
     cursor: default;
 }
@@ -734,20 +752,53 @@ button:active {
 }
 
 .game_img_star {
-    width: 4vh;
-    margin: 0 1vh;
+    width: 6vh;
+    margin: -8vh .5vh 0 .5vh;
     fill: var(--grey);
     stroke: var(--dark);
     stroke-width: 10px;
     stroke-linejoin: round;
     overflow: visible;
     paint-order: fill stroke;
-    filter: drop-shadow(var(--dark) 4px 4px);
+    filter: drop-shadow(var(--dark) 3px 3px);
     opacity: 0;
 }
 
 .game_img_star.yellow_star {
     fill: var(--yellow);
+}
+
+.star_complete {
+    animation-name: star_complete_ani;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    z-index: 3;
+}
+
+.star_complete:nth-child(1) {
+    animation-duration: 1s;
+}
+
+.star_complete:nth-child(2) {
+    animation-duration: 1.2s;
+}
+
+.star_complete:nth-child(3) {
+    animation-duration: 1.4s;
+}
+
+@keyframes star_complete_ani {
+    0% {
+        transform: translateY(100vh) rotate(0);
+        animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    }
+    80% {
+        transform: translateY(-5vh) rotate(660deg);
+        animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    }
+    100% {
+        transform: translateY(0) rotate(720deg);
+    }
 }
 
 #game_bottom_container {
@@ -851,39 +902,6 @@ button:active {
 
 #game_letter_grid span.draggable-mirror {
     background-color: var(--orange);
-}
-
-.star_complete {
-    animation-name: star_complete_ani;
-    animation-fill-mode: forwards;
-    opacity: 1;
-    z-index: 3;
-}
-
-.star_complete:nth-child(1) {
-    animation-duration: 1s;
-}
-
-.star_complete:nth-child(2) {
-    animation-duration: 1.2s;
-}
-
-.star_complete:nth-child(3) {
-    animation-duration: 1.4s;
-}
-
-@keyframes star_complete_ani {
-    0% {
-        transform: translateY(100vh) rotate(0);
-        animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
-    }
-    80% {
-        transform: translateY(-5vh) rotate(660deg);
-        animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
-    }
-    100% {
-        transform: translateY(0) rotate(720deg);
-    }
 }
 
 #game_letter_grid span.letter.letter_complete {

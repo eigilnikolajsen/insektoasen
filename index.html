@@ -74,12 +74,12 @@
 
             <!-- NAV -->
             <nav id="levels_top_navigation_container">
-                <div id="levels_nav_left">
-                    <p id="levels_text">BANER</p>
-                </div>
                 <div id="levels_nav_right">
-                    <button class="ui_mute">‹</button>
                     <button class="ui_home" onclick="navigate('splash')">‡</button>
+                    <button class="ui_mute">‹</button>
+                </div>
+                <div id="levels_nav_left">
+                    <p id="levels_text"></p>
                 </div>
             </nav>
 
@@ -101,43 +101,74 @@
 
 
         <!-- GAME -->
-        <section id="game_container">
+        <section id="game_container"></section>
+
+        <template id="game_template">
 
             <!-- NAV -->
             <nav id="game_top_container">
+                <div id="game_nav_right">
+                    <button class="ui_home" onclick="navigate('splash')">‡</button>
+                    <button class="ui_mute">‹</button>
+                </div>
                 <div id="game_nav_left">
+                    <button class="ui_back" onclick="navigate('levels')">←</button>
                     <button id="ui_hint">
                         <span id="game_content_level_number">~</span>
                         <div id="game_content_levels_star_container">
-                            <div class="game_nav_star yellow_star"></div>
-                            <div class="game_nav_star yellow_star"></div>
-                            <div class="game_nav_star yellow_star"></div>
+                            <div class="game_nav_star yellow_star">
+                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                                    <path
+                                        d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                                </svg>
+                            </div>
+                            <div class="game_nav_star yellow_star">
+                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                                    <path
+                                        d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                                </svg>
+                            </div>
+                            <div class="game_nav_star yellow_star">
+                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                                    <path
+                                        d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                                </svg>
+                            </div>
                         </div>
                     </button>
                 </div>
-                <div id="game_nav_right">
-                    <button class="ui_mute">‹</button>
-                    <button class="ui_home" id="test_button" onclick="navigate('splash')">‡</button>
-                </div>
             </nav>
 
-            <div id="game_middle_container"></div>
-
-            <template id="game_middle_template">
+            <div id="game_middle_container">
                 <h1 id="game_title">Biller #1</h1>
                 <div id="game_img_container"></div>
                 <div id="game_star_container">
-                    <div class="game_img_star"></div>
-                    <div class="game_img_star"></div>
-                    <div class="game_img_star"></div>
+                    <div class="game_img_star">
+                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                            <path
+                                d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                        </svg>
+                    </div>
+                    <div class="game_img_star">
+                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                            <path
+                                d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                        </svg>
+                    </div>
+                    <div class="game_img_star">
+                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.08 88.41">
+                            <path
+                                d="M53.68,4.75l7.63,15.47c1.24,2.51,3.64,4.25,6.41,4.66l17.07,2.48c6.98,1.01,9.77,9.6,4.72,14.52l-12.35,12.04c-2.01,1.96-2.92,4.77-2.45,7.54l2.92,17c1.19,6.95-6.11,12.26-12.35,8.97l-15.27-8.03c-2.48-1.3-5.44-1.3-7.92,0l-15.27,8.03c-6.25,3.28-13.54-2.02-12.35-8.97l2.92-17c.47-2.76-.44-5.58-2.45-7.54L2.58,41.87c-5.05-4.93-2.26-13.51,4.72-14.52l17.07-2.48c2.77-.4,5.17-2.14,6.41-4.66l7.63-15.47c3.12-6.33,12.15-6.33,15.27,0Z" />
+                        </svg>
+                    </div>
                 </div>
-            </template>
+            </div>
 
             <div id="game_bottom_container">
                 <div id="game_letter_grid"></div>
             </div>
 
-        </section>
+        </template>
 
 
         <!-- BG + FG -->
