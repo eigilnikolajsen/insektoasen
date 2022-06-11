@@ -32,6 +32,10 @@ const navigate = (site, level) => {
                 if (site == "levels") {
                     buildLevels()
                 }
+                if (site == "splash") {
+                    let bg = document.querySelector("#container")
+                    bg.style.backgroundImage = `var(--green-green)`
+                }
             }, 150)
             setTimeout(() => {
                 nextCont.classList.remove("container_fade")

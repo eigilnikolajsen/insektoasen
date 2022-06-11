@@ -9,6 +9,10 @@ const buildLevels = () => {
     let gameCat = kdk.game.categories
     let catTemplate = document.querySelector("#levels_categori_template")
     let catContainer = document.querySelector(".splide__list")
+    let pag = document.querySelector(".splide__pagination")
+    if (pag) pag.remove()
+
+    let colorArr = []
 
     catContainer.innerHTML = ""
 
@@ -19,6 +23,7 @@ const buildLevels = () => {
         //title = Biller
         let title = catClone.querySelector(".levels_content_title")
         title.textContent = categoryInsect.categoryName
+        colorArr.push(insect)
 
         let illu = catClone.querySelector(".levels_content_illustration")
         fetch(`img/insects/${insect}.svg`).then(r => r.text()).then(svg => {
@@ -35,8 +40,15 @@ const buildLevels = () => {
             //set difficulty & navigation
             let wrapper = levelClone.querySelector(".levels_content_level_container")
             wrapper.classList.add(`diff_${lvl.difficulty}`)
-            console.log(`${insect}-${lvl.level}`)
-            wrapper.addEventListener("click", buildAnagram(`${insect}-${lvl.level}`))
+            if (!lvl.playable) wrapper.classList.add(`unplayable_level`)
+            if (lvl.unlocked) {
+                wrapper.addEventListener("click", () => {
+                    console.log(`${insect}-${lvl.level}`)
+                    navigate(`game`, `${insect}-${lvl.level}`)
+                })
+            } else {
+                wrapper.classList.add(`locked_level`)
+            }
 
             let number = levelClone.querySelector(".levels_content_level_number")
             if (lvl.unlocked) number.textContent = lvl.level
@@ -60,7 +72,7 @@ const buildLevels = () => {
 
     //console.log("before splide")
 
-    new Splide('.splide', {
+    var splide = new Splide('.splide', {
         type: "slide",
         rewind: false,
         width: "100vw",
@@ -69,10 +81,15 @@ const buildLevels = () => {
         drag: true,
         arrowPath: "M25.8,13.09c.54,.54,.93,1.47,.93,2.23,0,1.2-.82,1.96-1.96,1.96H0v5.44H24.76c1.14,0,1.96,.82,1.96,1.96,0,.82-.38,1.69-.93,2.23l-6.31,6.31,3.65,3.65,16.87-16.87L23.13,3.13l-3.65,3.65,6.31,6.31Z",
 
-    }).mount();
+    })
 
+    splide.on('active', (event) => {
+        console.log(event)
+        let bg = document.querySelector("#container")
+        bg.style.backgroundImage = `var(--${colorArr[event.index]})`
+    })
 
-
+    splide.mount()
 
 }
 

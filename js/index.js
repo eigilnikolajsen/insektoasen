@@ -6,6 +6,8 @@ let anagram, curLevel, curCat, levelObj, hints, grid
 
 const buildAnagram = (level) => {
 
+    console.log(level)
+
     anagram
     curCat = kdk.game.categories[level.split("-")[0]]
     curLevel = +level.split("-")[1]
@@ -19,6 +21,8 @@ const buildAnagram = (level) => {
 
     grid.innerHTML = ""
     anagram = levelObj[`hint${hints}`]
+    let gameTitle = document.querySelector("#game_title")
+    gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
 
     //split anagram string into array
     let str = shuffleWord(anagram).split("")
@@ -166,7 +170,9 @@ const buildImg = () => {
     let imgContainer = document.querySelector("#game_img_container")
     let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
     let randomMask = masks[Math.floor(Math.random() * masks.length)]
-    imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.category}/${curLevel}_1.jpg);">${randomMask}</div>`
+    if (curCat.categoryName) {
+        imgContainer.innerHTML = `<div style="background-image:url(img/insects/${curCat.categoryName}/${curLevel}_1.jpg);">${randomMask}</div>`
+    }
 }
 
 //sortable init

@@ -23,6 +23,14 @@
     --dark-red: #7B2E2E;
     --purple: #4E4076;
     --blue: #547DBA;
+    --biller: linear-gradient(150deg, #F2A055, #EA6254);
+    --sommerfugle: linear-gradient(150deg, #89CCCC, #547DBA);
+    --taeger: linear-gradient(150deg, #DA83C1, #D64859);
+    --bierogvepse: linear-gradient(150deg, #9AD7DB, #51AB75);
+    --natsvaermere: linear-gradient(150deg, #F0A4C9, #7763AF);
+    --moel: linear-gradient(150deg, #F8EC81, #F2A055);
+    --guldsmede: linear-gradient(150deg, #ACABF2, #CB74B8);
+    --myrer: linear-gradient(150deg, #A1CC80, #3C7B55);
 }
 
 *,
@@ -46,8 +54,9 @@ svg {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: var(--green-green);
+    background: var(--green-green);
     z-index: -2;
+    transition: 1s cubic-bezier(.4, 1.2, .3, 1);
 }
 
 
@@ -501,6 +510,7 @@ button:active {
         box-shadow: var(--dark) .3vh .3vh;
         transform: translate(.1vh, .1vh);
     }
+    .levels_content_level_container.unplayable_level:hover,
     .levels_content_level_container.locked_level:hover {
         box-shadow: var(--dark) .4vh .4vh;
         transform: translate(0);
@@ -513,6 +523,7 @@ button:active {
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
+.levels_content_level_container.unplayable_level:active,
 .levels_content_level_container.locked_level:active {
     box-shadow: var(--dark) .35vh .35vh;
     transform: translate(.05vh, .05vh);
@@ -539,8 +550,13 @@ button:active {
     background-color: var(--red);
 }
 
-.levels_content_level_container.locked_level {
+.levels_content_level_container.unplayable_level {
     opacity: 0.5;
+    cursor: auto;
+    transition: 0s cubic-bezier(.3, .9, .4, 1);
+}
+
+.levels_content_level_container.locked_level {
     cursor: auto;
     transition: 0s cubic-bezier(.3, .9, .4, 1);
 }
