@@ -4,16 +4,30 @@
 
 const buildLevels = () => {
 
+
+
+    let gameCat = kdk.game.categories
     let catTemplate = document.querySelector("#levels_categori_template")
-    let catClone = catTemplate.content.cloneNode(true)
     let catContainer = document.querySelector(".splide__list")
-    catContainer.append(catClone)
-    catContainer.append(catTemplate.content.cloneNode(true))
-    catContainer.append(catTemplate.content.cloneNode(true))
-    catContainer.append(catTemplate.content.cloneNode(true))
-    catContainer.append(catTemplate.content.cloneNode(true))
-    catContainer.append(catTemplate.content.cloneNode(true))
-    catContainer.append(catTemplate.content.cloneNode(true))
+
+    catContainer.innerHTML = ""
+
+    for (const insect in gameCat) {
+        let catClone = catTemplate.content.cloneNode(true)
+
+        catClone.querySelector(".levels_content_title").textContent = gameCat[insect].categoryName
+
+
+
+        catContainer.append(catClone)
+
+
+        console.log(gameCat[insect])
+
+
+
+
+    }
 
     let levelTemplate = document.querySelector("template.levels_level_template")
     let levelClone = levelTemplate.content.cloneNode(true)
@@ -22,24 +36,20 @@ const buildLevels = () => {
 
 
 
-
-
-
-
-
+    console.log("before splide")
 
     new Splide('.splide', {
         type: "slide",
-        rewind: true,
+        rewind: false,
         width: "100vw",
         start: 0,
-        perpage: 1,
-        permove: 1,
-        gap: "1em",
         pagination: true,
         drag: true,
-        autoWidth: true,
+        speed: 400,
+        easing: "cubic-bezier(0.25, 1, 0.5, 1)",
     }).mount();
+
+
 
 
 }

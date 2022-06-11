@@ -6,7 +6,7 @@ let kdk = {
     game: {
         categories: {
             biller: {
-                category: "biller",
+                categoryName: "Biller",
                 color1: "#4E4076",
                 color2: "#4E4076",
                 levels: {
@@ -36,13 +36,27 @@ let kdk = {
                     }
                 },
             },
-            sommerfugle: {},
-            taeger: {},
-            bierogvepse: {},
-            natsvaermere: {},
-            moel: {},
-            guldsmede: {},
-            myrer: {},
+            sommerfugle: {
+                categoryName: "Sommerfugle",
+            },
+            taeger: {
+                categoryName: "Tæger",
+            },
+            bierogvepse: {
+                categoryName: "Bier & vepse",
+            },
+            natsvaermere: {
+                categoryName: "Natsværmere",
+            },
+            moel: {
+                categoryName: "Møl",
+            },
+            guldsmede: {
+                categoryName: "Guldsmede",
+            },
+            myrer: {
+                categoryName: "Myrer",
+            },
         },
     },
 }
