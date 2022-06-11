@@ -2,13 +2,14 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let anagram, curLevel, curCat, levelObj, grid, levelInfo, sortable
+let anagram, curLevel, curCat, curCatName, levelObj, grid, levelInfo, sortable
 
 const buildAnagram = (level) => {
     console.log("buildAnagram")
 
     levelInfo = level
     curCat = kdk.game.categories[level.split("-")[0]]
+    curCatName = level.split("-")[0]
     curLevel = +level.split("-")[1]
         //console.log(curCat)
         //console.log(curCat + " " + curLevel)
@@ -16,10 +17,10 @@ const buildAnagram = (level) => {
 
 
     let gameTemplate = document.querySelector("#game_template")
-    let gameContainer = document.querySelector("#game_container")
+    let gameContentContainer = document.querySelector("#game_content_container")
     let gameClone = gameTemplate.content.cloneNode(true)
     let gameTitle = gameClone.querySelector("#game_title")
-    gameContainer.innerHTML = ""
+    gameContentContainer.innerHTML = ""
     grid = gameClone.querySelector("#game_letter_grid")
     let uiMute = gameClone.querySelectorAll(".ui_mute")
     uiMute.forEach((el) => { el.addEventListener("click", clickMute) })
@@ -29,12 +30,13 @@ const buildAnagram = (level) => {
     if (levelObj.completed > 0) {
         levelObj.hintsgiven = 3 - levelObj.completed
         gameClone.querySelector("#ui_hint").classList.add("all_hints_used")
+        buildWinContent()
     } else {
         gameClone.querySelector("#ui_hint").addEventListener("click", () => { clickHint(UIstars) })
     }
     hintUIStars(UIstars)
 
-    gameContainer.append(gameClone)
+    gameContentContainer.append(gameClone)
 
     //split anagram string into array
     anagram = levelObj[`hint${levelObj.hintsgiven}`]
@@ -366,6 +368,33 @@ const starsComplete = () => {
     })
 }
 
+const buildWinContent = () => {
+    let winContainer = document.querySelector("#game_win_container")
+    let winTemplate = document.querySelector("#game_win_template")
+    let winClone = winTemplate.content.cloneNode(true)
+    let winContent = levelObj.wincontent
+    winContainer.innerHTML = ""
+
+    winClone.querySelector("#win_title").textContent = levelObj.insect
+    winClone.querySelector(".win_desc").textContent = winContent.beskrivelse
+    winClone.querySelector(".win_img2").src = `../img/insects/${curCatName}/${curLevel}_2.jpg`
+    winClone.querySelector(".win_img2").alt = winContent.img2
+    winClone.querySelector(".win_fagc2").textContent = winContent.img2
+    winClone.querySelector(".win_forv").textContent = "Forvekslingsmuligheder"
+    winClone.querySelector(".win_forv_t").textContent = winContent.forvekslingsmuligheder
+    winClone.querySelector(".win_biol").textContent = "Biologi"
+    winClone.querySelector(".win_biol_t").textContent = winContent.biologi
+    winClone.querySelector(".win_img3").src = `../img/insects/${curCatName}/${curLevel}_3.jpg`
+    winClone.querySelector(".win_img3").alt = winContent.img3
+    winClone.querySelector(".win_fagc3").textContent = winContent.img3
+    winClone.querySelector(".win_leve").textContent = "Levested"
+    winClone.querySelector(".win_leve_t").textContent = winContent.levested
+    winClone.querySelector(".win_udbr").textContent = "Udbredelse"
+    winClone.querySelector(".win_udbr_t").textContent = winContent.udbredelse
+
+    winContainer.append(winClone)
+}
+
 const unlockNextLevel = (cur) => {
     let next = cur <= 12 ? cur + 1 : cur = 12
     curCat.levels[next].unlocked = true
@@ -374,15 +403,15 @@ const unlockNextLevel = (cur) => {
 //recalc width values when resizing
 const letterSizeRecalc = () => {
     document.querySelectorAll("#game_letter_grid span.letter").forEach((el) => {
-        el.style.width = `100%`
-        setTimeout(() => {
-            let w = el.offsetWidth
-            el.style.padding = `${w * 0.55 - 3}px 0 ${w * 0.45 - 3}px 0`
-            el.style.width = `${w}px`
-            el.style.fontSize = `${w / 1.5}px`
-        }, 50)
-    })
-    animationBG(bgPatternSvg)
+            el.style.width = `100%`
+            setTimeout(() => {
+                let w = el.offsetWidth
+                el.style.padding = `${w * 0.55 - 3}px 0 ${w * 0.45 - 3}px 0`
+                el.style.width = `${w}px`
+                el.style.fontSize = `${w / 1.5}px`
+            }, 50)
+        })
+        //animationBG(bgPatternSvg)
 }
 window.addEventListener("resize", () => {
     letterSizeRecalc()
