@@ -101,6 +101,13 @@ const buildLevels = () => {
         bg.style.backgroundImage = `var(--${colorArr[event.index]})`
     })
 
+    // splide.on('move', (event) => {
+    //     console.log(event)
+    //     console.log(document.documentElement.clientWidth)
+    //     let bg = document.querySelector("#levels_background")
+    //     bg.style.transform = `translateX(-${document.documentElement.clientWidth * event}px)`
+    // })
+
     splide.mount()
 
 }

@@ -25,18 +25,29 @@ const navigate = (site, level) => {
 
         if (pagesArr[i] == site) {
             setTimeout(() => {
+                //document.querySelector("#container").style.background = ""
                 nextCont.style.display = "flex"
                 if (site == "game") {
                     buildAnagram(level)
                 }
                 if (site == "levels") {
                     buildLevels()
+                        //document.querySelector("#container").style.background = "none"
                 }
                 if (site == "splash") {
-                    let bg = document.querySelector("#container")
-                    bg.style.backgroundImage = `var(--green-green)`
+                    document.querySelector("#container").style.backgroundImage = `var(--green-green)`
+
+
+                    const fullscreenElement = document.querySelector("#container");
+
+                    document.querySelector("#start_button").addEventListener('click', () => {
+                        // UNCOMMENT TO ENABLE SCREENFULL
+                        // if (screenfull.isEnabled) {
+                        //     screenfull.request(fullscreenElement);
+                        // }
+                    });
                 }
-            }, 150)
+            }, 200)
             setTimeout(() => {
                 nextCont.classList.remove("container_fade")
             }, 200)

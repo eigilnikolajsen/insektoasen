@@ -31,6 +31,7 @@
     --moel: linear-gradient(150deg, #F8EC81, #F2A055);
     --guldsmede: linear-gradient(150deg, #ACABF2, #CB74B8);
     --myrer: linear-gradient(150deg, #A1CC80, #3C7B55);
+    --crazy: linear-gradient(150deg, #FFD384 0%, #FF9770 14.2%, #E2638B 28.6%, #9179D7 42.3%, #7688E5 57.1%, #55A7C1 71.4%, #50B791 85.7%, #85CE83 100%);
 }
 
 *,
@@ -95,6 +96,18 @@ svg {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: calc(.02vh + 0.8px);
+}
+
+#levels_background {
+    width: 800vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -8;
+    background-image: var(--crazy);
+    transition: .4s cubic-bezier(.4, 1.2, .3, 1);
+    visibility: hidden;
 }
 
 #foreground {
