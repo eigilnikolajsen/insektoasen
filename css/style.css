@@ -809,6 +809,7 @@ button:active {
 
 #game_img_container {
     width: min(40vh, 100%);
+    width: 100%;
     overflow: visible;
     fill: var(--char);
     stroke: var(--dark);
@@ -817,7 +818,8 @@ button:active {
     display: grid;
 }
 
-#game_img_container div {
+
+/* #game_img_container div {
     font-size: min(60vh, 120vw);
     font-family: 'Imago Display';
     color: var(--char);
@@ -832,6 +834,22 @@ button:active {
     background-clip: text;
     -webkit-text-stroke: calc(.2vh + 3px) var(--dark);
     filter: drop-shadow(var(--dark) .8vh .8vh);
+    user-select: none;
+    cursor: default;
+} */
+
+#game_img_container div {
+    font-size: 0;
+    overflow: visible;
+    padding: 0;
+    margin: 0 auto;
+    width: 80%;
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center;
+    border: 0.4vh solid var(--dark);
+    border-radius: 2vh;
+    box-shadow: var(--dark) .6vh .6vh;
     user-select: none;
     cursor: default;
 }
