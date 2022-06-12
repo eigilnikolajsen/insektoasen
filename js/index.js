@@ -220,7 +220,7 @@ const buildImg = () => {
     let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
     let randomMask = masks[Math.floor(Math.random() * masks.length)]
     if (curCat.categoryName) {
-        imgContainer.innerHTML = `<div style="background-image:url(${getURL()}/img/insects/${curCatName}/${curLevel}_1.jpg);">${randomMask}</div>`
+        imgContainer.innerHTML = `<div style="background-image:url(${getURL()}img/insects/${curCatName}/${curLevel}_1.jpg);">${randomMask}</div>`
     }
 }
 
@@ -379,14 +379,14 @@ const buildWinContent = () => {
 
     winClone.querySelector("#win_title").textContent = levelObj.insect
     winClone.querySelector(".win_desc").textContent = winContent.beskrivelse
-    winClone.querySelector(".win_img2").src = `${getURL()}/img/insects/${curCatName}/${curLevel}_2.jpg`
+    winClone.querySelector(".win_img2").src = `${getURL()}img/insects/${curCatName}/${curLevel}_1.jpg`
     winClone.querySelector(".win_img2").alt = winContent.img2
     winClone.querySelector(".win_fagc2").textContent = winContent.img2
     winClone.querySelector(".win_forv").textContent = "Forvekslingsmuligheder"
     winClone.querySelector(".win_forv_t").textContent = winContent.forvekslingsmuligheder
     winClone.querySelector(".win_biol").textContent = "Biologi"
     winClone.querySelector(".win_biol_t").textContent = winContent.biologi
-    winClone.querySelector(".win_img3").src = `${getURL()}/img/insects/${curCatName}/${curLevel}_3.jpg`
+    winClone.querySelector(".win_img3").src = `${getURL()}img/insects/${curCatName}/${curLevel}_1.jpg`
     winClone.querySelector(".win_img3").alt = winContent.img3
     winClone.querySelector(".win_fagc3").textContent = winContent.img3
     winClone.querySelector(".win_leve").textContent = "Levested"

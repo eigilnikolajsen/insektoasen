@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('../font/ImagoT11.woff2') format('woff2'), /* Modern Browsers */
-    url('../font/ImagoT11.otf') format('opentype');
+    src: url('../font/ImagoT12.woff2') format('woff2'), /* Modern Browsers */
+    url('../font/ImagoT12.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -825,7 +825,7 @@ button:active {
     overflow: visible;
     padding: 65% 0 45% 0;
     text-align: center;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
