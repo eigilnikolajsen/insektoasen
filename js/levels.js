@@ -46,8 +46,18 @@ const buildLevels = () => {
                 wrapper.addEventListener("click", () => {
                     navigate(`game`, `${insect}-${lvl.level}`)
                 })
-            } else {
+            } else if (lvl.playable) {
                 wrapper.classList.add(`locked_level`)
+            } else {
+                wrapper.addEventListener("click", () => {
+                    statLocked.textContent = "16 stjerne for at låse op"
+                    statLocked.classList.remove("stat_locked_blink")
+                    window.requestAnimationFrame(() => {
+                        window.requestAnimationFrame(() => {
+                            statLocked.classList.add("stat_locked_blink")
+                        })
+                    })
+                })
             }
 
             let number = levelClone.querySelector(".levels_content_level_number")
@@ -69,8 +79,10 @@ const buildLevels = () => {
 
         let statLevels = catClone.querySelector(".stat_levels")
         let statStars = catClone.querySelector(".stat_stars")
+        let statLocked = catClone.querySelector(".stat_locked")
         statLevels.textContent = `${levelCount} / ${levelTotal} ${categoryInsect.categoryName.toLowerCase()}`
         statStars.textContent = `${starCount} / ${levelTotal * 3} stjerner`
+
 
         catContainer.append(catClone)
 

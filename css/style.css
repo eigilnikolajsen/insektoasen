@@ -26,7 +26,7 @@
     --biller: linear-gradient(150deg, #F2A055, #EA6254);
     --sommerfugle: linear-gradient(150deg, #89CCCC, #547DBA);
     --taeger: linear-gradient(150deg, #DA83C1, #D64859);
-    --bierogvepse: linear-gradient(150deg, #9AD7DB, #51AB75);
+    --bieroghvepse: linear-gradient(150deg, #9AD7DB, #51AB75);
     --natsvaermere: linear-gradient(150deg, #F0A4C9, #7763AF);
     --moel: linear-gradient(150deg, #F8EC81, #F2A055);
     --guldsmede: linear-gradient(150deg, #ACABF2, #CB74B8);
@@ -533,7 +533,7 @@ button:active {
     fill: var(--green)
 }
 
-.cls-bierogvepse {
+.cls-bieroghvepse {
     fill: var(--yellow)
 }
 
@@ -673,6 +673,40 @@ button:active {
     font-size: 2vh;
     text-align: center;
     margin: .5vh 0 0 0;
+}
+
+.stat_locked {
+    opacity: 0;
+}
+
+.stat_locked_blink {
+    animation-name: locked_blink;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes locked_blink {
+    0% {
+        opacity: 0;
+    }
+    17% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    67% {
+        opacity: 0;
+    }
+    83% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 

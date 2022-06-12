@@ -606,8 +606,8 @@ let kdk = {
             taeger: {
                 categoryName: "Tæger",
             },
-            bierogvepse: {
-                categoryName: "Bier & vepse",
+            bieroghvepse: {
+                categoryName: "Bier & hvepse",
             },
             natsvaermere: {
                 categoryName: "Natsværmere",
