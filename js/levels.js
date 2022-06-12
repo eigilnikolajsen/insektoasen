@@ -3,9 +3,6 @@
 // CODED BY EIGIL NIKOLAJSEN
 
 const buildLevels = () => {
-
-
-
     let gameCat = kdk.game.categories
     let catTemplate = document.querySelector("#levels_categori_template")
     let catContainer = document.querySelector(".splide__list")
@@ -45,9 +42,8 @@ const buildLevels = () => {
             let wrapper = levelClone.querySelector(".levels_content_level_container")
             wrapper.classList.add(`diff_${lvl.difficulty}`)
             if (!lvl.playable) wrapper.classList.add(`unplayable_level`)
-            if (lvl.unlocked) {
+            if (lvl.unlocked && lvl.playable) {
                 wrapper.addEventListener("click", () => {
-                    //console.log(`${insect}-${lvl.level}`)
                     navigate(`game`, `${insect}-${lvl.level}`)
                 })
             } else {
@@ -56,6 +52,7 @@ const buildLevels = () => {
 
             let number = levelClone.querySelector(".levels_content_level_number")
             if (lvl.unlocked) number.textContent = lvl.level
+            if (lvl.difficulty == "extreme") number.textContent = "…"
 
             let stars = levelClone.querySelectorAll(".levels_content_levels_star")
             for (let i = 0; i < lvl.completed; i++) {
@@ -72,7 +69,7 @@ const buildLevels = () => {
 
         let statLevels = catClone.querySelector(".stat_levels")
         let statStars = catClone.querySelector(".stat_stars")
-        statLevels.textContent = `${levelCount} / ${levelTotal} ${categoryInsect.categoryName}`
+        statLevels.textContent = `${levelCount} / ${levelTotal} ${categoryInsect.categoryName.toLowerCase()}`
         statStars.textContent = `${starCount} / ${levelTotal * 3} stjerner`
 
         catContainer.append(catClone)
@@ -87,26 +84,27 @@ const buildLevels = () => {
 
     var splide = new Splide('.splide', {
         type: "slide",
-        rewind: false,
         width: "100vw",
         start: 0,
         pagination: true,
+        loop: true,
+        rewind: true,
         drag: true,
         arrowPath: "M25.8,13.09c.54,.54,.93,1.47,.93,2.23,0,1.2-.82,1.96-1.96,1.96H0v5.44H24.76c1.14,0,1.96,.82,1.96,1.96,0,.82-.38,1.69-.93,2.23l-6.31,6.31,3.65,3.65,16.87-16.87L23.13,3.13l-3.65,3.65,6.31,6.31Z",
 
     })
 
-    splide.on('active', (event) => {
-        let bg = document.querySelector("#container")
-        bg.style.backgroundImage = `var(--${colorArr[event.index]})`
-    })
-
-    // splide.on('move', (event) => {
-    //     console.log(event)
-    //     console.log(document.documentElement.clientWidth)
-    //     let bg = document.querySelector("#levels_background")
-    //     bg.style.transform = `translateX(-${document.documentElement.clientWidth * event}px)`
+    // splide.on('active', (event) => {
+    //     let bg = document.querySelector("#container")
+    //     bg.style.backgroundImage = `var(--${colorArr[event.index]})`
     // })
+
+    splide.on('move', (event) => {
+        console.log(event)
+        console.log(document.documentElement.clientWidth)
+        let bg = document.querySelector("#levels_background")
+        bg.style.transform = `translateX(-${document.documentElement.clientWidth * event}px)`
+    })
 
     splide.mount()
 

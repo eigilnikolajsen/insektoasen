@@ -12,45 +12,49 @@ const navigate = (site, level) => {
 
     let pagesArr = ["loading", "splash", "levels", "game"]
 
-
-
     for (let i = 0; i < pagesArr.length; i++) {
         let allCont = document.querySelector(`#${pagesArr[i]}_container`)
         let nextCont = document.querySelector(`#${site}_container`)
+        let foreground = document.querySelector(`#foreground`)
+        let foregroundDuration = 0.6
+        let container = document.querySelector("#container")
 
-        allCont.classList.add("container_fade")
+        foreground.className = ""
+        if (site != "loading") {
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    foreground.className = "transition"
+                })
+            })
+        }
+
         setTimeout(() => {
             allCont.style.display = "none"
-        }, 100)
+        }, foregroundDuration * 1000 * 0.41)
 
         if (pagesArr[i] == site) {
             setTimeout(() => {
-                //document.querySelector("#container").style.background = ""
                 nextCont.style.display = "flex"
                 if (site == "game") {
                     buildAnagram(level)
                 }
                 if (site == "levels") {
+                    console.log("navigate levels")
+                    container.style.backgroundImage = "none"
                     buildLevels()
-                        //document.querySelector("#container").style.background = "none"
                 }
                 if (site == "splash") {
-                    document.querySelector("#container").style.backgroundImage = `var(--green-green)`
-
-
-                    const fullscreenElement = document.querySelector("#container");
-
-                    document.querySelector("#start_button").addEventListener('click', () => {
+                    container.style.backgroundImage = "var(--green-green)"
                         // UNCOMMENT TO ENABLE SCREENFULL
-                        // if (screenfull.isEnabled) {
-                        //     screenfull.request(fullscreenElement);
-                        // }
-                    });
+                        // const fullscreenElement = document.querySelector("#container");
+                        //
+                        // document.querySelector("#start_button").addEventListener('click', () => {
+                        //     if (screenfull.isEnabled) {
+                        //         screenfull.request(fullscreenElement);
+                        //     }
+                        // })
                 }
-            }, 200)
-            setTimeout(() => {
-                nextCont.classList.remove("container_fade")
-            }, 200)
+            }, foregroundDuration * 1000 * 0.42)
         }
     }
 

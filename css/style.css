@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('../font/ImagoT10.woff2') format('woff2'), /* Modern Browsers */
-    url('../font/ImagoT10.otf') format('opentype');
+    src: url('../font/ImagoT11.woff2') format('woff2'), /* Modern Browsers */
+    url('../font/ImagoT11.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -31,7 +31,7 @@
     --moel: linear-gradient(150deg, #F8EC81, #F2A055);
     --guldsmede: linear-gradient(150deg, #ACABF2, #CB74B8);
     --myrer: linear-gradient(150deg, #A1CC80, #3C7B55);
-    --crazy: linear-gradient(150deg, #FFD384 0%, #FF9770 14.2%, #E2638B 28.6%, #9179D7 42.3%, #7688E5 57.1%, #55A7C1 71.4%, #50B791 85.7%, #85CE83 100%);
+    --crazy: linear-gradient(110deg, #FFD384, #FF9770, #E2638B, #9179D7, #7688E5, #55A7C1, #50B791, #85CE83, #FFD384);
 }
 
 *,
@@ -45,6 +45,10 @@ body {
     color: var(--dark);
 }
 
+body {
+    overflow-x: hidden;
+}
+
 svg {
     overflow: visible;
 }
@@ -54,7 +58,7 @@ svg {
     /* height: 100vh; */
     top: 0;
     left: 0;
-    background: var(--green-green);
+    background-image: var(--green-green);
     z-index: -9;
     transition: 1s cubic-bezier(.4, 1.2, .3, 1);
 }
@@ -67,27 +71,26 @@ svg {
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: -10;
+    /* z-index: -10; */
     display: flex;
     flex-direction: column;
-    background-image: url(../img/bg_pattern6.png);
+    background-image: url(../img/bg_pattern8.png);
     background-size: 150vh;
     background-position: left top;
-    /* animation-name: background_pattern_move2;
-    animation-duration: 30s;
+    animation-name: background_pattern_move;
+    animation-duration: 50s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear; */
+    animation-timing-function: linear;
 }
 
-
-/* @keyframes background_pattern_move {
+@keyframes background_pattern_move {
     0% {
-        background-position: 0 100vh;
+        background-position: 0 calc(150vh / 1.588235294117647);
     }
     100% {
         background-position: 0 0;
     }
-} */
+}
 
 #background_pattern svg {
     width: 100vmax;
@@ -99,15 +102,14 @@ svg {
 }
 
 #levels_background {
-    width: 800vw;
+    width: 940vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0;
+    left: -20vw;
     z-index: -8;
     background-image: var(--crazy);
     transition: .4s cubic-bezier(.4, 1.2, .3, 1);
-    visibility: hidden;
 }
 
 #foreground {
@@ -118,10 +120,22 @@ svg {
     left: 0;
     background-color: var(--dark);
     z-index: 100;
+    opacity: 0;
+}
+
+#foreground.start_transition {
     animation-name: hide_start;
     animation-duration: 0.5s;
     animation-delay: 0.5s;
     animation-fill-mode: forwards;
+}
+
+#foreground.transition {
+    animation-name: transition;
+    animation-duration: 0.6s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
 }
 
 @keyframes hide_start {
@@ -132,6 +146,23 @@ svg {
         opacity: 0;
     }
     100% {
+        visibility: hidden;
+    }
+}
+
+@keyframes transition {
+    0% {
+        visibility: visible;
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
         visibility: hidden;
     }
 }
@@ -388,7 +419,7 @@ button:active {
     padding: 1vh 1vh 1.2vh 1vh;
     position: static;
     background-color: var(--char);
-    border: .45vh solid var(--dark);
+    border: .4vh solid var(--dark);
     border-radius: 9999px;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) .4vh .4vh;
@@ -456,7 +487,7 @@ button:active {
     font-family: 'Imago Display', sans-serif;
     font-size: min(6vh, 14vw);
     text-align: center;
-    margin: 3vh 0 2vh 0;
+    margin: 2vh 0 1vh 0;
 }
 
 .levels_content_illustration {
@@ -493,7 +524,7 @@ button:active {
 }
 
 .cls-natsvaermere,
-.cls-myrer {
+.cls-myreroggraeshopper {
     fill: var(--dark-red)
 }
 
@@ -506,7 +537,8 @@ button:active {
     fill: var(--yellow)
 }
 
-.cls-guldsmede {
+.cls-guldsmede,
+.cls-andreinsekter {
     fill: var(--blue)
 }
 
@@ -520,7 +552,7 @@ button:active {
     max-width: min(40vh, 80vw);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2vh 1vh;
+    gap: 1.6vh 1vh;
 }
 
 .levels_content_level_container {
@@ -580,6 +612,16 @@ button:active {
     background-color: var(--red);
 }
 
+.levels_content_level_container.diff_extreme {
+    background-color: var(--dark);
+    color: var(--red);
+}
+
+.levels_content_level_container.diff_extreme .levels_content_level_number {
+    color: var(--yellow);
+    padding: 0.7vh 0 0 0.2vh;
+}
+
 .unplayable_level {
     opacity: 0.5;
     cursor: auto;
@@ -624,14 +666,13 @@ button:active {
 }
 
 .levels_content_bottom {
-    margin: 0 0 2vh 0;
+    margin: 0;
 }
 
 .levels_container_stats {
-    font-family: 'Imago Display', sans-serif;
-    font-size: 3vh;
+    font-size: 2vh;
     text-align: center;
-    margin: 1vh 0 0 0;
+    margin: .5vh 0 0 0;
 }
 
 
@@ -944,11 +985,10 @@ button:active {
 
 #game_win_container_wrapper {
     width: 100%;
-    margin-top: 1vh;
 }
 
 #game_win_container {
-    padding: 2vh;
+    padding: 0 2vh;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
