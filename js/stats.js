@@ -2,6 +2,9 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
+let easyTotal = 0,
+    medTotal = 0
+
 const buildStats = () => {
     let statsRest = document.querySelector("#stats_rest")
     statsRest.innerHTML = ""
@@ -20,9 +23,7 @@ const buildStats = () => {
         sForCatTotal = 0,
         sTotalForCatTotal = 0,
         easy = 0,
-        easyTotal = 0,
         med = 0,
-        medTotal = 0,
         hard = 0,
         hardTotal = 0,
         extreme = 0,
@@ -77,4 +78,26 @@ const buildStats = () => {
     hardTotalH3.innerHTML = `<p class="stats_numbers">${hard} / ${hardTotal}</p><p class="stats_desc">svære baner</p>`
     extremeTotalH3.innerHTML = `<p class="stats_numbers">${extreme} / ${extremeTotal}</p><p class="stats_desc">umulige baner</p>`
 
+    if (getDiffCount() == easyTotal) unlockLevels("hard")
+    if (getDiffCount() == medTotal) unlockLevels("extreme")
+}
+
+const getDiffCount = (diff) => {
+    let count = 0
+    for (const category in kdk.game.categories) {
+        for (const level in kdk.game.categories[category].levels) {
+            let lvl = kdk.game.categories[category].levels[level]
+            if (lvl.difficulty == diff && lvl.completed > 0) count++
+        }
+    }
+    return count
+}
+
+const unlockLevels = (diff) => {
+    for (const category in kdk.game.categories) {
+        for (const level in kdk.game.categories[category].levels) {
+            let lvl = kdk.game.categories[category].levels[level]
+            if (lvl.difficulty == diff) lvl.playable = true
+        }
+    }
 }

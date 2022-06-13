@@ -50,7 +50,8 @@ const buildLevels = () => {
                 wrapper.classList.add(`locked_level`)
             } else {
                 wrapper.addEventListener("click", () => {
-                    statLocked.textContent = "16 stjerne for at låse op"
+                    if (lvl.difficulty == "hard") statLocked.textContent = "Vind alle nemme baner for at låse op"
+                    if (lvl.difficulty == "extreme") statLocked.textContent = "Vind alle medium baner for at låse op"
                     statLocked.classList.remove("stat_locked_blink")
                     window.requestAnimationFrame(() => {
                         window.requestAnimationFrame(() => {

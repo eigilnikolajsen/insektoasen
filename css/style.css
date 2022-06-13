@@ -697,6 +697,7 @@ button:active {
 }
 
 .stat_locked_blink {
+    font-style: italic;
     animation-name: locked_blink;
     animation-duration: 4s;
     animation-fill-mode: forwards;
