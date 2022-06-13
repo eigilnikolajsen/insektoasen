@@ -34,9 +34,11 @@ const navigate = (site, level) => {
 
         if (pagesArr[i] == site) {
             setTimeout(() => {
+                container.style.backgroundImage = "var(--green-green)"
                 nextCont.style.display = "flex"
                 if (site == "game") {
                     buildAnagram(level)
+                    container.style.backgroundImage = "none"
                 }
                 if (site == "levels") {
                     console.log("navigate levels")
@@ -44,15 +46,14 @@ const navigate = (site, level) => {
                     buildLevels()
                 }
                 if (site == "splash") {
-                    container.style.backgroundImage = "var(--green-green)"
-                        // UNCOMMENT TO ENABLE SCREENFULL
-                        // const fullscreenElement = document.querySelector("#container");
-                        //
-                        // document.querySelector("#start_button").addEventListener('click', () => {
-                        //     if (screenfull.isEnabled) {
-                        //         screenfull.request(fullscreenElement);
-                        //     }
-                        // })
+                    // UNCOMMENT TO ENABLE SCREENFULL
+                    // const fullscreenElement = document.querySelector("#container");
+
+                    // document.querySelector("#start_button").addEventListener('click', () => {
+                    //     if (screenfull.isEnabled) {
+                    //         screenfull.request(fullscreenElement);
+                    //     }
+                    // })
                 }
                 if (site == "stats") {
                     buildStats()

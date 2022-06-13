@@ -561,6 +561,7 @@ button:active {
 .cls-eye {
     transform-box: fill-box;
     transform-origin: center;
+    transition: transform 10s;
 }
 
 .levels_content_middle {
@@ -755,12 +756,15 @@ button:active {
     padding: 0;
     display: grid;
     cursor: help;
-    animation-name: ui_hint_wiggle;
+}
+
+#ui_hint.wiggle {
+    animation-name: wiggle_ani;
     animation-duration: 10s;
     animation-iteration-count: infinite;
 }
 
-@keyframes ui_hint_wiggle {
+@keyframes wiggle_ani {
     0% {
         transform: rotate(0);
     }
