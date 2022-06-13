@@ -10,7 +10,7 @@ const navigate = (site, level) => {
         levels = document.querySelector("#levels_container"),
         game = document.querySelector("#game_container")
 
-    let pagesArr = ["loading", "splash", "levels", "game"]
+    let pagesArr = ["loading", "splash", "levels", "game", "stats", "info"]
 
     for (let i = 0; i < pagesArr.length; i++) {
         let allCont = document.querySelector(`#${pagesArr[i]}_container`)
@@ -53,6 +53,9 @@ const navigate = (site, level) => {
                         //         screenfull.request(fullscreenElement);
                         //     }
                         // })
+                }
+                if (site == "stats") {
+                    buildStats()
                 }
             }, foregroundDuration * 1000 * 0.32)
         }

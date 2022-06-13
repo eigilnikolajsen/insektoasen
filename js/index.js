@@ -267,7 +267,7 @@ const calcColCount = (str) => {
             return a.length > b.length ? a : b;
         }
     )
-    if (longest.length < 5) { longest = "xxxxx" }
+    if (longest.length < 6) { longest = "xxxxxx" }
     return longest.length
 }
 

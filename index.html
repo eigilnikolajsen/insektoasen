@@ -34,6 +34,7 @@
     <script src="js/index.js" defer></script>
     <script src="js/navigate.js" defer></script>
     <script src="js/levels.js" defer></script>
+    <script src="js/stats.js" defer></script>
 
 </head>
 
@@ -64,8 +65,10 @@
                 <div id="splash_bottom_container">
                     <div id="splash_button_container">
                         <button id="start_button" onclick="navigate('levels')">Start spillet →</button>
-                        <button id="info_button">Hjælp insekter ‰</span></button>
-                        <button id="stat_button">Mine stats ↝</button>
+                        <button id="info_button" onclick="navigate('info')">Hjælp insekter ‰</span></button>
+                        <button id="stat_button" onclick="navigate('stats')">Mine stats ↝</button>
+                        <p id="disclaimer">Insektoasen er en fiktiv forening. 2. års eksamen, 2022, Interaktivt Design, DMJX.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -93,11 +96,6 @@
                     <div id="levels_bottom_navigation_container" class="splide__arrows"></div>
                 </section>
 
-                <!-- <div id="levels_bottom_navigation_container">
-                <button class="levels_content_arrow">←</button>
-                <button class="levels_content_arrow">→</button>
-            </div> -->
-
             </section>
 
 
@@ -107,6 +105,48 @@
                 <div id="game_win_container_wrapper">
                     <div id="game_win_container"></div>
                 </div>
+            </section>
+
+
+            <!-- INFO -->
+            <section id="info_container">
+
+                <!-- NAV -->
+                <nav id="info_top_navigation_container">
+                    <div id="info_nav_right">
+                        <button class="ui_home" onclick="navigate('splash')">‡</button>
+                        <button class="ui_mute">‹</button>
+                    </div>
+                    <div id="info_nav_left"></div>
+                </nav>
+
+                <!-- STATS CONTENT -->
+                <section id="info_content_wrapper">
+
+                </section>
+
+            </section>
+
+
+            <!-- STATS -->
+            <section id="stats_container">
+
+                <!-- NAV -->
+                <nav id="stats_top_navigation_container">
+                    <div id="stats_nav_right">
+                        <button class="ui_home" onclick="navigate('splash')">‡</button>
+                        <button class="ui_mute">‹</button>
+                    </div>
+                    <div id="stats_nav_left"></div>
+                </nav>
+
+                <!-- STATS CONTENT -->
+                <div id="stats_content_wrapper">
+                    <h1 id="stats_title">Mine stats</h1>
+                    <div id="stats_total" class="stats_content"></div>
+                    <div id="stats_rest"></div>
+                </div>
+
             </section>
 
 
@@ -253,6 +293,17 @@
                     </div>
                 </button>
             </template>
+
+
+            <!-- TEMPLATE FOR STATS -->
+            <template id="stats_template">
+                <div class="stats_contents">
+                    <div class="stats_illustration"></div>
+                    <h3 class="stats_insects"></h3>
+                    <h3 class="stats_stars"></h3>
+                </div>
+            </template>
+
 
         </div>
     </main>

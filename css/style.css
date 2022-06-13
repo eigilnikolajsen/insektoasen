@@ -257,7 +257,7 @@ svg {
 
 #splash_logo_main {
     height: 10vh;
-    margin: 5vh 0;
+    margin: 6vh 0 4vh 0;
 }
 
 #splash_logo_game {
@@ -322,6 +322,17 @@ button:active {
     margin: 1vh auto 3vh auto;
 }
 
+#disclaimer {
+    position: fixed;
+    width: 100%;
+    top: .5vh;
+    left: 0;
+    text-align: center;
+    font-size: 1vh;
+    font-style: italic;
+    padding: 0 2vh;
+}
+
 
 /* LEVELS ----------------------------------------------------------- */
 
@@ -337,21 +348,16 @@ button:active {
     margin: 0 auto;
 }
 
-#levels_top_navigation_container {
+#levels_top_navigation_container,
+#info_top_navigation_container,
+#stats_top_navigation_container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#levels_text {
-    font-family: 'Imago Display', sans-serif;
-    font-size: 3vh;
-    margin-top: 1vh;
-}
-
-#game_nav_left,
-#game_nav_right {
+#game_nav_left {
     display: flex;
 }
 
@@ -1078,7 +1084,7 @@ figcaption {
 
 #scroll_arrow {
     position: absolute;
-    bottom: -5vh;
+    top: 98vh;
     left: calc(50vw - 3vh);
     font-size: 4vh;
     padding: 0.7vh 1vh 0.3vh 1vh;
@@ -1102,28 +1108,56 @@ figcaption {
 }
 
 
-/* START VALUES */
+/* STATS ----------------------------------------------------------- */
 
-
-/* #loading_container,
-#splash_container,
-#levels_container,
-#game_container {
-    display: none;
-}
-
-#loading_container {
+#stats_container {
+    padding: 2vh;
+    width: 100%;
+    max-width: 600px;
     display: flex;
-} */
-
-
-/* #loading_container,
-#splash_container,
-#levels_container,
-#game_container {
-    transition: opacity .1s cubic-bezier(.4, 0, .3, 1);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto;
 }
 
-.container_fade {
-    opacity: 0;
-} */
+#stats_content_wrapper {
+    width: 100%;
+}
+
+.stats_contents {
+    margin: 2vh 0;
+    text-align: center;
+}
+
+#stats_title {
+    text-align: center;
+    margin: 4vh 0 0 0;
+    font-family: 'Imago Display', sans-serif;
+    font-size: 6vh;
+}
+
+.stats_illustration {
+    width: 100%;
+    margin: 1vh auto;
+    stroke: var(--dark);
+    stroke-width: .7vh;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.stats_numbers {
+    font-family: 'Imago Display', sans-serif;
+    font-size: 3vh;
+}
+
+.stats_desc {
+    margin: 0 0 2vh 0;
+    font-size: 1.5vh;
+}
+
+#stats_rest {
+    margin: 5vh 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
