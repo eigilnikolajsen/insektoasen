@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('../font/ImagoT12.woff2') format('woff2'), /* Modern Browsers */
-    url('../font/ImagoT12.otf') format('opentype');
+    src: url('../font/ImagoT14.woff2') format('woff2'), /* Modern Browsers */
+    url('../font/ImagoT14.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -155,10 +155,10 @@ svg {
         visibility: visible;
         opacity: 0;
     }
-    40% {
+    30% {
         opacity: 1;
     }
-    60% {
+    70% {
         opacity: 1;
     }
     100% {
@@ -262,7 +262,6 @@ svg {
 
 #splash_logo_game {
     width: min(35vh, 70vw);
-    margin: 3vh 0;
     stroke: var(--dark);
     stroke-width: calc(0.5vh + 7px);
     stroke-linejoin: round;
@@ -277,7 +276,7 @@ svg {
     height: 100%;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
+    justify-content: flex-start;
     stroke: var(--dark);
     stroke-width: calc(0.2vh + 3px);
     stroke-linecap: round;
@@ -319,11 +318,7 @@ button:active {
     transition: 0.1s cubic-bezier(.3, .9, .4, 1);
 }
 
-#start_button {
-    margin: 3vh auto 1vh auto;
-}
-
-#info_button {
+#splash_button_container {
     margin: 1vh auto 3vh auto;
 }
 
@@ -1121,7 +1116,8 @@ figcaption {
     display: flex;
 } */
 
-#loading_container,
+
+/* #loading_container,
 #splash_container,
 #levels_container,
 #game_container {
@@ -1130,4 +1126,4 @@ figcaption {
 
 .container_fade {
     opacity: 0;
-}
+} */

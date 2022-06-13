@@ -30,7 +30,7 @@ const navigate = (site, level) => {
 
         setTimeout(() => {
             allCont.style.display = "none"
-        }, foregroundDuration * 1000 * 0.41)
+        }, foregroundDuration * 1000 * 0.31)
 
         if (pagesArr[i] == site) {
             setTimeout(() => {
@@ -54,7 +54,7 @@ const navigate = (site, level) => {
                         //     }
                         // })
                 }
-            }, foregroundDuration * 1000 * 0.42)
+            }, foregroundDuration * 1000 * 0.32)
         }
     }
 

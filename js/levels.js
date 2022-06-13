@@ -89,15 +89,17 @@ const buildLevels = () => {
     }
 
 
-
-
+    let catIndex = 0
+    for (let i = 0; i < colorArr.length; i++) {
+        if (colorArr[i] == curCatName) catIndex = i
+    }
 
     //console.log("before splide")
 
     var splide = new Splide('.splide', {
         type: "slide",
         width: "100vw",
-        start: 0,
+        start: catIndex,
         pagination: true,
         loop: true,
         rewind: true,
