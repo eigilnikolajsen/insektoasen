@@ -3,20 +3,30 @@
 // CODED BY EIGIL NIKOLAJSEN
 
 const buildStats = () => {
-    let statsTotal = document.querySelector("#stats_total")
     let statsRest = document.querySelector("#stats_rest")
-    statsTotal.innerHTML = ""
     statsRest.innerHTML = ""
     let statsTemplate = document.querySelector("#stats_template")
 
-    let statCloneStart = statsTemplate.content.cloneNode(true)
-    let insectsStart = statCloneStart.querySelector(".stats_insects")
-    let starsStart = statCloneStart.querySelector(".stats_stars")
+    //let totalContents = document.querySelector(".stats_total_contents")
+    let insectsTotal = document.querySelector(".stats_total_insects")
+    let starsTotal = document.querySelector(".stats_total_stars")
+    let easyTotalH3 = document.querySelector(".stats_total_easy")
+    let medTotalH3 = document.querySelector(".stats_total_med")
+    let hardTotalH3 = document.querySelector(".stats_total_hard")
+    let extremeTotalH3 = document.querySelector(".stats_total_extreme")
 
     let iForCatTotal = 0,
         iTotalForCatTotal = 0,
         sForCatTotal = 0,
-        sTotalForCatTotal = 0
+        sTotalForCatTotal = 0,
+        easy = 0,
+        easyTotal = 0,
+        med = 0,
+        medTotal = 0,
+        hard = 0,
+        hardTotal = 0,
+        extreme = 0,
+        extremeTotal = 0
     for (const category in kdk.game.categories) {
         let statsClone = statsTemplate.content.cloneNode(true)
         let illustration = statsClone.querySelector(".stats_illustration")
@@ -33,10 +43,20 @@ const buildStats = () => {
             sTotalForCat = 0
         for (const level in kdk.game.categories[category].levels) {
             let complete = kdk.game.categories[category].levels[level].completed
+            let difficult = kdk.game.categories[category].levels[level].difficulty
             iForCat = complete > 0 ? iForCat + 1 : iForCat
             iTotalForCat += 1
             sForCat = sForCat + complete
             sTotalForCat += 3
+
+            easy = difficult == "easy" && complete > 0 ? easy + 1 : easy
+            easyTotal = difficult == "easy" ? easyTotal + 1 : easyTotal
+            med = difficult == "med" && complete > 0 ? med + 1 : med
+            medTotal = difficult == "med" ? medTotal + 1 : medTotal
+            hard = difficult == "hard" && complete > 0 ? hard + 1 : hard
+            hardTotal = difficult == "hard" ? hardTotal + 1 : hardTotal
+            extreme = difficult == "extreme" && complete > 0 ? extreme + 1 : extreme
+            extremeTotal = difficult == "extreme" ? extremeTotal + 1 : extremeTotal
         }
 
         insects.innerHTML = `<p class="stats_numbers">${iForCat} / ${iTotalForCat}</p><p class="stats_desc">${kdk.game.categories[category].categoryName.toLowerCase()}</p>`
@@ -50,9 +70,11 @@ const buildStats = () => {
         statsRest.append(statsClone)
     }
 
-    insectsStart.innerHTML = `<p class="stats_numbers">${iForCatTotal} / ${iTotalForCatTotal}</p><p class="stats_desc">insekter</p>`
-    starsStart.innerHTML = `<p class="stats_numbers">${sForCatTotal} / ${sTotalForCatTotal}</p><p class="stats_desc">stjerner</p>`
-
-    statsTotal.append(statCloneStart)
+    insectsTotal.innerHTML = `<p class="stats_numbers">${iForCatTotal} / ${iTotalForCatTotal}</p><p class="stats_desc">insekter</p>`
+    starsTotal.innerHTML = `<p class="stats_numbers">${sForCatTotal} / ${sTotalForCatTotal}</p><p class="stats_desc">stjerner</p>`
+    easyTotalH3.innerHTML = `<p class="stats_numbers">${easy} / ${easyTotal}</p><p class="stats_desc">nemme baner</p>`
+    medTotalH3.innerHTML = `<p class="stats_numbers">${med} / ${medTotal}</p><p class="stats_desc">medium baner</p>`
+    hardTotalH3.innerHTML = `<p class="stats_numbers">${hard} / ${hardTotal}</p><p class="stats_desc">svære baner</p>`
+    extremeTotalH3.innerHTML = `<p class="stats_numbers">${extreme} / ${extremeTotal}</p><p class="stats_desc">umulige baner</p>`
 
 }

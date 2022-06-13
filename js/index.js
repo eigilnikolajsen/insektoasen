@@ -395,14 +395,18 @@ const buildWinContent = () => {
     winClone.querySelector(".win_udbr_t").textContent = winContent.udbredelse
 
     let nextButton = winClone.querySelector("#win_button_next")
-    let nextLevelNumber = curLevel <= 12 ? curLevel + 1 : curLevel = 12
+    let nextLevelNumber = curLevel + 1
     console.log(nextLevelNumber)
 
-    if (curCat.levels[nextLevelNumber].unlocked && curCat.levels[nextLevelNumber].playable) {
-        nextButton.addEventListener("click", () => {
-            console.log(kdk)
-            navigate(`game`, `${curCatName}-${nextLevelNumber}`)
-        })
+    if (curCat.levels[nextLevelNumber]) {
+        if (curCat.levels[nextLevelNumber].unlocked && curCat.levels[nextLevelNumber].playable) {
+            nextButton.addEventListener("click", () => {
+                console.log(kdk)
+                navigate(`game`, `${curCatName}-${nextLevelNumber}`)
+            })
+        } else {
+            nextButton.classList.add("unplayable_level")
+        }
     } else {
         nextButton.classList.add("unplayable_level")
     }
@@ -411,8 +415,8 @@ const buildWinContent = () => {
 }
 
 const unlockNextLevel = (cur) => {
-    let next = cur <= 12 ? cur + 1 : cur = 12
-    curCat.levels[next].unlocked = true
+    let next = cur + 1
+    if (curCat.levels[next]) curCat.levels[next].unlocked = true
 }
 
 //recalc width values when resizing

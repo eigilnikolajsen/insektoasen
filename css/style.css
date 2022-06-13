@@ -1137,6 +1137,10 @@ figcaption {
     font-size: 6vh;
 }
 
+#stats_total {
+    margin-top: 4vh;
+}
+
 .stats_illustration {
     width: 100%;
     margin: 1vh auto;
@@ -1149,11 +1153,13 @@ figcaption {
 .stats_numbers {
     font-family: 'Imago Display', sans-serif;
     font-size: 3vh;
+    text-align: center;
 }
 
 .stats_desc {
     margin: 0 0 2vh 0;
     font-size: 1.5vh;
+    text-align: center;
 }
 
 #stats_rest {
