@@ -1,3 +1,10 @@
+/* 
+2. YEAR EXAM
+DMJX, INTERACTIVE DESIGN, JUNE 2022 
+CODED BY EIGIL NIKOLAJSEN
+*/
+
+
 /* GLOBAL STYLES ----------------------------------------------------------- */
 
 @font-face {
@@ -165,6 +172,14 @@ svg {
         opacity: 0;
         visibility: hidden;
     }
+}
+
+#splash_container,
+#levels_container,
+#game_container,
+#info_container,
+#stats_container {
+    display: none;
 }
 
 
@@ -740,6 +755,39 @@ button:active {
     padding: 0;
     display: grid;
     cursor: help;
+    animation-name: ui_hint_wiggle;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ui_hint_wiggle {
+    0% {
+        transform: rotate(0);
+    }
+    88% {
+        transform: rotate(0);
+    }
+    89% {
+        transform: rotate(5deg);
+    }
+    91% {
+        transform: rotate(-5deg);
+    }
+    93% {
+        transform: rotate(5deg);
+    }
+    95% {
+        transform: rotate(-5deg);
+    }
+    97% {
+        transform: rotate(5deg);
+    }
+    99% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
 }
 
 #ui_hint.all_hints_used {
