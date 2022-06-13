@@ -7,6 +7,7 @@ fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
     splashBottom.innerHTML += svg
 }).catch(console.error.bind(console))
 
+
 // let bgPattern = document.querySelector("#background_pattern")
 // let bgPatternSvg
 // fetch('img/bg_pattern.svg').then(r => r.text()).then(svg => {

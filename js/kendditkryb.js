@@ -4,7 +4,6 @@
 
 
 const kdkInit = () => {
-    kdk.game.isLocalStorage = true
 
     for (const category in kdk.game.categories) {
         for (const level in kdk.game.categories[category].levels) {
@@ -12,24 +11,29 @@ const kdkInit = () => {
             if (lvl.difficulty == "hard" || lvl.difficulty == "extreme") lvl.playable = false
         }
     }
+    setkdk()
 
-    localStorage.clear()
-    let kdkStringify = JSON.stringify(kdk)
-    localStorage.setItem("kdkJSON", kdkStringify)
+}
+
+const setkdk = () => {
+    let str = JSON.stringify(kdk)
+    localStorage.setItem("kdkJSON", str)
+    console.log("localStorage: kdk SET to " + str)
 }
 
 const getkdk = () => {
-    let str = localStorage.getItem("kdkJSON")
-    return JSON.parse(str)
+    let getkdk = localStorage.getItem("kdkJSON")
+    kdk = JSON.parse(getkdk)
+    console.log("localStorage: kdk GET from " + getkdk)
 }
 
-const setkdk = (val) => {
-
+const kdkl = () => {
+    let getkdk = localStorage.getItem("kdkJSON")
+    return JSON.parse(getkdk)
 }
 
 let kdk = {
     game: {
-        isLocalStorage: false,
         categories: {
             biller: {
                 categoryName: "Biller",
@@ -1388,6 +1392,9 @@ let kdk = {
     },
 }
 
-if (!kdk.game.isLocalStorage) kdkInit()
+//kdkInit()
+console.log(localStorage.getItem("kdkJSON"))
 
-console.log(getkdk())
+if (!localStorage.getItem("kdkJSON")) {
+    kdkInit()
+}

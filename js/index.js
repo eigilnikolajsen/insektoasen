@@ -7,6 +7,8 @@ let anagram, curLevel, curCat, curCatName, levelObj, grid, levelInfo, sortable
 const buildAnagram = (level) => {
     console.log("buildAnagram")
 
+    getkdk()
+
     levelInfo = level
     curCat = kdk.game.categories[level.split("-")[0]]
     curCatName = level.split("-")[0]
@@ -227,9 +229,12 @@ const buildImg = () => {
 //when hint is clicked
 const clickHint = () => {
     console.log("clickHint")
+
     if (levelObj.hintsgiven < 2) {
         levelObj.hintsgiven++
+            setkdk()
     }
+
     buildAnagram(levelInfo)
     letterSizeRecalc()
 }
@@ -335,6 +340,7 @@ const wordsMatch = (str) => {
 //exec function when you win
 const youWon = () => {
     console.log("youWon")
+
     let delayAni = 0
     let letters = document.querySelectorAll("#game_letter_grid span.letter")
     let randomArr = []
@@ -351,11 +357,13 @@ const youWon = () => {
     sortable.destroy()
     if (levelObj.completed == 0) {
         levelObj.completed = 3 - levelObj.hintsgiven
+        setkdk()
     }
     unlockNextLevel(curLevel)
     buildWinContent()
     document.querySelector("#ui_hint").removeEventListener("click", clickHint)
     document.querySelector("#ui_hint").classList.add("all_hints_used")
+
 }
 
 const starsComplete = () => {
@@ -401,7 +409,6 @@ const buildWinContent = () => {
     if (curCat.levels[nextLevelNumber]) {
         if (curCat.levels[nextLevelNumber].unlocked && curCat.levels[nextLevelNumber].playable) {
             nextButton.addEventListener("click", () => {
-                console.log(kdk)
                 navigate(`game`, `${curCatName}-${nextLevelNumber}`)
             })
         } else {
@@ -416,7 +423,11 @@ const buildWinContent = () => {
 
 const unlockNextLevel = (cur) => {
     let next = cur + 1
-    if (curCat.levels[next]) curCat.levels[next].unlocked = true
+    if (curCat.levels[next]) {
+        curCat.levels[next].unlocked = true
+        setkdk()
+    }
+
 }
 
 //recalc width values when resizing

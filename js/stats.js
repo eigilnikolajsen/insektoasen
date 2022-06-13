@@ -6,6 +6,9 @@ let easyTotal = 0,
     medTotal = 0
 
 const buildStats = () => {
+
+    getkdk()
+
     let statsRest = document.querySelector("#stats_rest")
     statsRest.innerHTML = ""
     let statsTemplate = document.querySelector("#stats_template")
@@ -28,6 +31,8 @@ const buildStats = () => {
         hardTotal = 0,
         extreme = 0,
         extremeTotal = 0
+    easyTotal = 0
+    medtotal = 0
     for (const category in kdk.game.categories) {
         let statsClone = statsTemplate.content.cloneNode(true)
         let illustration = statsClone.querySelector(".stats_illustration")
@@ -78,11 +83,14 @@ const buildStats = () => {
     hardTotalH3.innerHTML = `<p class="stats_numbers">${hard} / ${hardTotal}</p><p class="stats_desc">svære baner</p>`
     extremeTotalH3.innerHTML = `<p class="stats_numbers">${extreme} / ${extremeTotal}</p><p class="stats_desc">umulige baner</p>`
 
-    if (getDiffCount() == easyTotal) unlockLevels("hard")
-    if (getDiffCount() == medTotal) unlockLevels("extreme")
+    if (getDiffCount("easy") == easyTotal) unlockLevels("hard")
+    if (getDiffCount("med") == medTotal) unlockLevels("extreme")
 }
 
 const getDiffCount = (diff) => {
+
+    getkdk()
+
     let count = 0
     for (const category in kdk.game.categories) {
         for (const level in kdk.game.categories[category].levels) {
@@ -94,10 +102,16 @@ const getDiffCount = (diff) => {
 }
 
 const unlockLevels = (diff) => {
+
+    getkdk()
+
     for (const category in kdk.game.categories) {
         for (const level in kdk.game.categories[category].levels) {
             let lvl = kdk.game.categories[category].levels[level]
             if (lvl.difficulty == diff) lvl.playable = true
         }
     }
+
+    setkdk()
+
 }
