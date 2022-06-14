@@ -25,8 +25,6 @@ const buildAnagram = (level) => {
     gameContentContainer.innerHTML = ""
     document.querySelector("#game_win_container").innerHTML = ""
     grid = gameClone.querySelector("#game_letter_grid")
-    let uiMute = gameClone.querySelectorAll(".ui_mute")
-    uiMute.forEach((el) => { el.addEventListener("click", () => { clickMute(uiMute) }) })
     let UIstars = gameClone.querySelectorAll(".game_nav_star")
     gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
 
@@ -175,10 +173,12 @@ const buildAnagram = (level) => {
     grid.querySelectorAll("span.locked").forEach((locked) => {
         locked.addEventListener("touchstart", () => {
             locked.classList.add("undraggable")
+            playSFX("unav")
             setTimeout(() => { locked.classList.remove("undraggable") }, 300)
         })
         locked.addEventListener("mousedown", () => {
             locked.classList.add("undraggable")
+            playSFX("unav")
             setTimeout(() => { locked.classList.remove("undraggable") }, 300)
         })
     })
@@ -209,6 +209,9 @@ const buildAnagram = (level) => {
     })
     sortable.on('drag:stop', () => {
         grid.style.cursor = "auto"
+
+        playSFX("move")
+
         setTimeout(() => {
             if (wordsMatch(anagram)) {
                 youWon()
@@ -283,16 +286,6 @@ const hintUIStars = (stars) => {
         setTimeout(() => {
             document.querySelector("#ui_hint").classList.add("all_hints_used")
         }, 200)
-    }
-}
-
-//when mute is clicked
-const clickMute = (uiMute) => {
-    console.log("clickMute")
-    if (uiMute[0].textContent == "‹") {
-        uiMute.forEach((el) => { el.textContent = "›" })
-    } else {
-        uiMute.forEach((el) => { el.textContent = "‹" })
     }
 }
 
@@ -375,6 +368,8 @@ const wordsMatch = (str) => {
 //exec function when you win
 const youWon = () => {
     console.log("youWon")
+
+    playSFX("win")
 
     let delayAni = 0
     let letters = document.querySelectorAll("#game_letter_grid span.letter")

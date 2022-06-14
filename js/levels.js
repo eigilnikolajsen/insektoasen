@@ -128,10 +128,6 @@ const buildLevels = () => {
 
     splide.mount()
 
-    setTimeout(() => {
-        randomEyePos()
-    }, 400);
-
 }
 
 
@@ -156,20 +152,22 @@ const initMouseMove = () => {
     })
 }
 
-const randomEyePos = () => {
-    document.querySelectorAll(".cls-eye").forEach((eye) => {
-        eye.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`
-    })
-}
+initMouseMove()
 
-const isTouchDevice = () => {
-    return (('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0));
-}
+// const randomEyePos = () => {
+//     document.querySelectorAll(".cls-eye").forEach((eye) => {
+//         eye.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`
+//     })
+// }
 
-if (!isTouchDevice()) {
-    initMouseMove()
-} else {
-    randomEyePos()
-}
+// const isTouchDevice = () => {
+//     return (('ontouchstart' in window) ||
+//         (navigator.maxTouchPoints > 0) ||
+//         (navigator.msMaxTouchPoints > 0));
+// }
+
+// if (!isTouchDevice()) {
+//     initMouseMove()
+// } else {
+//     randomEyePos()
+// }

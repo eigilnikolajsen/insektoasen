@@ -2,10 +2,12 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let splashBottom = document.querySelector("#splash_bottom_container")
-fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
-    splashBottom.innerHTML += svg
-}).catch(console.error.bind(console))
+// let splashBottom = document.querySelector("#splash_bottom_container")
+// fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
+//     splashBottom.innerHTML += svg
+// }).catch(console.error.bind(console))
+
+
 
 
 // let bgPattern = document.querySelector("#background_pattern")

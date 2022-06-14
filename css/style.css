@@ -285,8 +285,8 @@ svg {
     width: min(35vh, 70vw);
     height: 100%;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
     stroke: var(--dark);
     stroke-width: calc(0.2vh + 3px);
     stroke-linecap: round;
@@ -556,7 +556,6 @@ button:active {
 .cls-eye {
     transform-box: fill-box;
     transform-origin: center;
-    transition: transform 10s;
 }
 
 .levels_content_middle {

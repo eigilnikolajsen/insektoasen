@@ -49,6 +49,7 @@ const navigate = (site, level) => {
                 if (site == "levels") {
                     console.log("navigate levels")
                     container.style.backgroundImage = "none"
+                    if (!soundOn) musicToggle()
                     buildLevels()
                 }
                 if (site == "splash") {

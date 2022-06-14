@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#DBF56E" />
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
     <title>Insektoasen</title>
 
     <!-- CSS -->
@@ -20,6 +21,7 @@
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 
     <!-- FONTS -->
     <link rel="stylesheet" href="https://use.typekit.net/upz2zcg.css">
@@ -27,10 +29,8 @@
     <!-- JS -->
     <script src="js/draggable.bundle.js" defer></script>
     <script src="js/splide.min.js" defer></script>
-    <script src="js/anime.min.js" defer></script>
-    <script src="js/screenfull.min.js" defer></script>
     <script src="js/kendditkryb.js" defer></script>
-    <script src="js/splash.js" defer></script>
+    <script src="js/audio.js" defer></script>
     <script src="js/index.js" defer></script>
     <script src="js/navigate.js" defer></script>
     <script src="js/levels.js" defer></script>
@@ -63,6 +63,7 @@
                     <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="splash_logo_main">
                 </div>
                 <div id="splash_bottom_container">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361 241"><path class="cls-biller" d="M146.83,101.06h67.35a11.77,11.77,0,0,1,11.77,11.77v42.23A45.45,45.45,0,0,1,180.5,200.5h0a45.45,45.45,0,0,1-45.45-45.45V112.83a11.77,11.77,0,0,1,11.77-11.77Z"/><line class="cls-nofill" x1="180.5" y1="101.4" x2="180.5" y2="199.74"/><polyline class="cls-nofill" points="135.05 147.13 124.34 154.68 129.13 190.95 120.78 205.42"/><polyline class="cls-nofill" points="135.05 113.43 126.7 111.48 103.19 133.34"/><polyline class="cls-nofill" points="145.15 89 130.25 81.14 130.25 57.51 111.51 50.1"/><path class="cls-nofill" d="M172.45,63.79c-1.67-10.56-8.15-16.61-17.52-21.49l-13-6.72"/><path class="cls-biller" d="M145.32,101.15v-9A28.26,28.26,0,0,1,173.4,63.77h14.2A28.26,28.26,0,0,1,215.68,92.2v9Z"/><polyline class="cls-nofill" points="225.95 147.13 236.66 154.68 231.87 190.95 240.22 205.42"/><polyline class="cls-nofill" points="225.95 113.43 234.3 111.48 257.81 133.34"/><polyline class="cls-nofill" points="215.85 89 230.75 81.14 230.75 57.51 249.49 50.1"/><path class="cls-nofill" d="M188.55,63.79c1.67-10.56,8.15-16.61,17.52-21.49l13-6.72"/><g class="cls-eye-left cls-eye"><circle class="cls-white" cx="206.47" cy="72.66" r="11.48"/><path class="cls-nostroke" d="M212.15,82.62a11.32,11.32,0,0,1,.24-19.78,11.44,11.44,0,0,1-.24,19.78Z"/></g><g class="cls-eye-left cls-eye"><circle class="cls-white" cx="155.64" cy="72.66" r="11.48"/><path class="cls-nostroke" d="M161.32,82.62a11.32,11.32,0,0,1,.24-19.78,11.45,11.45,0,0,1-.24,19.78Z"/></g></svg>
                     <div id="splash_button_container">
                         <button id="start_button" onclick="navigate('levels')">Start spillet →</button>
                         <button id="info_button" onclick="navigate('info')">Hjælp insekter ‰</span></button>
@@ -81,7 +82,7 @@
                 <nav id="levels_top_navigation_container">
                     <div id="levels_nav_right">
                         <button class="ui_home" onclick="navigate('splash')">‡</button>
-                        <button class="ui_mute">‹</button>
+                        <button class="ui_mute" onclick="musicToggle()">‹</button>
                     </div>
                     <div id="levels_nav_left">
                     </div>
@@ -115,7 +116,7 @@
                 <nav id="info_top_navigation_container">
                     <div id="info_nav_right">
                         <button class="ui_home" onclick="navigate('splash')">‡</button>
-                        <button class="ui_mute">‹</button>
+                        <button class="ui_mute" onclick="musicToggle()">‹</button>
                     </div>
                     <div id="info_nav_left"></div>
                 </nav>
@@ -175,7 +176,7 @@
                 <nav id="stats_top_navigation_container">
                     <div id="stats_nav_right">
                         <button class="ui_home" onclick="navigate('splash')">‡</button>
-                        <button class="ui_mute">‹</button>
+                        <button class="ui_mute" onclick="musicToggle()">‹</button>
                     </div>
                     <div id="stats_nav_left"></div>
                 </nav>
@@ -211,7 +212,7 @@
                 <nav id="game_top_container">
                     <div id="game_nav_right">
                         <button class="ui_home" onclick="navigate('splash')">‡</button>
-                        <button class="ui_mute">‹</button>
+                        <button class="ui_mute" onclick="musicToggle()">‹</button>
                     </div>
                     <div id="game_nav_left">
                         <button class="ui_back" onclick="navigate('levels')">←</button>
@@ -354,9 +355,29 @@
                 </div>
             </template>
 
-
+            <audio id="sfx_bg" loop>
+                <source src="sfx/bgsong.mp3" type="audio/mp3">
+            </audio>
+            <audio id="sfx_win">
+                <source src="sfx/win.mp3" type="audio/mp3">
+            </audio>
+            <audio id="sfx_unav">
+                <source src="sfx/unavletter.mp3" type="audio/mp3">
+            </audio>
+            <audio id="sfx_move">
+                <source src="sfx/moveletter.mp3" type="audio/mp3">
+            </audio>
         </div>
     </main>
+
+    <script>
+        // Register service worker to control making site work offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then(() => console.log('Service Worker Registered'));
+        }
+    </script>
 
 </body>
 

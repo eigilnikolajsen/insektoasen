@@ -1422,7 +1422,7 @@ let kdk = {
 }
 
 //reset kdk
-kdkInit()
+//kdkInit()
 
 //init kdk if none present
 if (!localStorage.getItem("kdkJSON")) {
