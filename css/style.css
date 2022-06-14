@@ -74,13 +74,8 @@ svg {
 /* GLOBAL STYLES ----------------------------------------------------------- */
 
 #bg_texture {
-    width: 100%;
-    top: 0;
-    left: 0;
     overflow: hidden;
-    /* z-index: -10; */
-    display: flex;
-    flex-direction: column;
+    z-index: 1;
     background-image: url(../img/bg_pattern8.png);
     background-size: 150vh;
     background-position: left top;
@@ -1126,7 +1121,7 @@ button:active {
 }
 
 figcaption {
-    font-size: 0.8em;
+    font-size: 1.5vh;
     font-style: italic;
     margin: .2em 0 2em 1em;
 }
@@ -1237,27 +1232,47 @@ figcaption {
 
 #info_title {
     font-family: 'Imago Display', sans-serif;
-    font-size: 2.4em;
-    margin: 3vh 0 .2em 0;
+    font-size: 6vh;
+    margin: 3vh 0 6vh 0;
+}
+
+#info_logo {
+    margin: 3vh 0;
+    width: 50%;
 }
 
 .info_subtitle {
     font-family: 'Imago Display', sans-serif;
-    font-size: 1.8em;
-    margin: 1em 0 0.2em 0;
+    font-size: 4vh;
+    margin: 5vh 0 1vh 0;
+}
+
+.info_subsubtitle {
+    font-size: 2.5vh;
+    font-style: italic;
+    margin: 1vh 0 .6vh 0;
 }
 
 .info_text {
-    font-size: 1.2em;
-    margin: .2em 0 1em 0;
+    font-size: 2vh;
+    line-height: 1.3;
+    margin: .2vh 0 3vh 0;
 }
 
 .info_img {
     width: 100%;
-    margin: 1em 0 0.2em 0;
+    margin: 1vh 0 0.2vh 0;
     border-radius: 2vh;
     border: .4vh solid var(--dark);
     box-shadow: var(--dark) .6vh .6vh;
+}
+
+#info_content_wrapper figcaption {
+    margin: 1vh 0;
+}
+
+#info_content_wrapper figcaption a {
+    font-style: italic;
 }
 
 .info_diagramme {
@@ -1267,7 +1282,16 @@ figcaption {
 }
 
 figcaption {
-    font-size: 0.8em;
+    font-size: 1.5vh;
     font-style: italic;
-    margin: .2em 0 2em 1em;
+}
+
+.info_list {
+    margin: -2vh 0 3vh 0;
+}
+
+.info_listelement {
+    list-style-position: inside;
+    font-size: 2vh;
+    line-height: 1.5;
 }

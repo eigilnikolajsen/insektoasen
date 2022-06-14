@@ -56,6 +56,11 @@ const navigate = (site, level) => {
                     // })
                 }
                 if (site == "stats") {
+                    container.style.backgroundImage = "var(--guldsmede)"
+                    buildStats()
+                }
+                if (site == "info") {
+                    container.style.backgroundImage = "var(--moel)"
                     buildStats()
                 }
             }, foregroundDuration * 1000 * 0.32)

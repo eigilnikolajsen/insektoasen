@@ -18,13 +18,13 @@ const kdkInit = () => {
 const setkdk = () => {
     let str = JSON.stringify(kdk)
     localStorage.setItem("kdkJSON", str)
-    console.log("localStorage: kdk SET to " + str)
+        //console.log("localStorage: kdk SET to " + str)
 }
 
 const getkdk = () => {
     let getkdk = localStorage.getItem("kdkJSON")
     kdk = JSON.parse(getkdk)
-    console.log("localStorage: kdk GET from " + getkdk)
+        //console.log("localStorage: kdk GET from " + getkdk)
 }
 
 const kdkl = () => {
