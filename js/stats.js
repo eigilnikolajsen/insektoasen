@@ -3,7 +3,9 @@
 // CODED BY EIGIL NIKOLAJSEN
 
 let easyTotal = 0,
-    medTotal = 0
+    medTotal = 0,
+    hardTotal = 0,
+    extremeTotal = 0
 
 const buildStats = () => {
 
@@ -28,12 +30,14 @@ const buildStats = () => {
         easy = 0,
         med = 0,
         hard = 0,
-        hardTotal = 0,
-        extreme = 0,
-        extremeTotal = 0
+        extreme = 0
+
     easyTotal = 0
-    medtotal = 0
+    medTotal = 0
+    hardTotal = 0
+    extremeTotal = 0
     for (const category in kdk.game.categories) {
+        if (category == "onboarding") continue
         let statsClone = statsTemplate.content.cloneNode(true)
         let illustration = statsClone.querySelector(".stats_illustration")
         let insects = statsClone.querySelector(".stats_insects")
@@ -85,6 +89,10 @@ const buildStats = () => {
 
     if (getDiffCount("easy") == easyTotal) unlockLevels("hard")
     if (getDiffCount("med") == medTotal) unlockLevels("extreme")
+    if (getDiffCount("easy") == easyTotal && getDiffCount("med") == medTotal && getDiffCount("hard") == hardTotal && getDiffCount("extreme") == extremeTotal) document.querySelector("#stats_title").textContent = "DU HAR FUNDET ALLE INSEKTER!!!"
+
+    console.log(`${easyTotal} ${medTotal} ${hardTotal} ${extremeTotal} `)
+    console.log(`${getDiffCount("easy")} ${getDiffCount("med")} ${getDiffCount("hard")} ${getDiffCount("extreme")} `)
 }
 
 const getDiffCount = (diff) => {
@@ -114,4 +122,47 @@ const unlockLevels = (diff) => {
 
     setkdk()
 
+}
+
+const resetStats = () => {
+    let w = document.querySelector("#stats_content_wrapper")
+    let cc = document.createElement("div")
+    let c = document.createElement("div")
+    let q = document.createElement("h2")
+    let p = document.createElement("p")
+    let bc = document.createElement("div")
+    let b1 = document.createElement("button")
+    let b2 = document.createElement("button")
+
+    cc.id = "stats_reset_container"
+    c.id = "stats_reset_wrapper"
+    q.id = "stats_reset_title"
+    q.textContent = "Er du nu helt sikker?"
+    p.id = "stats_reset_desc"
+    p.textContent = "Alle tallene bliver nulstillet - du er slået tilbage til start"
+    bc.id = "stats_reset_button_wrapper"
+    b1.id = "stats_reset_deny"
+    b1.textContent = "Nej, tilbage"
+    b1.addEventListener("click", () => {
+        setTimeout(() => {
+            cc.remove()
+        }, 100)
+    })
+    b2.id = "stats_reset_confirm"
+    b2.textContent = "Bekræft"
+    b2.addEventListener("click", () => {
+        setTimeout(() => {
+            kdkInit()
+            navigate('stats')
+            cc.remove()
+        }, 100)
+    })
+
+    c.append(q)
+    c.append(p)
+    bc.append(b1)
+    bc.append(b2)
+    c.append(bc)
+    cc.append(c)
+    w.append(cc)
 }

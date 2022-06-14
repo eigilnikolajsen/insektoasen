@@ -9,6 +9,7 @@ const kdkInit = () => {
         for (const level in kdk.game.categories[category].levels) {
             let lvl = kdk.game.categories[category].levels[level]
             if (lvl.difficulty == "hard" || lvl.difficulty == "extreme") lvl.playable = false
+            lvl.completed = 0
         }
     }
     setkdk()
@@ -34,7 +35,35 @@ const kdkl = () => {
 
 let kdk = {
     game: {
+        onboarding: true,
         categories: {
+            onboarding: {
+                categoryName: "Biller",
+                levels: {
+                    1: {
+                        onboardingLevel: true,
+                        level: 1,
+                        difficulty: "none",
+                        unlocked: true,
+                        playable: true,
+                        completed: 0,
+                        hintsgiven: 0,
+                        insect: "7-plettet mariehøne",
+                        hint0: "SYV-PLETTET marie-høne ",
+                        hint1: "SYV-PLETTET Marie-høne ",
+                        hint2: "SYV-PLETTET MARIE-høne ",
+                        wincontent: {
+                            beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.",
+                            img2: "Mariehøne på blad",
+                            forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.",
+                            biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.",
+                            img3: "Mariehøne i haven",
+                            levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.",
+                            udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.",
+                        },
+                    },
+                },
+            },
             biller: {
                 categoryName: "Biller",
                 levels: {
@@ -81,8 +110,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Gåsebille",
                         hint0: "gåse-bille ",
-                        hint1: "gåse-Bille ",
-                        hint2: "gåse-BILLE ",
+                        hint1: "Gåse-BIlle ",
+                        hint2: "Gåse-BILLE ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     4: {
@@ -94,8 +123,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Eremit",
                         hint0: "eremit ",
-                        hint1: "Eremit ",
-                        hint2: "ERemit ",
+                        hint1: "ERemit ",
+                        hint2: "EREmit ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     5: {
@@ -107,8 +136,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Eghjort",
                         hint0: "eghjort ",
-                        hint1: "Eghjort ",
-                        hint2: "EGhjort ",
+                        hint1: "EghjorT ",
+                        hint2: "EGhjorT ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     6: {
@@ -120,8 +149,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Oldenborre",
                         hint0: "olden-borre ",
-                        hint1: "Olden-borre ",
-                        hint2: "OLDEN-borre ",
+                        hint1: "OLden-Borre ",
+                        hint2: "OLDEN-Borre ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     7: {
@@ -133,8 +162,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Harlekin mariehøne",
                         hint0: "harlekin-marie-høne ",
-                        hint1: "harlekin-Marie-høne ",
-                        hint2: "Harlekin-MARIE-høne ",
+                        hint1: "harlekin-MARIE-høne ",
+                        hint2: "HARlekin-MARIE-HØNE ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     8: {
@@ -146,8 +175,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Kratløber",
                         hint0: "krat-løber ",
-                        hint1: "Krat-løber ",
-                        hint2: "KRAT-løber ",
+                        hint1: "krat-LØber ",
+                        hint2: "krat-LØBER ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     9: {
@@ -159,8 +188,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Lille tornben",
                         hint0: "lille tornben ",
-                        hint1: "Lille Tornben ",
-                        hint2: "LILLE Tornben ",
+                        hint1: "lille tornBEN ",
+                        hint2: "LILLE tornBEN ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     10: {
@@ -172,8 +201,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Grøn guldbasse",
                         hint0: "grøn guld-basse ",
-                        hint1: "Grøn Guld-basse ",
-                        hint2: "GRØN Guld-basse ",
+                        hint1: "GRØN guld-basse ",
+                        hint2: "GRØN GULD-basse ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     11: {
@@ -185,8 +214,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Poppelbladbille",
                         hint0: "poppel-blad-bille ",
-                        hint1: "Poppel-blad-bille ",
-                        hint2: "Poppel-blad-BILLE ",
+                        hint1: "poppel-blad-BILLE ",
+                        hint2: "poppel-BLAD-BILLE ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     12: {
@@ -198,7 +227,7 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Bombarderbille",
                         hint0: "bom-barder-bille ",
-                        hint1: "Bom-barder-Bille ",
+                        hint1: "bom-barder-BILLE ",
                         hint2: "BOM-barder-BILLE ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
@@ -211,8 +240,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Nøddesnudebille",
                         hint0: "nødde-snude-bille ",
-                        hint1: "nødde-snude-BILLE ",
-                        hint2: "Nødde-Snude-BILLE ",
+                        hint1: "Nødde-Snude-Bille ",
+                        hint2: "NØdde-SNude-BIlle ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     14: {
@@ -224,8 +253,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Kamhornet smælder",
                         hint0: "kam-hornet smælder ",
-                        hint1: "KAM-hornet smælder ",
-                        hint2: "KAM-Hornet Smælder ",
+                        hint1: "Kam-Hornet Smælder ",
+                        hint2: "KAm-HOrnet SMælder ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     15: {
@@ -237,8 +266,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Trehornet skarnbasse",
                         hint0: "tre-hornet skarn-basse ",
-                        hint1: "TRE-hornet skarn-basse ",
-                        hint2: "TRE-hornet skarn-BASSE ",
+                        hint1: "Tre-Hornet Skarn-Basse ",
+                        hint2: "TRr-HOrnet SKarn-BAsse ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                     16: {
@@ -250,8 +279,8 @@ let kdk = {
                         hintsgiven: 0,
                         insect: "Sortkøllet ådselgraver",
                         hint0: "sort-køllet ådsel-graver ",
-                        hint1: "SORT-køllet ådsel-graver ",
-                        hint2: "SORT-Køllet Ådsel-Graver ",
+                        hint1: "Sort-Køllet Ådsel-Graver ",
+                        hint2: "SOrt-KØllet ÅDsel-GRaver ",
                         wincontent: { beskrivelse: "Et af de mest velkendte insekter. En oval, stærkt hvælvet bille med røde dækvinger og syv sorte pletter. Hovedet og forkroppen er sort med hvide pletter. Den røde farve fungerer som advarselsfarve, der fortæller eventuelle fjender, at de bør holde sig væk pga. mariehønens dårlige lugt og smag. Længde 7-10 mm.", img2: "Insekt på blad", forvekslingsmuligheder: "Ligner overfladisk flere andre arter af mariehøns, men kan adskilles fra disse på antallet af sorte pletter og de hvide tegninger på hoved og forkrop.", biologi: "Lever overvejende af bladlus og i mindre grad af andre insekter samt pollen og svampesporer. Træffes fra det tidlige forår til sent efterår - af og til også på lune vinterdage. Overvintrer som voksen.", img3: "Blomst med insekt", levested: "Forekommer stort set overalt, hvor der er gode bestande af byttedyr, primært bladlus, i græsland, agerland, haver og parker samt på enge.", udbredelse: "Udbredt og almindelig over hele landet. I år med mange bladlus kan den optræde i enorme mængder, hvilket bl.a. kan ses langs kysterne, hvor den kan skylle op i bunkevis.", },
                     },
                 },
@@ -1392,9 +1421,10 @@ let kdk = {
     },
 }
 
-//kdkInit()
-console.log(localStorage.getItem("kdkJSON"))
+//reset kdk
+kdkInit()
 
+//init kdk if none present
 if (!localStorage.getItem("kdkJSON")) {
     kdkInit()
 }

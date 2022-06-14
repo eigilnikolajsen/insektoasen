@@ -185,6 +185,7 @@ const buildAnagram = (level) => {
 
     letterSizeRecalc()
     buildImg()
+    if (levelObj.onboardingLevel) buildOnboarding()
 
     if (sortable) sortable.destroy()
 
@@ -224,6 +225,40 @@ const buildImg = () => {
     if (curCat.categoryName) {
         imgContainer.innerHTML = `<div style="background-image:url(${getURL()}img/insects/${curCatName}/${curLevel}_1.jpg);">${randomMask}</div>`
     }
+}
+
+const buildOnboarding = () => {
+    console.log("build onboarding")
+    let cc = document.querySelector("#game_content_container")
+    let c = document.createElement("div")
+    let d = document.createElement("div")
+    let gif = document.createElement("img")
+    let b = document.createElement("button")
+    let t = document.createElement("h2")
+    c.id = "onboarding_container"
+    d.id = "onboarding_wrapper"
+    t.id = "onboarding_title"
+    t.textContent = "Find navnet på insektet ved at flytte rundt på bogstaverne"
+    b.id = "onboarding_button"
+    b.textContent = "Lad mig prøve"
+    b.addEventListener("click", () => {
+        c.classList.add("onboarding_hide")
+        setTimeout(() => {
+            c.remove()
+            buildAnagram("biller-1")
+        }, 600)
+
+        kdk.game.onboarding = false
+        setkdk()
+    })
+    gif.id = "onboarding_gif"
+    gif.src = `${getURL()}img/onboarding.gif`
+    gif.alt = "onboarding gif"
+    d.append(t)
+    d.append(gif)
+    c.append(d)
+    c.append(b)
+    cc.append(c)
 }
 
 //when hint is clicked

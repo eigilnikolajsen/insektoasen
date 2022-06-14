@@ -1156,6 +1156,58 @@ figcaption {
 }
 
 
+/* ONBOARDING ----------------------------------------------------------- */
+
+#onboarding_container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#onboarding_wrapper {
+    background-color: white;
+    border-radius: 2vh;
+    border: .4vh solid var(--dark);
+    box-shadow: var(--dark) .6vh .6vh;
+}
+
+#onboarding_gif {
+    width: 100%;
+    border-radius: 2vh;
+}
+
+#onboarding_title {
+    font-size: 2vh;
+    padding: 2vh 2vh 0 2vh;
+}
+
+#onboarding_container.onboarding_hide {
+    animation-name: hide_onboarding_ani;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide_onboarding_ani {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
+
 /* STATS ----------------------------------------------------------- */
 
 #stats_container {
@@ -1216,8 +1268,54 @@ figcaption {
     grid-template-columns: 1fr 1fr;
 }
 
+#stats_reset_container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    background-color: rgba(0, 0, 0, .5);
+}
 
-/* STATS ----------------------------------------------------------- */
+#stats_reset_wrapper {
+    padding: 2vh;
+    background-color: white;
+    border-radius: 2vh;
+    border: .4vh solid var(--dark);
+    box-shadow: var(--dark) .6vh .6vh;
+}
+
+#stats_reset_title {
+    font-family: "Imago Display", sans-serif;
+    font-size: 4vh;
+    margin: 0 0 1vh 0;
+}
+
+#stats_reset_desc {
+    font-size: 2vh;
+    max-width: 35ch;
+}
+
+#stats_reset_button_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#stats_reset_deny {
+    background-color: var(--red);
+    margin: 3vh 1vh 0 0;
+}
+
+#stats_reset_confirm {
+    margin: 3vh 0 0 1vh;
+}
+
+
+/* INFO ----------------------------------------------------------- */
 
 #info_container {
     padding: 2vh;

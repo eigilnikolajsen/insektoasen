@@ -18,7 +18,9 @@ const buildLevels = () => {
 
     for (const insect in gameCat) {
         let categoryInsect = gameCat[insect]
+        if (insect == "onboarding") continue
         let catClone = catTemplate.content.cloneNode(true)
+
 
         //title = Biller
         let title = catClone.querySelector(".levels_content_title")

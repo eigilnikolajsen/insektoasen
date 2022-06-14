@@ -5,14 +5,21 @@
 const navigate = (site, level) => {
     console.log("navigate")
 
-    let loading = document.querySelector("#loading_container"),
-        splash = document.querySelector("#splash_container"),
-        levels = document.querySelector("#levels_container"),
-        game = document.querySelector("#game_container")
-
     let pagesArr = ["loading", "splash", "levels", "game", "stats", "info"]
 
+    getkdk()
+
+
+
     for (let i = 0; i < pagesArr.length; i++) {
+
+        if (kdk.game.onboarding && site == "levels") {
+            kdk.game.onboarding = false
+            setkdk()
+            navigate("game", "onboarding-1")
+            return
+        }
+
         let allCont = document.querySelector(`#${pagesArr[i]}_container`)
         let nextCont = document.querySelector(`#${site}_container`)
         let foreground = document.querySelector(`#foreground`)
@@ -34,11 +41,10 @@ const navigate = (site, level) => {
 
         if (pagesArr[i] == site) {
             setTimeout(() => {
-                container.style.backgroundImage = "var(--green-green)"
                 nextCont.style.display = "flex"
                 if (site == "game") {
-                    buildAnagram(level)
                     container.style.backgroundImage = "none"
+                    buildAnagram(level)
                 }
                 if (site == "levels") {
                     console.log("navigate levels")
@@ -46,8 +52,9 @@ const navigate = (site, level) => {
                     buildLevels()
                 }
                 if (site == "splash") {
-                    // UNCOMMENT TO ENABLE SCREENFULL
-                    // const fullscreenElement = document.querySelector("#container");
+                    container.style.backgroundImage = "var(--green-green)"
+                        // UNCOMMENT TO ENABLE SCREENFULL
+                        // const fullscreenElement = document.querySelector("#container");
 
                     // document.querySelector("#start_button").addEventListener('click', () => {
                     //     if (screenfull.isEnabled) {
