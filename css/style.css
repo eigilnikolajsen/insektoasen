@@ -966,7 +966,7 @@ button:active {
 #game_letter_grid {
     display: grid;
     width: 100%;
-    max-width: 350px;
+    max-width: 560px;
     margin: 0 auto;
     gap: .2vh;
 }
@@ -993,7 +993,7 @@ button:active {
     line-height: 0;
     background-color: var(--char);
     border: calc(.1vh + 2.5px) solid var(--dark);
-    border-radius: .8vh;
+    border-radius: calc(1vh + 1px);
     box-shadow: var(--dark) .4vh .4vh;
     cursor: grab;
     user-select: none;
