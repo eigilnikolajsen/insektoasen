@@ -272,7 +272,8 @@ const clickHint = () => {
 
     if (levelObj.hintsgiven < 2) {
         levelObj.hintsgiven++
-            setkdk()
+            playSFX("hint")
+        setkdk()
     }
 
     buildAnagram(levelInfo)

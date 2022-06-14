@@ -16,6 +16,7 @@ const navigate = (site, level) => {
         if (kdk.game.onboarding && site == "levels") {
             kdk.game.onboarding = false
             setkdk()
+            if (!audioStarted) musicToggle()
             navigate("game", "onboarding-1")
             return
         }
