@@ -1,9 +1,11 @@
 let soundOn = false
+let audioStarted = false
 
 const musicToggle = () => {
+    audioStarted = true
     let bgMusic = document.querySelector("#sfx_bg")
     let uiMute = document.querySelectorAll(".ui_mute")
-    let sounds = document.querySelectorAll(".ui_mute")
+    let sounds = document.querySelectorAll("audio")
 
     console.log(bgMusic)
 

@@ -27,6 +27,8 @@ const buildAnagram = (level) => {
     grid = gameClone.querySelector("#game_letter_grid")
     let UIstars = gameClone.querySelectorAll(".game_nav_star")
     gameTitle.textContent = `${curCat.categoryName} #${curLevel}`
+    let UImuted = gameClone.querySelector(".ui_mute")
+    if (soundOn) { UImuted.textContent = "‹" } else { UImuted.textContent = "›" }
 
     if (levelObj.completed > 0) {
         levelObj.hintsgiven = 3 - levelObj.completed
@@ -400,6 +402,10 @@ const starsComplete = () => {
     let domStars = document.querySelectorAll("#game_star_container .game_img_star")
     for (let i = 0; i < domStars.length - levelObj.hintsgiven; i++) {
         domStars[i].classList.add("yellow_star")
+        setTimeout(() => {
+            console.log("play sfx star")
+            playSFX(`star${i+1}`)
+        }, 1600 + (i * 250));
     }
     domStars.forEach((el) => {
         setTimeout(() => {
