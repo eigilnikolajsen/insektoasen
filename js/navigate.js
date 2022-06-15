@@ -55,14 +55,7 @@ const navigate = (site, level) => {
                 }
                 if (site == "splash") {
                     container.style.backgroundImage = "var(--green-green)"
-                        // UNCOMMENT TO ENABLE SCREENFULL
-                        // const fullscreenElement = document.querySelector("#container");
-
-                    // document.querySelector("#start_button").addEventListener('click', () => {
-                    //     if (screenfull.isEnabled) {
-                    //         screenfull.request(fullscreenElement);
-                    //     }
-                    // })
+                    appHeight()
                 }
                 if (site == "stats") {
                     container.style.backgroundImage = "var(--guldsmede)"
@@ -76,18 +69,10 @@ const navigate = (site, level) => {
             }, foregroundDuration * 1000 * 0.32)
         }
     }
-
-    // loading.style.display = "none"
-    // splash.style.display = "none"
-    // levels.style.display = "none"
-    // game.style.display = "none"
-
-    // document.querySelector(`#${site}_container`).style.display = "flex"
-
 }
 
 navigate("loading")
 
 setTimeout(() => {
     navigate("splash")
-}, 2000)
+}, 1000)

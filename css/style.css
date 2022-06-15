@@ -236,7 +236,7 @@ svg {
     border-radius: 9999px;
     background-color: var(--char);
     animation-name: fake_loading_animation;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-delay: 0.5s;
     animation-timing-function: cubic-bezier(.7, .4, .4, .9);
     animation-fill-mode: forwards;
@@ -507,7 +507,7 @@ button:active {
 
 .levels_content_title {
     font-family: 'Imago Display', sans-serif;
-    font-size: min(6vh, 14vw);
+    font-size: min(5vh, 9vw);
     text-align: center;
     margin: 2vh 0 1vh 0;
 }
@@ -863,7 +863,7 @@ button:active {
 
 #game_title {
     font-family: 'Imago Display', sans-serif;
-    font-size: min(6vh, 10vw);
+    font-size: min(4vh, 8vw);
     margin: 0 0 2vh 0;
 }
 
