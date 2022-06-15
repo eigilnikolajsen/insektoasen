@@ -196,10 +196,12 @@ const buildAnagram = (level) => {
 
 
     hintObj = document.querySelector("#ui_hint")
+    clearTimeout(hintWait)
 
     sortable.on('drag:start', () => {
         grid.style.cursor = "grabbing"
         clearTimeout(hintWait)
+        hintObj.classList.remove("wiggle")
     })
     sortable.on('drag:move', () => {
         grid.style.cursor = "grabbing"
@@ -218,7 +220,12 @@ const buildAnagram = (level) => {
         hintWait = setTimeout(() => {
             hintObj.classList.add("wiggle")
         }, 5000)
+        console.log(hintWait)
     })
+
+    hintWait = setTimeout(() => {
+        hintObj.classList.add("wiggle")
+    }, 5000)
 }
 
 const buildImg = () => {
@@ -505,7 +512,7 @@ const getURL = () => {
     //console.log(getURL())
 
 //load svg
-let contentTopContainer = document.querySelector("#splash_top_container")
+let kdkLogo = document.querySelector("#splash_kdk_logo")
 fetch('img/game_logo.svg').then(r => r.text()).then(text => {
-    contentTopContainer.innerHTML += text;
+    kdkLogo.innerHTML = text;
 }).catch(console.error.bind(console));

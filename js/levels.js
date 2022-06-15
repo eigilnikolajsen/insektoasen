@@ -3,8 +3,14 @@
 // CODED BY EIGIL NIKOLAJSEN
 
 const buildLevels = () => {
+    if (getDiffCount("easy") == easyTotal) unlockLevels("hard")
+    if (getDiffCount("med") == medTotal) unlockLevels("extreme")
+    if (getDiffCount("easy") == easyTotal && getDiffCount("med") == medTotal && getDiffCount("hard") == hardTotal && getDiffCount("extreme") == extremeTotal) document.querySelector("#stats_title").textContent = "DU HAR FUNDET ALLE INSEKTER!!!"
+
+
 
     getkdk()
+
 
 
     let gameCat = kdk.game.categories
@@ -114,7 +120,7 @@ const buildLevels = () => {
     })
 
     splide.on('move', (event) => {
-        let bg = document.querySelector("#levels_background")
+        let bg = document.querySelector("#background")
         bg.style.transform = `translateX(-${document.documentElement.clientWidth * event}px)`
     })
 

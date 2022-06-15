@@ -25,7 +25,7 @@ const navigate = (site, level) => {
         let nextCont = document.querySelector(`#${site}_container`)
         let foreground = document.querySelector(`#foreground`)
         let foregroundDuration = 0.6
-        let container = document.querySelector("#container")
+        let background = document.querySelector("#background")
 
         foreground.className = ""
         if (site != "loading") {
@@ -44,24 +44,26 @@ const navigate = (site, level) => {
             setTimeout(() => {
                 nextCont.style.display = "flex"
                 if (site == "game") {
-                    container.style.backgroundImage = "none"
                     buildAnagram(level)
                 }
                 if (site == "levels") {
-                    container.style.backgroundImage = "none"
+                    background.style.backgroundImage = "var(--crazy)"
+                    background.style.width = "940vw"
                     if (!audioStarted) musicToggle(true)
                     buildLevels()
                 }
                 if (site == "splash") {
-                    container.style.backgroundImage = "var(--green-green)"
+                    background.style.backgroundImage = "var(--green-green)"
+                    background.style.width = "140vw"
+                    background.style.transform = "none"
                     appHeight()
                 }
                 if (site == "stats") {
-                    container.style.backgroundImage = "var(--guldsmede)"
+                    background.style.backgroundImage = "var(--guldsmede)"
                     buildStats()
                 }
                 if (site == "info") {
-                    container.style.backgroundImage = "var(--moel)"
+                    background.style.backgroundImage = "var(--moel)"
                     buildStats()
                 }
                 allButtons()

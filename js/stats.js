@@ -86,10 +86,6 @@ const buildStats = () => {
     medTotalH3.innerHTML = `<p class="stats_numbers">${med} / ${medTotal}</p><p class="stats_desc">medium baner</p>`
     hardTotalH3.innerHTML = `<p class="stats_numbers">${hard} / ${hardTotal}</p><p class="stats_desc">svære baner</p>`
     extremeTotalH3.innerHTML = `<p class="stats_numbers">${extreme} / ${extremeTotal}</p><p class="stats_desc">umulige baner</p>`
-
-    if (getDiffCount("easy") == easyTotal) unlockLevels("hard")
-    if (getDiffCount("med") == medTotal) unlockLevels("extreme")
-    if (getDiffCount("easy") == easyTotal && getDiffCount("med") == medTotal && getDiffCount("hard") == hardTotal && getDiffCount("extreme") == extremeTotal) document.querySelector("#stats_title").textContent = "DU HAR FUNDET ALLE INSEKTER!!!"
 }
 
 const getDiffCount = (diff) => {
