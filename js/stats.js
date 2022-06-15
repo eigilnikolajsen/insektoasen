@@ -90,9 +90,6 @@ const buildStats = () => {
     if (getDiffCount("easy") == easyTotal) unlockLevels("hard")
     if (getDiffCount("med") == medTotal) unlockLevels("extreme")
     if (getDiffCount("easy") == easyTotal && getDiffCount("med") == medTotal && getDiffCount("hard") == hardTotal && getDiffCount("extreme") == extremeTotal) document.querySelector("#stats_title").textContent = "DU HAR FUNDET ALLE INSEKTER!!!"
-
-    console.log(`${easyTotal} ${medTotal} ${hardTotal} ${extremeTotal} `)
-    console.log(`${getDiffCount("easy")} ${getDiffCount("med")} ${getDiffCount("hard")} ${getDiffCount("extreme")} `)
 }
 
 const getDiffCount = (diff) => {
