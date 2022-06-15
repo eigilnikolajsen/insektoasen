@@ -284,15 +284,17 @@ svg {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
 }
 
 #splash_logo_main {
-    height: 8vh;
-    margin: 2vh 0 4vh 0;
+    height: 7vh;
+    margin: 1vh 0 5vh 0;
 }
 
 #splash_logo_game {
-    width: min(35vh, 70vw);
+    height: 100%;
+    max-height: min(30vh, 60vw);
     stroke: var(--dark);
     stroke-width: calc(0.5vh + 7px);
     stroke-linejoin: round;
@@ -303,8 +305,6 @@ svg {
 }
 
 #splash_bottom_container {
-    width: min(35vh, 70vw);
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -312,6 +312,10 @@ svg {
     stroke-width: calc(0.2vh + 3px);
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+#splash_bottom_container svg {
+    height: 20vh;
 }
 
 #content_button_container {
@@ -326,10 +330,10 @@ button {
     border-radius: 1vh;
     width: unset;
     display: block;
-    margin: 1vh auto;
-    padding: 1vh 1.5vh 0.8vh 1.5vh;
+    margin: .8vh auto;
+    padding: .9vh 1.2vh 0.7vh 1.2vh;
     cursor: pointer;
-    font-size: 3vh;
+    font-size: 2.5vh;
     font-family: 'Imago Display', sans-serif;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) .4vh .4vh;
@@ -350,7 +354,7 @@ button:active {
 }
 
 #splash_button_container {
-    margin: 1vh auto 3vh auto;
+    margin: 0 auto 2vh auto;
 }
 
 
@@ -1316,7 +1320,7 @@ figcaption {
 
 #stats_reset_desc {
     font-size: 2vh;
-    max-width: 35ch;
+    max-width: 28ch;
 }
 
 #stats_reset_button_wrapper {
