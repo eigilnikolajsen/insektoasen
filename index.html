@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-
-<html lang="da">
+<html lang="en">
 
 <head>
-
-    <!-- STUFF IDK WHAT MEANS + TITLE -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +56,15 @@
 
             <!-- SPLASH -->
             <section id="splash_container">
+                <nav id="splash_nav_container">
+                    <div id="splash_nav_right">
+                        <button class="ui_home" onclick="navigate('splash')">‡</button>
+                        <button class="ui_mute" onclick="musicToggle(true)">‹</button>
+                    </div>
+                    <div id="splash_nav_left">
+                        <p id="disclaimer">Insektoasen er en fiktiv forening<br> Eigil Nikolajsen, 2. års eksamen<br> Interaktivt Design, DMJX, 2022</p>
+                    </div>
+                </nav>
                 <div id="splash_top_container">
                     <img src="img/logo_vertical.svg" alt="Insektoasens logo" id="splash_logo_main">
                 </div>
@@ -68,8 +74,6 @@
                         <button id="start_button" onclick="navigate('levels')">Start spillet →</button>
                         <button id="info_button" onclick="navigate('info')">Hjælp insekter ‰</span></button>
                         <button id="stat_button" onclick="navigate('stats')">Mine stats ↝</button>
-                        <p id="disclaimer">Insektoasen er en fiktiv forening. 2. års eksamen, 2022, Interaktivt Design, DMJX.
-                        </p>
                     </div>
                 </div>
             </section>
@@ -366,6 +370,9 @@
             </audio>
             <audio id="sfx_move">
                 <source src="sfx/moveletter.mp3" type="audio/mp3">
+            </audio>
+            <audio id="sfx_button">
+                <source src="sfx/button.mp3" type="audio/mp3">
             </audio>
             <audio id="sfx_hint">
                 <source src="sfx/hint.mp3" type="audio/mp3">

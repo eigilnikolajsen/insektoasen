@@ -18,9 +18,6 @@ const musicToggle = (on) => {
     let uiMute = document.querySelectorAll(".ui_mute")
     let sounds = document.querySelectorAll("audio")
 
-    console.log(bgMusic)
-
-
     if (soundOn) {
         bgMusic.pause()
         sounds.forEach((el) => { el.muted = true })
@@ -37,4 +34,13 @@ const musicToggle = (on) => {
 
 const playSFX = (sfx) => {
     document.querySelector(`#sfx_${sfx}`).play()
+}
+
+const allButtons = () => {
+    let b = document.querySelectorAll("button")
+    b.forEach((el) => {
+        el.addEventListener("click", () => {
+            playSFX("move")
+        })
+    })
 }

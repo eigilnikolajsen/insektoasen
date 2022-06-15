@@ -406,7 +406,7 @@ const starsComplete = () => {
         setTimeout(() => {
             console.log("play sfx star")
             playSFX(`star${i + 1}`)
-        }, 1600 + (i * 250));
+        }, 1600 + (i * 210));
     }
     domStars.forEach((el) => {
         setTimeout(() => {
@@ -480,9 +480,18 @@ const letterSizeRecalc = () => {
         })
         //animationBG(bgPatternSvg)
 }
+
+const appHeight = () => {
+    const doc = document.querySelector("body")
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+
 window.addEventListener("resize", () => {
+    appHeight()
     letterSizeRecalc()
 })
+
+appHeight()
 
 
 const getURL = () => {

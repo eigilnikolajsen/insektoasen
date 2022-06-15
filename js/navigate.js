@@ -72,6 +72,7 @@ const navigate = (site, level) => {
                     container.style.backgroundImage = "var(--moel)"
                     buildStats()
                 }
+                allButtons()
             }, foregroundDuration * 1000 * 0.32)
         }
     }
