@@ -1,7 +1,16 @@
 let soundOn = false
 let audioStarted = false
+let soundOff = true
 
-const musicToggle = () => {
+window.addEventListener("blur", () => {
+    if (!soundOff && soundOn) musicToggle(false)
+})
+
+window.addEventListener("focus", () => {
+    if (!soundOff && !soundOn) musicToggle(false)
+})
+
+const musicToggle = (on) => {
 
     audioStarted = true
     let bgMusic = document.querySelector("#sfx_bg")
@@ -10,6 +19,7 @@ const musicToggle = () => {
     let sounds = document.querySelectorAll("audio")
 
     console.log(bgMusic)
+
 
     if (soundOn) {
         bgMusic.pause()
@@ -22,6 +32,7 @@ const musicToggle = () => {
     }
 
     soundOn = !soundOn
+    if (on) soundOff = !soundOff
 }
 
 const playSFX = (sfx) => {

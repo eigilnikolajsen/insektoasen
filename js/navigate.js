@@ -16,7 +16,7 @@ const navigate = (site, level) => {
         if (kdk.game.onboarding && site == "levels") {
             kdk.game.onboarding = false
             setkdk()
-            if (!audioStarted) musicToggle()
+            if (!audioStarted) musicToggle(true)
             navigate("game", "onboarding-1")
             return
         }
@@ -50,7 +50,7 @@ const navigate = (site, level) => {
                 if (site == "levels") {
                     console.log("navigate levels")
                     container.style.backgroundImage = "none"
-                    if (!audioStarted) musicToggle()
+                    if (!audioStarted) musicToggle(true)
                     buildLevels()
                 }
                 if (site == "splash") {

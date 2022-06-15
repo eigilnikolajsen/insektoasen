@@ -35,7 +35,7 @@ const buildAnagram = (level) => {
         gameClone.querySelector("#ui_hint").classList.add("all_hints_used")
         buildWinContent()
     } else {
-        gameClone.querySelector("#ui_hint").addEventListener("click", () => { clickHint(UIstars) })
+        gameClone.querySelector("#ui_hint").addEventListener("click", clickHint)
     }
     hintUIStars(UIstars)
 
@@ -405,7 +405,7 @@ const starsComplete = () => {
         domStars[i].classList.add("yellow_star")
         setTimeout(() => {
             console.log("play sfx star")
-            playSFX(`star${i+1}`)
+            playSFX(`star${i + 1}`)
         }, 1600 + (i * 250));
     }
     domStars.forEach((el) => {
