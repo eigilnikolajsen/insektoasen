@@ -6,6 +6,7 @@ const buildLevels = () => {
 
     getkdk()
 
+
     let gameCat = kdk.game.categories
     let catTemplate = document.querySelector("#levels_categori_template")
     let catContainer = document.querySelector(".splide__list")
