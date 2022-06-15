@@ -101,8 +101,6 @@ const buildLevels = () => {
         if (colorArr[i] == curCatName) catIndex = i
     }
 
-    //console.log("before splide")
-
     var splide = new Splide('.splide', {
         type: "slide",
         width: "100vw",
@@ -115,14 +113,7 @@ const buildLevels = () => {
 
     })
 
-    // splide.on('active', (event) => {
-    //     let bg = document.querySelector("#container")
-    //     bg.style.backgroundImage = `var(--${colorArr[event.index]})`
-    // })
-
     splide.on('move', (event) => {
-        console.log(event)
-        console.log(document.documentElement.clientWidth)
         let bg = document.querySelector("#levels_background")
         bg.style.transform = `translateX(-${document.documentElement.clientWidth * event}px)`
     })
@@ -130,15 +121,6 @@ const buildLevels = () => {
     splide.mount()
 
 }
-
-
-
-
-
-// let contentTop = document.querySelector(".levels_content_illustration")
-// fetch('img/insects/biller.svg').then(r => r.text()).then(svg => {
-//     contentTop.innerHTML = svg
-// }).catch(console.error.bind(console))
 
 const initMouseMove = () => {
     window.addEventListener("mousemove", (event) => {
@@ -154,21 +136,3 @@ const initMouseMove = () => {
 }
 
 initMouseMove()
-
-// const randomEyePos = () => {
-//     document.querySelectorAll(".cls-eye").forEach((eye) => {
-//         eye.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`
-//     })
-// }
-
-// const isTouchDevice = () => {
-//     return (('ontouchstart' in window) ||
-//         (navigator.maxTouchPoints > 0) ||
-//         (navigator.msMaxTouchPoints > 0));
-// }
-
-// if (!isTouchDevice()) {
-//     initMouseMove()
-// } else {
-//     randomEyePos()
-// }

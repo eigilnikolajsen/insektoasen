@@ -5,7 +5,7 @@
 let anagram, curLevel, curCat, curCatName, levelObj, grid, levelInfo, sortable
 
 const buildAnagram = (level) => {
-    console.log("buildAnagram")
+    //console.log("buildAnagram")
 
     getkdk()
 
@@ -13,8 +13,6 @@ const buildAnagram = (level) => {
     curCat = kdk.game.categories[level.split("-")[0]]
     curCatName = level.split("-")[0]
     curLevel = +level.split("-")[1]
-        //console.log(curCat)
-        //console.log(curCat + " " + curLevel)
     levelObj = curCat.levels[curLevel]
 
 
@@ -100,7 +98,6 @@ const buildAnagram = (level) => {
                 spanHyphen.style.gridArea = `h${hyphenCount}` //add grid area style
                 spanHyphen.textContent = "–" //add endash
                 gridTempArr[rowCount][count % col] = `h${hyphenCount}` //add e.g. h1 to grid layout
-                    //console.log(`h${hyphenCount}`)
                 grid.append(spanHyphen)
 
                 hyphenCount++ //increment hyphen count
@@ -118,7 +115,6 @@ const buildAnagram = (level) => {
                     let spanSpace = document.createElement("span")
                     spanSpace.classList.add(`s${spaceCount}`) //add class
                     spanSpace.style.gridArea = `s${spaceCount}` //add grid area style
-                        //console.log(`s${spaceCount}`)
                     grid.append(spanSpace)
                 }
 
@@ -138,7 +134,6 @@ const buildAnagram = (level) => {
                 let spanSpaceRow = document.createElement("span")
                 spanSpaceRow.classList.add(`s${spaceCount}`) //add class
                 spanSpaceRow.style.gridArea = `s${spaceCount}` //add grid area style
-                    //console.log(`s${spaceCount}`)
                 grid.append(spanSpaceRow)
 
                 for (let j = 0; j < col; j++) {
@@ -152,8 +147,6 @@ const buildAnagram = (level) => {
             }
         }
     }
-
-    //console.log(gridTempArr)
 
     let gridTempStr = ``
 
@@ -169,8 +162,6 @@ const buildAnagram = (level) => {
     }
 
     grid.style.gridTemplateAreas = gridTempStr
-
-    //console.log(gridTempStr)
 
     grid.querySelectorAll("span.locked").forEach((locked) => {
         locked.addEventListener("touchstart", () => {
@@ -223,7 +214,7 @@ const buildAnagram = (level) => {
 }
 
 const buildImg = () => {
-    console.log("buildImg")
+    //console.log("buildImg")
     let imgContainer = document.querySelector("#game_img_container")
     let masks = ["Ẁ", "ẁ", "ẃ", "Ẅ", "ẅ"]
     let randomMask = masks[Math.floor(Math.random() * masks.length)]
@@ -233,7 +224,7 @@ const buildImg = () => {
 }
 
 const buildOnboarding = () => {
-    console.log("build onboarding")
+    //console.log("build onboarding")
     let cc = document.querySelector("#game_content_container")
     let c = document.createElement("div")
     let d = document.createElement("div")
@@ -268,7 +259,7 @@ const buildOnboarding = () => {
 
 //when hint is clicked
 const clickHint = () => {
-    console.log("clickHint")
+    //console.log("clickHint")
 
     if (levelObj.hintsgiven < 2) {
         levelObj.hintsgiven++
@@ -281,7 +272,7 @@ const clickHint = () => {
 }
 
 const hintUIStars = (stars) => {
-    console.log(stars)
+    //console.log(stars)
     if (levelObj.hintsgiven == 1) stars[2].classList.remove("yellow_star")
     if (levelObj.hintsgiven == 2) {
         stars[1].classList.remove("yellow_star")
@@ -351,7 +342,7 @@ const shuffleWord = (str) => {
 
 //check if your word matches the solution
 const wordsMatch = (str) => {
-    console.log("wordsMatch")
+    //console.log("wordsMatch")
     let won = false
 
     let currentWord = ""
@@ -370,7 +361,7 @@ const wordsMatch = (str) => {
 
 //exec function when you win
 const youWon = () => {
-    console.log("youWon")
+    //console.log("youWon")
 
     playSFX("win")
 
@@ -404,7 +395,6 @@ const starsComplete = () => {
     for (let i = 0; i < domStars.length - levelObj.hintsgiven; i++) {
         domStars[i].classList.add("yellow_star")
         setTimeout(() => {
-            console.log("play sfx star")
             playSFX(`star${i + 1}`)
         }, 1600 + (i * 210));
     }
@@ -441,7 +431,6 @@ const buildWinContent = () => {
 
     let nextButton = winClone.querySelector("#win_button_next")
     let nextLevelNumber = curLevel + 1
-    console.log(nextLevelNumber)
 
     if (curCat.levels[nextLevelNumber]) {
         if (curCat.levels[nextLevelNumber].unlocked && curCat.levels[nextLevelNumber].playable) {
@@ -489,17 +478,21 @@ const appHeight = () => {
 window.addEventListener("resize", () => {
     appHeight()
     letterSizeRecalc()
+    setTimeout(() => {
+        appHeight()
+        letterSizeRecalc()
+    }, 100)
 })
 
 appHeight()
 
 
 const getURL = () => {
-    var arr = window.location.href.split("/");
-    delete arr[arr.length - 1];
-    return arr.join("/");
-}
-console.log(getURL())
+        var arr = window.location.href.split("/");
+        delete arr[arr.length - 1];
+        return arr.join("/");
+    }
+    //console.log(getURL())
 
 //load svg
 let contentTopContainer = document.querySelector("#splash_top_container")

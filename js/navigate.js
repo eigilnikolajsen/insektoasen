@@ -3,7 +3,7 @@
 // CODED BY EIGIL NIKOLAJSEN
 
 const navigate = (site, level) => {
-    console.log("navigate")
+    //console.log("navigate")
 
     let pagesArr = ["loading", "splash", "levels", "game", "stats", "info"]
 
@@ -48,7 +48,6 @@ const navigate = (site, level) => {
                     buildAnagram(level)
                 }
                 if (site == "levels") {
-                    console.log("navigate levels")
                     container.style.backgroundImage = "none"
                     if (!audioStarted) musicToggle(true)
                     buildLevels()
