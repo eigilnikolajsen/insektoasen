@@ -2,7 +2,7 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let anagram, curLevel, curCat, curCatName, levelObj, grid, levelInfo, sortable
+let anagram, curLevel, curCat, curCatName, levelObj, grid, levelInfo, sortable, hintWait, hintObj
 
 const buildAnagram = (level) => {
     //console.log("buildAnagram")
@@ -182,6 +182,7 @@ const buildAnagram = (level) => {
 
     if (sortable) sortable.destroy()
 
+    //sortable init
     sortable = new Draggable.Sortable(document.querySelectorAll('#game_letter_grid'), {
         draggable: '#game_letter_grid span.dragge',
         handle: '#game_letter_grid span.dragge',
@@ -193,9 +194,12 @@ const buildAnagram = (level) => {
         forceFallback: true,
     })
 
-    //sortable init
+
+    hintObj = document.querySelector("#ui_hint")
+
     sortable.on('drag:start', () => {
         grid.style.cursor = "grabbing"
+        clearTimeout(hintWait)
     })
     sortable.on('drag:move', () => {
         grid.style.cursor = "grabbing"
@@ -210,6 +214,10 @@ const buildAnagram = (level) => {
                 youWon()
             }
         }, 100)
+
+        hintWait = setTimeout(() => {
+            hintObj.classList.add("wiggle")
+        }, 5000)
     })
 }
 
@@ -241,8 +249,9 @@ const buildOnboarding = () => {
         c.classList.add("onboarding_hide")
         setTimeout(() => {
             c.remove()
+                //navigate("game", "biller-1")
             buildAnagram("biller-1")
-        }, 600)
+        }, 300)
 
         kdk.game.onboarding = false
         setkdk()
@@ -260,15 +269,17 @@ const buildOnboarding = () => {
 //when hint is clicked
 const clickHint = () => {
     //console.log("clickHint")
+    hintObj.classList.remove("wiggle")
 
     if (levelObj.hintsgiven < 2) {
         levelObj.hintsgiven++
             playSFX("hint")
         setkdk()
+
+        buildAnagram(levelInfo)
+        letterSizeRecalc()
     }
 
-    buildAnagram(levelInfo)
-    letterSizeRecalc()
 }
 
 const hintUIStars = (stars) => {
@@ -480,8 +491,7 @@ window.addEventListener("resize", () => {
     letterSizeRecalc()
     setTimeout(() => {
         appHeight()
-        letterSizeRecalc()
-    }, 100)
+    }, 500)
 })
 
 appHeight()

@@ -293,8 +293,7 @@ svg {
 }
 
 #splash_logo_game {
-    height: 100%;
-    max-height: min(30vh, 60vw);
+    height: 30vh;
     stroke: var(--dark);
     stroke-width: calc(0.5vh + 7px);
     stroke-linejoin: round;
@@ -769,7 +768,7 @@ button:active {
     cursor: help;
 }
 
-#ui_hint.wiggle {
+.wiggle {
     animation-name: wiggle_ani;
     animation-duration: 10s;
     animation-iteration-count: infinite;
@@ -779,26 +778,26 @@ button:active {
     0% {
         transform: rotate(0);
     }
-    88% {
+    0.5% {
+        transform: rotate(5deg);
+    }
+    1.5% {
+        transform: rotate(-5deg);
+    }
+    2.5% {
+        transform: rotate(5deg);
+    }
+    3.5% {
+        transform: rotate(-5deg);
+    }
+    4.5% {
+        transform: rotate(5deg);
+    }
+    5.5% {
+        transform: rotate(-5deg);
+    }
+    6% {
         transform: rotate(0);
-    }
-    89% {
-        transform: rotate(5deg);
-    }
-    91% {
-        transform: rotate(-5deg);
-    }
-    93% {
-        transform: rotate(5deg);
-    }
-    95% {
-        transform: rotate(-5deg);
-    }
-    97% {
-        transform: rotate(5deg);
-    }
-    99% {
-        transform: rotate(-5deg);
     }
     100% {
         transform: rotate(0);
@@ -809,6 +808,7 @@ button:active {
     opacity: 0.5;
     cursor: default;
     box-shadow: var(--dark) .4vh .4vh;
+    animation-name: generic;
 }
 
 @media (hover: hover) {
