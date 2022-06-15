@@ -57,6 +57,7 @@ const navigate = (site, level) => {
                     background.style.width = "140vw"
                     background.style.transform = "none"
                     appHeight()
+                    moveEyes(0, 0)
                 }
                 if (site == "stats") {
                     background.style.backgroundImage = "var(--guldsmede)"
