@@ -2,10 +2,10 @@
 // DMJX, INTERACTIVE DESIGN, JUNE 2022
 // CODED BY EIGIL NIKOLAJSEN
 
-let easyTotal = 0,
-    medTotal = 0,
-    hardTotal = 0,
-    extremeTotal = 0
+let easyTotal = 22,
+    medTotal = 28,
+    hardTotal = 31,
+    extremeTotal = 19
 
 const buildStats = () => {
 

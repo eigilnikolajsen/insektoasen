@@ -9,8 +9,8 @@ CODED BY EIGIL NIKOLAJSEN
 
 @font-face {
     font-family: 'Imago Display';
-    src: url('../font/ImagoT14.woff2') format('woff2'), /* Modern Browsers */
-    url('../font/ImagoT14.otf') format('opentype');
+    src: url('../font/ImagoDisplay.woff2') format('woff2'), /* Modern Browsers */
+    url('../font/ImagoDisplay.otf') format('opentype');
     /* Safari, Android, iOS */
     font-style: normal;
     font-weight: bold;
@@ -335,6 +335,9 @@ button {
     font-family: 'Imago Display', sans-serif;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) .4vh .4vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -448,6 +451,9 @@ button:active {
     border-radius: 9999px;
     transition: 0.5s cubic-bezier(.3, .9, .4, 1);
     box-shadow: var(--dark) .4vh .4vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     transform: none;
     cursor: pointer;
@@ -882,26 +888,6 @@ button:active {
     display: grid;
 }
 
-
-/* #game_img_container div {
-    font-size: min(60vh, 120vw);
-    font-family: 'Imago Display';
-    color: var(--char);
-    line-height: 0;
-    overflow: visible;
-    padding: 65% 0 45% 0;
-    text-align: center;
-    background-size: contain;
-    background-position: center;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-stroke: calc(.2vh + 3px) var(--dark);
-    filter: drop-shadow(var(--dark) .8vh .8vh);
-    user-select: none;
-    cursor: default;
-} */
-
 #game_img_container div {
     font-size: 0;
     overflow: visible;
@@ -914,6 +900,9 @@ button:active {
     border: 0.4vh solid var(--dark);
     border-radius: 2vh;
     box-shadow: var(--dark) .6vh .6vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     cursor: default;
 }
@@ -1011,6 +1000,9 @@ button:active {
     border-radius: calc(1vh + 1px);
     box-shadow: var(--dark) .4vh .4vh;
     cursor: grab;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
